@@ -1,0 +1,14 @@
+{
+  "name": "hotel-rk-international-mern",
+  "version": "1.0.0",
+  "description": "Hotel RK International - MERN Stack Web Application with Sea Birds Digha Hotel Design Inspiration",
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build"
+  },
+  "keywords": ["hotel", "mern", "react", "express", "mongodb", "digha"],
+  "author": "Antigravity",
+  "license": "ISC"
+}

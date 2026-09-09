@@ -1,0 +1,158 @@
+import React, { useState, useEffect } from 'react';
+import { Phone, Calendar, Menu, X } from 'lucide-react';
+
+const Navbar = ({ onOpenBooking, activeSection }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Rooms & Tariff', href: '#rooms' },
+    { label: 'Dining', href: '#dining' },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Reviews', href: '#reviews' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  const handleNavClick = (href) => {
+    setMobileMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="container navbar-inner">
+          {/* Authentic Logo Image */}
+          <a href="#home" className="nav-brand" onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}>
+            <img
+              src="/logo-transparent.png"
+              alt="Hotel RK International Logo"
+              className="nav-logo-img"
+            />
+          </a>
+
+          {/* Desktop Nav Links */}
+          <ul className="nav-links">
+            {navItems.map((item) => (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          {/* Desktop Nav Actions */}
+          <div className="nav-actions">
+            <a href="tel:+916289276600" className="btn btn-outline btn-sm btn-call">
+              <Phone size={15} color="#002E5B" />
+              <span>+91 6289276600</span>
+            </a>
+
+            <button
+              onClick={() => onOpenBooking(null)}
+              className="btn btn-cyan btn-sm"
+              id="nav-book-now-btn"
+            >
+              <Calendar size={16} />
+              <span>Book Now</span>
+            </button>
+
+            <button
+              className="nav-toggle"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Toggle navigation"
+            >
+              <Menu size={26} />
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile Menu Overlay & Drawer */}
+      <div
+        className={`mobile-nav-overlay ${mobileMenuOpen ? 'open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-drawer-header">
+          <img
+            src="/logo-transparent.png"
+            alt="Hotel RK International Logo"
+            style={{ height: '46px', maxWidth: '200px', objectFit: 'contain' }}
+          />
+          <button
+            className="modal-close-btn"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        <ul className="mobile-drawer-links">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                className="mobile-drawer-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: 'auto' }}>
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenBooking(null);
+            }}
+            className="btn btn-cyan"
+            style={{ width: '100%' }}
+          >
+            <Calendar size={18} />
+            <span>Book Now</span>
+          </button>
+
+          <a
+            href="tel:+916289276600"
+            className="btn btn-navy"
+            style={{ width: '100%' }}
+          >
+            <Phone size={18} />
+            <span>Call +91 6289276600</span>
+          </a>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Navbar;
