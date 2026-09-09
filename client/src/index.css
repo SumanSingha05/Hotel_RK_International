@@ -450,22 +450,90 @@ img {
   color: var(--accent-cyan);
 }
 
-/* Hero Section */
+/* Hero Section with Auto Crossfade Carousel */
 .hero {
   position: relative;
-  background: linear-gradient(90deg, rgba(0, 25, 52, 0.88) 0%, rgba(0, 38, 75, 0.74) 52%, rgba(0, 20, 45, 0.48) 100%),
-              url('/hero-building.png') center/cover no-repeat;
   color: var(--text-white);
   padding: 100px 0 130px 0;
   min-height: 85vh;
   display: flex;
   align-items: center;
+  overflow: hidden;
+}
+
+.hero-slider-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.7s ease-in-out, transform 2.5s ease-out;
+  pointer-events: none;
+}
+
+.hero-bg-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hero-gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 25, 52, 0.88) 0%, rgba(0, 38, 75, 0.74) 52%, rgba(0, 20, 45, 0.48) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-slide-indicators {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.hero-indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.hero-indicator-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.hero-indicator-dot.active {
+  width: 28px;
+  border-radius: 9999px;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(32, 183, 227, 0.8);
 }
 
 .hero-content {
   max-width: 780px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-badge {
