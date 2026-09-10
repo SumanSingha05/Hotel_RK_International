@@ -1,6 +1,7 @@
 {
   "name": "hotel-rk-international-mern",
   "version": "1.0.0",
+  "type": "module",
   "description": "Hotel RK International - MERN Stack Web Application with Sea Birds Digha Hotel Design Inspiration",
   "scripts": {
     "install:all": "npm install && cd server && npm install && cd ../client && npm install",

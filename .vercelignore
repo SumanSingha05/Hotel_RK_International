@@ -1,0 +1,6 @@
+.git
+**/node_modules
+client/dist
+temp_slider
+scripts
+.env*

@@ -37,9 +37,11 @@ app.get('/api/health', (req, res) => {
 });
 
 // Start listening immediately
-const server = app.listen(PORT, () => {
-  console.log(`Hotel RK International API Server running at http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Hotel RK International API Server running at http://localhost:${PORT}`);
+  });
+}
 
 // Connect to MongoDB asynchronously if available
 if (process.env.MONGODB_URI || process.env.USE_MONGO === 'true') {
