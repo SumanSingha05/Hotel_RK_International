@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, CheckCircle } from 'lucide-react';
 
 const ContactSection = ({ onShowToast }) => {
@@ -10,6 +10,17 @@ const ContactSection = ({ onShowToast }) => {
     message: ''
   });
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const handleCorporate = () => {
+      setFormData((prev) => ({
+        ...prev,
+        subject: 'Corporate / Group Booking'
+      }));
+    };
+    window.addEventListener('select-corporate-booking', handleCorporate);
+    return () => window.removeEventListener('select-corporate-booking', handleCorporate);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

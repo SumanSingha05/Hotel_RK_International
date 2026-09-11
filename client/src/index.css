@@ -309,7 +309,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 88px;
+  height: 94px;
 }
 
 .nav-brand {
@@ -320,11 +320,14 @@ img {
 }
 
 .nav-logo-img {
-  height: 68px;
+  height: 80px;
   width: auto;
-  max-width: 260px;
+  max-width: 320px;
   object-fit: contain;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: contrast(1.06) brightness(0.98);
   transition: transform var(--transition-fast);
 }
 
@@ -1574,11 +1577,11 @@ img {
 
 @media (max-width: 768px) {
   .navbar-inner {
-    height: 74px;
+    height: 80px;
   }
   .nav-logo-img {
-    height: 52px;
-    max-width: 190px;
+    height: 64px;
+    max-width: 225px;
   }
   .topbar {
     display: none;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Calendar, Menu, X } from 'lucide-react';
+import { Calendar, Menu, X } from 'lucide-react';
 
 const Navbar = ({ onOpenBooking, activeSection }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,20 +15,21 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
 
   const navItems = [
     { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
+    { label: 'Corporate Booking', href: '#contact', isCorporate: true },
     { label: 'Services', href: '#services' },
-    { label: 'Rooms & Tariff', href: '#rooms' },
-    { label: 'Dining', href: '#dining' },
     { label: 'Gallery', href: '#gallery' },
     { label: 'Reviews', href: '#reviews' },
-    { label: 'Contact', href: '#contact' },
   ];
 
-  const handleNavClick = (href) => {
+  const handleNavClick = (item) => {
     setMobileMenuOpen(false);
+    const href = typeof item === 'string' ? item : item.href;
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+    if (item && item.isCorporate) {
+      window.dispatchEvent(new CustomEvent('select-corporate-booking'));
     }
   };
 
@@ -37,7 +38,7 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-inner">
           {/* Authentic Logo Image */}
-          <a href="#home" className="nav-brand" onClick={(e) => { e.preventDefault(); handleNavClick('#home'); }}>
+          <a href="#home" className="nav-brand" onClick={(e) => { e.preventDefault(); handleNavClick({ href: '#home' }); }}>
             <img
               src="/logo-transparent.png"
               alt="Hotel RK International Logo"
@@ -54,7 +55,7 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
                   className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(item.href);
+                    handleNavClick(item);
                   }}
                 >
                   {item.label}
@@ -65,11 +66,6 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
 
           {/* Desktop Nav Actions */}
           <div className="nav-actions">
-            <a href="tel:+916289276600" className="btn btn-outline btn-sm btn-call">
-              <Phone size={15} color="#002E5B" />
-              <span>+91 6289276600</span>
-            </a>
-
             <button
               onClick={() => onOpenBooking(null)}
               className="btn btn-cyan btn-sm"
@@ -100,7 +96,7 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
           <img
             src="/logo-transparent.png"
             alt="Hotel RK International Logo"
-            style={{ height: '46px', maxWidth: '200px', objectFit: 'contain' }}
+            style={{ height: '56px', maxWidth: '230px', objectFit: 'contain', imageRendering: '-webkit-optimize-contrast' }}
           />
           <button
             className="modal-close-btn"
@@ -119,7 +115,7 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
                 className="mobile-drawer-link"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick(item.href);
+                  handleNavClick(item);
                 }}
               >
                 {item.label}
@@ -140,15 +136,6 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
             <Calendar size={18} />
             <span>Book Now</span>
           </button>
-
-          <a
-            href="tel:+916289276600"
-            className="btn btn-navy"
-            style={{ width: '100%' }}
-          >
-            <Phone size={18} />
-            <span>Call +91 6289276600</span>
-          </a>
         </div>
       </div>
     </>
