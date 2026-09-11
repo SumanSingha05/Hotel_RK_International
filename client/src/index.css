@@ -1580,7 +1580,7 @@ img {
     height: 52px;
     max-width: 190px;
   }
-  .topbar-right {
+  .topbar {
     display: none;
   }
   .nav-links, .nav-actions .btn-call {
