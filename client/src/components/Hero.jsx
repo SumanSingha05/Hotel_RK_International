@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Star, ShieldCheck, Waves } from 'lucide-react';
+import { Phone, MessageCircle, Star } from 'lucide-react';
 
 const heroImages = [
   {
@@ -58,14 +58,6 @@ const Hero = ({ onOpenBooking }) => {
             Comfortable Rooms for Your Digha Getaway
           </h1>
 
-          <h2 className="hero-subtitle">
-            Hotel R K International
-          </h2>
-
-          <p className="hero-desc">
-            Finding the right hotel in New Digha can make your coastal trip more convenient, relaxing, and memorable. Experience spacious AC rooms, attached modern bathrooms, 24*7 power backup, swimming pool, and authentic multi-cuisine dining just a short stroll from New Digha Sea Beach.
-          </p>
-
           <div className="hero-buttons">
             <a href="tel:+916289276600" className="btn btn-navy btn-lg">
               <Phone size={18} />
@@ -100,21 +92,6 @@ const Hero = ({ onOpenBooking }) => {
                 aria-label={`Slide ${index + 1}`}
               />
             ))}
-          </div>
-
-          <div style={{ display: 'flex', gap: '20px', marginTop: '30px', flexWrap: 'wrap', fontSize: '0.85rem', color: '#cbd5e1' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Waves size={16} color="#20B7E3" />
-              <span>Swimming Pool & Sea Beach</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <ShieldCheck size={16} color="#20B7E3" />
-              <span>24/7 Power Backup</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Star size={16} color="#FFB703" fill="#FFB703" />
-              <span>4.8/5 Star Rated on Google</span>
-            </div>
           </div>
         </div>
       </div>
