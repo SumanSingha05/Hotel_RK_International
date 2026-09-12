@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle, Star } from 'lucide-react';
+import { Phone, MessageCircle } from 'lucide-react';
 
 const heroImages = [
   {
@@ -31,7 +31,7 @@ const Hero = ({ onOpenBooking }) => {
     return () => clearInterval(timer);
   }, []);
 
-  const whatsappUrl = "https://wa.me/916289276600?text=Hello%20Hotel%20RK%20International%2C%20I%20am%20interested%20in%20booking%20a%20room%20in%20New%20Digha.%20Please%20share%20availability.";
+  const whatsappUrl = "https://wa.me/918910119231?text=Hello%20Hotel%20RK%20International%2C%20I%20am%20interested%20in%20booking%20a%20room%20in%20New%20Digha.%20Please%20share%20availability.";
 
   return (
     <section id="home" className="hero">
@@ -49,19 +49,14 @@ const Hero = ({ onOpenBooking }) => {
 
       <div className="container" style={{ position: 'relative', zIndex: 3 }}>
         <div className="hero-content">
-          <div className="hero-badge">
-            <Star size={16} fill="#FFB703" color="#FFB703" />
-            <span>Top Rated Hospitality in New Digha</span>
-          </div>
-
           <h1 className="hero-title">
             Comfortable Rooms for Your Digha Getaway
           </h1>
 
           <div className="hero-buttons">
-            <a href="tel:+916289276600" className="btn btn-navy btn-lg">
+            <a href="tel:+918910119231" className="btn btn-navy btn-lg">
               <Phone size={18} />
-              <span>CALL +91 6289276600</span>
+              <span>CALL +91 8910119231</span>
             </a>
 
             <a
