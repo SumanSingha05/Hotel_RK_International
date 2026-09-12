@@ -759,78 +759,79 @@ img {
   line-height: 1.5;
 }
 
-/* Services / Facilities Grid */
+/* Services / Facilities Grid - Exact Match to Reference */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .service-card {
-  background-color: var(--bg-card);
-  padding: 30px 24px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-normal);
+  background-color: #ffffff;
+  padding: 46px 36px 42px 36px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-navy), var(--accent-cyan));
-  opacity: 0;
-  transition: opacity var(--transition-fast);
+  text-align: left;
 }
 
 .service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-cyan-light);
-}
-
-.service-card:hover::before {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
 }
 
 .service-icon-box {
-  width: 58px;
-  height: 58px;
-  border-radius: var(--radius-md);
-  background-color: var(--accent-cyan-light);
-  color: var(--accent-cyan);
+  width: auto;
+  height: auto;
+  background: none;
+  border-radius: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  transition: all var(--transition-fast);
+  justify-content: flex-start;
+  margin-bottom: 22px;
+  color: #8C5938;
+  padding: 0;
+  transition: transform var(--transition-fast);
 }
 
 .service-card:hover .service-icon-box {
-  background-color: var(--accent-cyan);
-  color: var(--text-white);
-  transform: scale(1.08);
+  background: none;
+  transform: scale(1.05);
 }
 
 .service-title {
-  font-size: 1.15rem;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 10px;
-  color: var(--primary-navy);
+  color: #222222;
+  letter-spacing: -0.2px;
 }
 
 .service-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  color: #555555;
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* Rooms & Tariff Section (Exact Seabird Digha Style) */
