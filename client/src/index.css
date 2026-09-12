@@ -4,13 +4,13 @@
    ========================================================================== */
 
 :root {
-  /* Brand Color Palette - Boutique Emerald Theme (matching official card) */
-  --primary-navy: #0F3B2E;
-  --primary-navy-dark: #08241B;
-  --primary-navy-light: #185241;
-  --accent-cyan: #10B981;
-  --accent-cyan-hover: #059669;
-  --accent-cyan-light: #ECFDF5;
+  /* Brand Color Palette */
+  --primary-navy: #002E5B;
+  --primary-navy-dark: #001f3f;
+  --primary-navy-light: #0d3b66;
+  --accent-cyan: #20B7E3;
+  --accent-cyan-hover: #179fc8;
+  --accent-cyan-light: #e6f8fd;
   --accent-gold: #FFB703;
   --accent-gold-dark: #fb8500;
   --accent-green: #25D366;
@@ -19,17 +19,17 @@
   --accent-red: #E63946;
 
   /* Neutrals & Surfaces */
-  --bg-page: #F7FAF8;
+  --bg-page: #F8FAFC;
   --bg-card: #FFFFFF;
-  --bg-muted: #F0F6F3;
-  --bg-dark-section: #0B2B20;
-  --border-light: #E2ECE6;
-  --border-accent: #BCE3D4;
+  --bg-muted: #F1F5F9;
+  --bg-dark-section: #002244;
+  --border-light: #E2E8F0;
+  --border-accent: #C4D1DD;
 
   /* Typography Colors */
-  --text-main: #1C2E26;
-  --text-muted: #537065;
-  --text-light: #8BA89D;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
   --text-white: #FFFFFF;
 
   /* Fonts */
@@ -38,10 +38,10 @@
 
   /* Elevations */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(15, 59, 46, 0.09);
-  --shadow-lg: 0 10px 25px rgba(15, 59, 46, 0.14);
-  --shadow-xl: 0 20px 35px rgba(15, 59, 46, 0.2);
-  --shadow-cyan: 0 8px 20px rgba(16, 185, 129, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 46, 91, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 46, 91, 0.12);
+  --shadow-xl: 0 20px 35px rgba(0, 46, 91, 0.18);
+  --shadow-cyan: 0 8px 20px rgba(32, 183, 227, 0.35);
   --shadow-green: 0 8px 20px rgba(37, 211, 102, 0.35);
 
   /* Transitions */
@@ -156,7 +156,7 @@ img {
 
 .section-tag.light {
   color: var(--accent-cyan);
-  background-color: rgba(16, 185, 129, 0.15);
+  background-color: rgba(32, 183, 227, 0.15);
 }
 
 .section-title {
@@ -207,7 +207,7 @@ img {
 .btn-cyan:hover {
   background-color: var(--accent-cyan-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.45);
+  box-shadow: 0 10px 24px rgba(32, 183, 227, 0.45);
 }
 
 .btn-navy {
@@ -471,11 +471,11 @@ img {
 .hero {
   position: relative;
   color: var(--text-white);
-  padding: 70px 0 130px 0;
-  min-height: 84vh;
+  padding: 130px 0 110px 0;
+  min-height: 86vh;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -515,8 +515,8 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, rgba(8, 36, 26, 0.72) 0%, rgba(10, 42, 30, 0.44) 50%, rgba(6, 26, 18, 0.2) 100%),
-              linear-gradient(180deg, rgba(6, 28, 20, 0.35) 0%, transparent 40%, rgba(6, 28, 20, 0.4) 100%);
+  background: linear-gradient(90deg, rgba(0, 24, 52, 0.72) 0%, rgba(0, 24, 52, 0.45) 50%, rgba(0, 18, 38, 0.2) 100%),
+    linear-gradient(180deg, rgba(0, 20, 45, 0.35) 0%, transparent 40%, rgba(0, 20, 45, 0.4) 100%);
   z-index: 2;
   pointer-events: none;
 }
@@ -548,7 +548,7 @@ img {
   width: 28px;
   border-radius: 9999px;
   background: var(--accent-cyan);
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+  box-shadow: 0 0 12px rgba(32, 183, 227, 0.8);
 }
 
 .hero-content {
@@ -564,35 +564,15 @@ img {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: 3.4rem;
+  font-size: 3.5rem;
   font-weight: 800;
   color: var(--text-white);
-  margin: 0 0 28px 0;
+  margin: 0 0 32px 0;
   max-width: 780px;
-  line-height: 1.15;
+  line-height: 1.16;
   letter-spacing: -0.5px;
   text-shadow: 0 4px 28px rgba(0, 0, 0, 0.72), 0 2px 8px rgba(0, 0, 0, 0.6);
   text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.hero-title-line {
-  display: block;
-}
-
-.hero-title-for {
-  display: inline-block;
-  font-family: 'Playfair Display', 'Georgia', 'Poppins', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 0.52em;
-  line-height: 1.25;
-  color: #BCE3D4;
-  text-transform: lowercase;
-  margin: 2px 0;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
 }
 
 .hero-buttons {
@@ -614,15 +594,15 @@ img {
 }
 
 .hero-buttons .btn-navy {
-  background: rgba(15, 59, 46, 0.9);
+  background: rgba(0, 46, 91, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 10px 30px rgba(8, 36, 26, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 24, 52, 0.4);
 }
 
 .hero-buttons .btn-navy:hover {
-  background: rgba(8, 36, 26, 0.98);
+  background: rgba(0, 31, 63, 0.96);
   border-color: var(--accent-cyan);
-  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 12px 35px rgba(32, 183, 227, 0.3);
 }
 
 .hero-buttons .btn-whatsapp {
@@ -631,7 +611,7 @@ img {
 }
 
 .hero-buttons .btn-cyan {
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 10px 30px rgba(32, 183, 227, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
@@ -691,7 +671,7 @@ img {
   outline: none;
   border-color: var(--accent-cyan);
   background-color: var(--bg-card);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 0 0 3px rgba(32, 183, 227, 0.15);
 }
 
 /* About Section */
@@ -1259,7 +1239,7 @@ img {
   width: 42px;
   height: 42px;
   border-radius: var(--radius-md);
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: rgba(32, 183, 227, 0.2);
   color: var(--accent-cyan);
   display: flex;
   align-items: center;
@@ -1664,10 +1644,9 @@ img {
   }
 
   .hero {
-    padding: 42px 0 68px 0;
+    padding: 85px 0 75px 0;
     text-align: left;
     min-height: auto;
-    align-items: flex-start;
   }
 
   .hero-content {
@@ -1677,16 +1656,11 @@ img {
   }
 
   .hero-title {
-    font-size: 1.65rem;
-    line-height: 1.22;
-    margin-bottom: 20px;
+    font-size: 1.6rem;
+    line-height: 1.28;
+    margin-bottom: 22px;
     max-width: 320px;
     text-align: left;
-  }
-
-  .hero-title-for {
-    font-size: 0.6em;
-    margin: 1px 0;
   }
 
   .hero-buttons {

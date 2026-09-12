@@ -38,7 +38,7 @@ const AboutSection = ({ onOpenBooking }) => {
             <div className="about-feature-boxes">
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <MapPin size={24} color="#10B981" />
+                  <MapPin size={24} color="#20B7E3" />
                 </div>
                 <h3 className="about-feature-title">Convenient Location</h3>
                 <p className="about-feature-desc">
@@ -48,7 +48,7 @@ const AboutSection = ({ onOpenBooking }) => {
 
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <Headphones size={24} color="#10B981" />
+                  <Headphones size={24} color="#20B7E3" />
                 </div>
                 <h3 className="about-feature-title">Easy Booking Assistance</h3>
                 <p className="about-feature-desc">
@@ -65,7 +65,7 @@ const AboutSection = ({ onOpenBooking }) => {
                 <Calendar size={18} />
                 <span>Book Your Stay Now</span>
               </button>
-              
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#166534', fontWeight: '600', fontSize: '0.9rem' }}>
                 <CheckCircle2 size={18} color="#16a34a" />
                 <span>Best Price Guaranteed Direct</span>

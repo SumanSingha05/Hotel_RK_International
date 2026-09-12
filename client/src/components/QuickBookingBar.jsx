@@ -32,7 +32,7 @@ const QuickBookingBar = ({ onOpenBookingWithParams }) => {
         <form onSubmit={handleSubmit} className="quick-booking-form">
           <div className="form-group">
             <label className="form-label">
-              <Calendar size={14} color="#10B981" />
+              <Calendar size={14} color="#20B7E3" />
               <span>Check-In Date</span>
             </label>
             <input
@@ -47,7 +47,7 @@ const QuickBookingBar = ({ onOpenBookingWithParams }) => {
 
           <div className="form-group">
             <label className="form-label">
-              <Calendar size={14} color="#10B981" />
+              <Calendar size={14} color="#20B7E3" />
               <span>Check-Out Date</span>
             </label>
             <input
@@ -62,7 +62,7 @@ const QuickBookingBar = ({ onOpenBookingWithParams }) => {
 
           <div className="form-group">
             <label className="form-label">
-              <Home size={14} color="#10B981" />
+              <Home size={14} color="#20B7E3" />
               <span>Room Category</span>
             </label>
             <select
@@ -81,7 +81,7 @@ const QuickBookingBar = ({ onOpenBookingWithParams }) => {
 
           <div className="form-group">
             <label className="form-label">
-              <Users size={14} color="#10B981" />
+              <Users size={14} color="#20B7E3" />
               <span>Guests</span>
             </label>
             <select

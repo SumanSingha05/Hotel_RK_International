@@ -55,7 +55,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
         <div className="modal-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <h3 className="modal-title">Hotel RK International — Manager Portal</h3>
-            <span style={{ fontSize: '0.75rem', background: '#10B981', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
+            <span style={{ fontSize: '0.75rem', background: '#20B7E3', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
               ADMIN
             </span>
           </div>
@@ -78,11 +78,11 @@ const AdminDashboard = ({ isOpen, onClose }) => {
         <div className="modal-body">
           {/* Quick Metrics */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', marginBottom: '24px' }}>
-            <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', padding: '16px', borderRadius: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#059669', fontSize: '0.82rem', fontWeight: '600' }}>
+            <div style={{ backgroundColor: '#f0f9fc', border: '1px solid #bce8f5', padding: '16px', borderRadius: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0284c7', fontSize: '0.82rem', fontWeight: '600' }}>
                 <Calendar size={16} /> Total Bookings
               </div>
-              <div style={{ fontSize: '1.6rem', fontWeight: '800', color: '#0F3B2E', marginTop: '4px' }}>
+              <div style={{ fontSize: '1.6rem', fontWeight: '800', color: '#002E5B', marginTop: '4px' }}>
                 {bookings.length}
               </div>
             </div>
@@ -123,8 +123,8 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                 padding: '10px 18px',
                 border: 'none',
                 background: 'none',
-                borderBottom: activeTab === 'bookings' ? '3px solid #10B981' : '3px solid transparent',
-                color: activeTab === 'bookings' ? '#0F3B2E' : '#64748b',
+                borderBottom: activeTab === 'bookings' ? '3px solid #20B7E3' : '3px solid transparent',
+                color: activeTab === 'bookings' ? '#002E5B' : '#64748b',
                 fontWeight: '700',
                 cursor: 'pointer'
               }}
@@ -137,8 +137,8 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                 padding: '10px 18px',
                 border: 'none',
                 background: 'none',
-                borderBottom: activeTab === 'contacts' ? '3px solid #10B981' : '3px solid transparent',
-                color: activeTab === 'contacts' ? '#0F3B2E' : '#64748b',
+                borderBottom: activeTab === 'contacts' ? '3px solid #20B7E3' : '3px solid transparent',
+                color: activeTab === 'contacts' ? '#002E5B' : '#64748b',
                 fontWeight: '700',
                 cursor: 'pointer'
               }}
@@ -165,7 +165,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                 <tbody>
                   {bookings.map((b) => (
                     <tr key={b._id || b.bookingId}>
-                      <td style={{ fontWeight: '700', color: '#0F3B2E' }}>{b.bookingId}</td>
+                      <td style={{ fontWeight: '700', color: '#002E5B' }}>{b.bookingId}</td>
                       <td>
                         <strong>{b.guestName}</strong>
                         <div style={{ fontSize: '0.78rem', color: '#64748b' }}>{b.phone}</div>
@@ -179,7 +179,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                         {b.checkIn} to {b.checkOut}
                         <div style={{ fontSize: '0.78rem', color: '#64748b' }}>({b.nights} nights)</div>
                       </td>
-                      <td style={{ fontWeight: '700', color: '#0F3B2E' }}>
+                      <td style={{ fontWeight: '700', color: '#002E5B' }}>
                         Rs. {b.totalAmount}
                       </td>
                       <td>

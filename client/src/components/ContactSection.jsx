@@ -153,7 +153,7 @@ const ContactSection = ({ onShowToast }) => {
 
           {/* Right Column: Inquiry Form */}
           <div className="contact-form-card">
-            <h3 style={{ fontSize: '1.4rem', color: '#0F3B2E', marginBottom: '8px' }}>
+            <h3 style={{ fontSize: '1.4rem', color: '#002E5B', marginBottom: '8px' }}>
               Send an Online Inquiry
             </h3>
             <p style={{ fontSize: '0.88rem', color: '#64748b', marginBottom: '24px' }}>

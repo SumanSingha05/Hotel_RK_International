@@ -10,11 +10,11 @@ const PolicyModal = ({ policyType, onClose }) => {
       text: (
         <>
           <p>At <strong>Hotel RK International, New Digha</strong>, we are committed to safeguarding the privacy and personal data of our guests and online website visitors.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>1. Information Collected</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>1. Information Collected</h4>
           <p>We only collect information necessary to process room bookings, inquiries, and customer feedback—such as name, phone number, email address, arrival and departure dates.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>2. Use of Information</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>2. Use of Information</h4>
           <p>Your details are used exclusively for confirming reservations, providing customer assistance, generating check-in invoices, and communicating stay-related updates. We never sell or share your information with third-party telemarketers.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>3. Data Security</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>3. Data Security</h4>
           <p>We employ administrative and electronic security protocols to keep your contact and booking data confidential and protected.</p>
         </>
       )
@@ -23,13 +23,13 @@ const PolicyModal = ({ policyType, onClose }) => {
       title: 'Terms & Conditions',
       text: (
         <>
-          <h4 style={{ marginBottom: '6px', color: '#0F3B2E' }}>1. Check-in & Check-out Policies</h4>
+          <h4 style={{ marginBottom: '6px', color: '#002E5B' }}>1. Check-in & Check-out Policies</h4>
           <p>Standard check-in time is 11:00 AM and check-out time is 10:00 AM. Early check-in or late check-out is subject to room availability and prior front desk approval.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>2. Identity Verification</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>2. Identity Verification</h4>
           <p>As per government guidelines, all Indian adult guests must present a valid government-issued photo ID (Aadhar Card, Driving License, Voter ID, or Passport) upon arrival. PAN cards are not accepted as address proof.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>3. Tariff & Payments</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>3. Tariff & Payments</h4>
           <p>Tariffs are stated in Indian Rupees (INR) including complimentary breakfast and GST. Room charges can be settled via UPI, Cash, or Credit/Debit cards at the reception desk.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>4. Property Rules</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>4. Property Rules</h4>
           <p>We strive to provide a safe, family-friendly atmosphere. Unruly behavior or illegal activities on the hotel premises will result in immediate cancellation of stay without refund.</p>
         </>
       )
@@ -39,9 +39,9 @@ const PolicyModal = ({ policyType, onClose }) => {
       text: (
         <>
           <p>The information, room specifications, tariffs, and amenities displayed on this website are provided for guest reference by <strong>Hotel RK International</strong>.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>Peak Season Variations</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>Peak Season Variations</h4>
           <p>Room tariffs and holiday package rates may vary during special festive periods such as Durga Puja, Christmas, New Year, and long weekends in Digha. Guests are advised to verify peak season rates with our reservations team on +91 8910119231.</p>
-          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#0F3B2E' }}>External Links</h4>
+          <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>External Links</h4>
           <p>This site may contain links to external maps, WhatsApp messaging, and navigation tools. We are not responsible for third-party platform terms or policies.</p>
         </>
       )

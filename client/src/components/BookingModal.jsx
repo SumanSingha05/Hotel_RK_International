@@ -126,13 +126,13 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
               <div style={{ display: 'inline-flex', padding: '16px', borderRadius: '50%', backgroundColor: '#dcfce7', color: '#16a34a', marginBottom: '16px' }}>
                 <CheckCircle size={48} />
               </div>
-              <h4 style={{ fontSize: '1.4rem', color: '#0F3B2E', marginBottom: '8px' }}>
+              <h4 style={{ fontSize: '1.4rem', color: '#002E5B', marginBottom: '8px' }}>
                 Thank You, {confirmedBooking.guestName}!
               </h4>
               <p style={{ color: '#64748b', marginBottom: '20px' }}>
                 Your booking request has been logged successfully with Reference ID:
               </p>
-              <div style={{ display: 'inline-block', backgroundColor: '#ecfdf5', border: '2px dashed #10B981', padding: '10px 24px', borderRadius: '8px', fontSize: '1.3rem', fontWeight: '800', color: '#0F3B2E', marginBottom: '24px' }}>
+              <div style={{ display: 'inline-block', backgroundColor: '#eaf4fb', border: '2px dashed #20B7E3', padding: '10px 24px', borderRadius: '8px', fontSize: '1.3rem', fontWeight: '800', color: '#002E5B', marginBottom: '24px' }}>
                 {confirmedBooking.bookingId}
               </div>
 
@@ -150,32 +150,35 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
                   <strong>{confirmedBooking.guests} Person(s)</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #e2e8f0', paddingTop: '8px', marginTop: '8px' }}>
-                  <span style={{ color: '#0F3B2E', fontWeight: '700' }}>Total (Pay at Hotel):</span>
-                  <strong style={{ color: '#0F3B2E', fontSize: '1.1rem' }}>Rs. {confirmedBooking.totalAmount}</strong>
+                  <span style={{ color: '#002E5B', fontWeight: '700' }}>Total (Pay at Hotel):</span>
+                  <strong style={{ color: '#002E5B', fontSize: '1.1rem' }}>Rs. {confirmedBooking.totalAmount}</strong>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
                 <button onClick={handleWhatsAppBooking} className="btn btn-whatsapp">
                   <MessageCircle size={18} />
-                  <span>Send Confirmation to WhatsApp</span>
+                  <span>Send Details to Hotel WhatsApp</span>
+                </button>
+                <button onClick={onClose} className="btn btn-navy">
+                  <span>Close</span>
                 </button>
               </div>
             </div>
           ) : (
             <form onSubmit={handleOnlineBooking}>
               {/* Room & Pricing Summary */}
-              <div style={{ backgroundColor: '#ecfdf5', border: '1px solid #bce3d4', borderRadius: '8px', padding: '14px 18px', marginBottom: '20px' }}>
+              <div style={{ backgroundColor: '#f0f9fc', border: '1px solid #bce8f5', borderRadius: '8px', padding: '14px 18px', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
                   <div>
-                    <span style={{ fontSize: '0.78rem', color: '#059669', textTransform: 'uppercase', fontWeight: '700' }}>
+                    <span style={{ fontSize: '0.78rem', color: '#0284c7', textTransform: 'uppercase', fontWeight: '700' }}>
                       Selected Accommodation
                     </span>
-                    <h4 style={{ fontSize: '1.15rem', color: '#0F3B2E' }}>{currentRoom.title}</h4>
+                    <h4 style={{ fontSize: '1.15rem', color: '#002E5B' }}>{currentRoom.title}</h4>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Including Breakfast + GST</span>
-                    <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#0F3B2E' }}>
+                    <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#002E5B' }}>
                       Rs. {currentRoom.price} / Night
                     </div>
                   </div>
@@ -294,9 +297,9 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
                   <span style={{ fontSize: '0.85rem', color: '#64748b' }}>
                     {nights} Night{nights > 1 ? 's' : ''} × Rs. {currentRoom.price}
                   </span>
-                  <div style={{ fontWeight: '700', color: '#0F3B2E' }}>Total Tariff Payable:</div>
+                  <div style={{ fontWeight: '700', color: '#002E5B' }}>Total Tariff Payable:</div>
                 </div>
-                <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#0F3B2E' }}>
+                <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#002E5B' }}>
                   Rs. {totalAmount}
                 </div>
               </div>
