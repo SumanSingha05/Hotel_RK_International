@@ -47,11 +47,11 @@ const ExperienceBanner = ({ onOpenBooking }) => {
           </button>
           
           <a
-            href="tel:+916289276600"
+            href="tel:+918910119231"
             className="btn btn-outline-white btn-lg"
           >
             <Phone size={18} />
-            <span>Call +91 6289276600</span>
+            <span>Call +91 8910119231</span>
           </a>
         </div>
       </div>

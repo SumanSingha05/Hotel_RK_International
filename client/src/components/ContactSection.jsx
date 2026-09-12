@@ -95,7 +95,7 @@ const ContactSection = ({ onShowToast }) => {
                   <div>
                     <div className="channel-label">Hotel Address</div>
                     <div className="channel-value">
-                      G/13, B-1 Sector, New Digha, West Bengal, PIN-721463 (Near Sea Beach & Station)
+                      B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)
                     </div>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ const ContactSection = ({ onShowToast }) => {
                   <div>
                     <div className="channel-label">Reservations & Desk</div>
                     <div className="channel-value">
-                      <a href="tel:+916289276600" style={{ color: '#fff', textDecoration: 'underline' }}>+91 6289276600</a> / <a href="tel:+917605822905" style={{ color: '#fff', textDecoration: 'underline' }}>+91 7605822905</a>
+                      <a href="tel:+918910119231" style={{ color: '#fff', textDecoration: 'underline' }}>+91 8910119231</a>
                     </div>
                   </div>
                 </div>
@@ -117,10 +117,10 @@ const ContactSection = ({ onShowToast }) => {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <div className="channel-label">Email Support</div>
+                    <div className="channel-label">Email & Website</div>
                     <div className="channel-value">
-                      hotelrkinternational2022@gmail.com<br />
-                      info@hotelrkinternational.com
+                      <a href="mailto:info@hotelrkinternational.com" style={{ color: '#fff', textDecoration: 'underline' }}>info@hotelrkinternational.com</a><br />
+                      <a href="https://www.hotelrkinternational.com" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>www.hotelrkinternational.com</a>
                     </div>
                   </div>
                 </div>
@@ -140,7 +140,7 @@ const ContactSection = ({ onShowToast }) => {
             </div>
 
             <a
-              href="https://wa.me/916289276600?text=Hello%20Hotel%20RK%20International%2C%20I%20have%20an%20inquiry%20regarding%20booking%20rooms."
+              href="https://wa.me/918910119231?text=Hello%20Hotel%20RK%20International%2C%20I%20have%20an%20inquiry%20regarding%20booking%20rooms."
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-whatsapp"

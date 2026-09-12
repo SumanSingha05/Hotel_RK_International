@@ -8,7 +8,7 @@ const TopBar = () => {
         <div className="topbar-left">
           <div className="topbar-item">
             <MapPin size={14} color="#20B7E3" />
-            <span>G/13, B-1 Sector, New Digha, West Bengal 721463</span>
+            <span>B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
           </div>
         </div>
 

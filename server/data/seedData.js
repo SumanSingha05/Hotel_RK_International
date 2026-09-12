@@ -237,14 +237,13 @@ export const hotelInfo = {
   name: "Hotel RK International",
   tagline: "Comfortable Rooms for Your Digha Getaway",
   founded: 2022,
-  address: "G/13, B-1 Sector, New Digha, West Bengal, Pincode-721463",
-  landmark: "Near New Digha Railway Station & Sea Beach Market",
-  phones: ["+91 6289276600", "+91 7605822905"],
-  whatsapp: "+916289276600",
+  address: "B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463",
+  landmark: "Near Jahaz Bari",
+  phones: ["+91 8910119231"],
+  whatsapp: "+918910119231",
+  website: "www.hotelrkinternational.com",
   emails: [
-    "hotelrkinternational2022@gmail.com",
-    "info@hotelrkinternational.com",
-    "reservations@hotelrkinternational.com"
+    "info@hotelrkinternational.com"
   ],
   checkInTime: "11:00 AM",
   checkOutTime: "10:00 AM",

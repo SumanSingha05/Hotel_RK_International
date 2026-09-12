@@ -40,7 +40,7 @@ const PolicyModal = ({ policyType, onClose }) => {
         <>
           <p>The information, room specifications, tariffs, and amenities displayed on this website are provided for guest reference by <strong>Hotel RK International</strong>.</p>
           <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>Peak Season Variations</h4>
-          <p>Room tariffs and holiday package rates may vary during special festive periods such as Durga Puja, Christmas, New Year, and long weekends in Digha. Guests are advised to verify peak season rates with our reservations team on +91 6289276600.</p>
+          <p>Room tariffs and holiday package rates may vary during special festive periods such as Durga Puja, Christmas, New Year, and long weekends in Digha. Guests are advised to verify peak season rates with our reservations team on +91 8910119231.</p>
           <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>External Links</h4>
           <p>This site may contain links to external maps, WhatsApp messaging, and navigation tools. We are not responsible for third-party platform terms or policies.</p>
         </>
