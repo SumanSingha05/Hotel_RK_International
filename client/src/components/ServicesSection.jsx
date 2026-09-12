@@ -1,55 +1,75 @@
 import React from 'react';
-import { 
-  Zap, 
-  Bath, 
-  Car, 
-  Utensils, 
-  Wifi, 
-  Trees, 
-  Sparkles, 
-  Clock 
-} from 'lucide-react';
 
 const services = [
   {
-    icon: <Zap size={28} />,
-    title: '1. 24*7 High Tension Power Backup',
-    desc: 'Never worry about coastal power outages. Our high-capacity generator guarantees uninterrupted AC and lighting 24/7.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#8C5938" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+        <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+        <circle cx="12" cy="19.5" r="1.5" fill="#8C5938" stroke="none" />
+      </svg>
+    ),
+    title: 'Free WiFi',
+    desc: 'We provide free high speed WIFI to our guests.'
   },
   {
-    icon: <Bath size={28} />,
-    title: '2. Attached Luxury Bathroom',
-    desc: 'Each room includes a modern attached bathroom with hot and cold geyser running water, fresh towels, and toiletries.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="#8C5938">
+        <path fillRule="evenodd" clipRule="evenodd" d="M7 9a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V7h.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H7.5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H8v2H7zm3 5a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+        <circle cx="17.5" cy="4.5" r="1" />
+        <circle cx="20.5" cy="5.2" r="1" />
+        <circle cx="19.5" cy="8.2" r="1" />
+        <circle cx="17" cy="9.2" r="1" />
+      </svg>
+    ),
+    title: '24 / 7 Room Services',
+    desc: 'We provide 24 / 7 room services to our guests.'
   },
   {
-    icon: <Car size={28} />,
-    title: '3. Secure Car Parking Premises',
-    desc: 'Ample on-premises car parking space with 24/7 CCTV surveillance and security guards for complete peace of mind.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#8C5938" strokeWidth="2.8" strokeLinecap="round">
+        <path d="M18.36 6.64a9 9 0 1 1-12.73 0" />
+        <line x1="12" y1="2" x2="12" y2="12" />
+      </svg>
+    ),
+    title: '24 / 7 Power backup',
+    desc: 'We provide 24 / 7 Power backup to our guests.'
   },
   {
-    icon: <Utensils size={28} />,
-    title: '4. Multi-Cuisine Restaurant',
-    desc: 'Savor freshly cooked authentic Bengali cuisine, sea fishes (Hilsa, Pomfret, Prawns), North Indian, and Chinese favorites.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="#8C5938">
+        <path d="M5.5 3h4.2l-2.1 4.5V13h1.8v1.5H4.6V13h1.8V7.5L4.3 3h1.2z" transform="rotate(-18 7 8)" />
+        <path d="M14.3 3h4.2l-2.1 4.5V13h1.8v1.5h-3.6V13h1.8V7.5L13.1 3h1.2z" transform="rotate(18 17 8)" />
+        <circle cx="12" cy="4" r="0.8" />
+      </svg>
+    ),
+    title: 'AC Multi-Cuisine Restaurant',
+    desc: 'World-class AC Multi-Cuisine Restaurant.'
   },
   {
-    icon: <Wifi size={28} />,
-    title: '5. Free High-Speed Wi-Fi',
-    desc: 'Stay connected with loved ones or finish urgent work with complimentary high-speed wireless internet across all floors.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#8C5938" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M7 3v11" />
+        <path d="M13 3v11" />
+        <path d="M7 4a3 3 0 0 1 3-3 3 3 0 0 1 3 3" />
+        <line x1="7" y1="7" x2="13" y2="7" />
+        <line x1="7" y1="10.5" x2="13" y2="10.5" />
+        <path d="M3 17c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 2 0.7 3 0" />
+        <path d="M3 20.5c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 2 0.7 3 0" />
+      </svg>
+    ),
+    title: 'Swimming Pool',
+    desc: 'We have swimming pool our guests can relax here there weekend.'
   },
   {
-    icon: <Trees size={28} />,
-    title: '6. Kids Play Area in the Lawn',
-    desc: 'A lush green open lawn where kids can play freely and families can enjoy pleasant coastal evening breezes.'
-  },
-  {
-    icon: <Sparkles size={28} />,
-    title: '7. Regular Housekeeping Service',
-    desc: 'Our housekeeping crew ensures pristine cleanliness, fresh sanitized bedsheets, and clean surroundings daily.'
-  },
-  {
-    icon: <Clock size={28} />,
-    title: '8. 24/7 Guest & Travel Assistance',
-    desc: 'From early morning tea to arranging local Digha sightseeing cabs and Mandarmani day trips, our desk is always ready.'
+    icon: (
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="#8C5938">
+        <path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11v6a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6zm2.5-3.5L6.3 11h11.4l-1.2-3.5a.5.5 0 0 0-.5-.5H8a.5.5 0 0 0-.5.5zM6.5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+      </svg>
+    ),
+    title: 'Car Parking',
+    desc: 'We provide car parking to our guests.'
   }
 ];
 

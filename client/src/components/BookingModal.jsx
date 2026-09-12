@@ -105,7 +105,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
       `*Special Notes:* ${specialRequests || 'None'}%0A%0A` +
       `Please confirm room availability and payment instructions.`;
 
-    window.open(`https://wa.me/916289276600?text=${text}`, '_blank');
+    window.open(`https://wa.me/918910119231?text=${text}`, '_blank');
   };
 
   return (

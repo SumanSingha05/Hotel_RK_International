@@ -58,20 +58,19 @@ const Footer = ({ onOpenPolicy, onOpenAdmin }) => {
             <h4 className="footer-col-title">Contact Info</h4>
             <div className="footer-contact-item">
               <MapPin size={18} />
-              <span>G/13, B-1 Sector, New Digha, West Bengal, PIN-721463</span>
+              <span>B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
             </div>
             <div className="footer-contact-item">
               <Phone size={18} />
               <div>
-                <a href="tel:+916289276600" style={{ color: 'inherit' }}>+91 6289276600</a> / <br />
-                <a href="tel:+917605822905" style={{ color: 'inherit' }}>+91 7605822905</a>
+                <a href="tel:+918910119231" style={{ color: 'inherit' }}>+91 8910119231</a>
               </div>
             </div>
             <div className="footer-contact-item">
               <Mail size={18} />
               <div>
                 <a href="mailto:info@hotelrkinternational.com" style={{ color: 'inherit' }}>info@hotelrkinternational.com</a><br />
-                <a href="mailto:hotelrkinternational2022@gmail.com" style={{ color: 'inherit' }}>hotelrkinternational2022@gmail.com</a>
+                <a href="https://www.hotelrkinternational.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit' }}>www.hotelrkinternational.com</a>
               </div>
             </div>
             <div className="footer-contact-item">

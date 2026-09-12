@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import QuickBookingBar from './components/QuickBookingBar';
 import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
 import RoomsSection from './components/RoomsSection';
@@ -307,10 +306,7 @@ function App() {
       {/* 3. Hero Section */}
       <Hero onOpenBooking={handleOpenBooking} />
 
-      {/* 4. Quick Booking Availability Bar */}
-      <QuickBookingBar onOpenBookingWithParams={handleOpenBookingWithParams} />
-
-      {/* 5. About Section */}
+      {/* 4. About Section */}
       <AboutSection onOpenBooking={handleOpenBooking} />
 
       {/* 6. Services & Amenities Section */}

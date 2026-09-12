@@ -71,7 +71,7 @@ const DiningSection = ({ onOpenBooking }) => {
                 <span>Book Stay with Breakfast</span>
               </button>
               <a
-                href="tel:+916289276600"
+                href="tel:+918910119231"
                 className="btn btn-outline"
               >
                 <span>Call for Food Orders</span>

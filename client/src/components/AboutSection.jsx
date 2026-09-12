@@ -65,7 +65,7 @@ const AboutSection = ({ onOpenBooking }) => {
                 <Calendar size={18} />
                 <span>Book Your Stay Now</span>
               </button>
-              
+
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#166534', fontWeight: '600', fontSize: '0.9rem' }}>
                 <CheckCircle2 size={18} color="#16a34a" />
                 <span>Best Price Guaranteed Direct</span>
