@@ -76,18 +76,6 @@ const Hero = ({ onOpenBooking }) => {
               <span>Instant Booking</span>
             </button>
           </div>
-
-          {/* Slider Indicators */}
-          <div className="hero-slide-indicators">
-            {heroImages.map((_, index) => (
-              <button
-                key={index}
-                className={`hero-indicator-dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(index)}
-                aria-label={`Slide ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
