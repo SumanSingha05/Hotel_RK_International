@@ -635,6 +635,10 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+.hero-mobile-side-actions {
+  display: none;
+}
+
 /* Quick Booking Widget (Overlapping Hero) */
 .quick-booking-wrapper {
   margin-top: -65px;
@@ -1666,9 +1670,10 @@ img {
   .hero {
     padding: 48px 0 140px 0;
     text-align: left;
-    min-height: 80vh;
+    min-height: 82vh;
     display: flex;
     align-items: flex-start;
+    position: relative;
   }
 
   .hero-content {
@@ -1694,89 +1699,74 @@ img {
     margin: 1px 0;
   }
 
-  /* Mobile Hero Buttons: Call logo on left, Instant Booking in middle, WhatsApp logo on right */
   .hero-buttons {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 360px;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
     margin: 0 0 16px 0;
   }
 
-  .hero-buttons .btn-call-hero {
-    display: flex !important;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    padding: 0;
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    background: rgba(15, 59, 46, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #ffffff;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  }
-
-  .hero-buttons .btn-call-hero .btn-text {
-    display: none;
+  .hero-buttons .btn-call-hero,
+  .hero-buttons .btn-whatsapp-hero {
+    display: none !important;
   }
 
   .hero-buttons .btn-booking-hero {
-    flex: 1;
-    height: 48px;
-    padding: 0 14px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.92rem;
+    padding: 13px 28px;
+    font-size: 0.95rem;
     font-weight: 700;
-    white-space: nowrap;
     border-radius: var(--radius-full);
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
   }
 
-  .hero-buttons .btn-whatsapp-hero {
-    display: flex !important;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    padding: 0;
+  /* Mobile Hero Side Action Logos (Left: Phone Call, Right: WhatsApp) - Moves with page scroll */
+  .hero-mobile-side-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 55px;
+    left: 18px;
+    right: 18px;
+    z-index: 10;
+    pointer-events: auto;
+  }
+
+  .hero-side-btn {
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    background: #25D366;
-    border: 1px solid rgba(255, 255, 255, 0.3);
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.45);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .hero-buttons .btn-whatsapp-hero .btn-text {
-    display: none;
+  .hero-side-btn:active {
+    transform: scale(0.92);
   }
 
-  /* Mobile screen floating actions: Call logo on left, WhatsApp logo on right */
+  .hero-side-call {
+    background: #0F3B2E;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero-side-whatsapp {
+    background: #25D366;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  }
+
+  /* Hide fixed floating actions on mobile so logos move naturally with the page */
   .floating-actions {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    pointer-events: none;
-    z-index: 999;
-  }
-
-  .floating-actions .floating-btn {
-    pointer-events: auto;
-    width: 50px;
-    height: 50px;
+    display: none !important;
   }
 
   .quick-booking-wrapper {

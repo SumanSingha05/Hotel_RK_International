@@ -87,6 +87,29 @@ const Hero = ({ onOpenBooking }) => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Side Action Logos (Left: Phone Call, Right: WhatsApp) - Moves with page scroll */}
+      <div className="hero-mobile-side-actions">
+        <a
+          href="tel:+918910119231"
+          className="hero-side-btn hero-side-call"
+          aria-label="Call Hotel RK International"
+          title="Direct Phone Call"
+        >
+          <Phone size={24} />
+        </a>
+
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero-side-btn hero-side-whatsapp"
+          aria-label="WhatsApp Booking Chat"
+          title="Chat on WhatsApp"
+        >
+          <MessageCircle size={26} />
+        </a>
+      </div>
     </section>
   );
 };
