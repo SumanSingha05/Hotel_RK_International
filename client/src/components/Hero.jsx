@@ -50,31 +50,40 @@ const Hero = ({ onOpenBooking }) => {
       <div className="container" style={{ position: 'relative', zIndex: 3 }}>
         <div className="hero-content">
           <h1 className="hero-title">
-            Comfortable Rooms for Your Digha Getaway
+            <span className="hero-title-line">Comfortable Rooms</span>
+            <span className="hero-title-for">for</span>
+            <span className="hero-title-line">Your Digha Gateway</span>
           </h1>
 
           <div className="hero-buttons">
-            <a href="tel:+918910119231" className="btn btn-navy btn-lg">
+            <a
+              href="tel:+918910119231"
+              className="btn btn-navy btn-call-hero"
+              title="Call Hotel RK International"
+              aria-label="Call +91 8910119231"
+            >
               <Phone size={18} />
-              <span>CALL +91 8910119231</span>
+              <span className="btn-text">CALL +91 8910119231</span>
             </a>
+
+            <button
+              onClick={() => onOpenBooking(null)}
+              className="btn btn-cyan btn-booking-hero"
+            >
+              <span>Instant Booking</span>
+            </button>
 
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp btn-lg"
+              className="btn btn-whatsapp btn-whatsapp-hero"
+              title="WhatsApp Chat"
+              aria-label="WhatsApp"
             >
               <MessageCircle size={20} />
-              <span>Whatsapp</span>
+              <span className="btn-text">Whatsapp</span>
             </a>
-
-            <button
-              onClick={() => onOpenBooking(null)}
-              className="btn btn-cyan btn-lg"
-            >
-              <span>Instant Booking</span>
-            </button>
           </div>
         </div>
       </div>
