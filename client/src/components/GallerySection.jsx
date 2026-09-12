@@ -140,7 +140,7 @@ const GallerySection = () => {
         <div className="modal-backdrop" onClick={() => setActivePhoto(null)}>
           <div
             className="modal-content"
-            style={{ maxWidth: '850px', background: '#001f3f', border: 'none' }}
+            style={{ maxWidth: '850px', background: '#08241B', border: 'none' }}
             onClick={(e) => e.stopPropagation()}
           >
             <div style={{ position: 'relative' }}>
@@ -167,7 +167,7 @@ const GallerySection = () => {
                 <h4 style={{ color: '#ffffff', fontSize: '1.2rem', marginBottom: '4px' }}>
                   {activePhoto.title}
                 </h4>
-                <p style={{ color: '#20B7E3', fontSize: '0.85rem' }}>{activePhoto.category}</p>
+                <p style={{ color: '#10B981', fontSize: '0.85rem' }}>{activePhoto.category}</p>
               </div>
             </div>
           </div>

@@ -43,7 +43,7 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
                       objectFit: 'cover',
                       borderRadius: '6px',
                       cursor: 'pointer',
-                      border: activeImgIndex === idx ? '2px solid #20B7E3' : '2px solid transparent',
+                      border: activeImgIndex === idx ? '2px solid #10B981' : '2px solid transparent',
                       opacity: activeImgIndex === idx ? 1 : 0.65
                     }}
                   />
@@ -68,26 +68,26 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
           {/* Key Quick Specs */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '10px', margin: '18px 0', padding: '14px', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.85rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Users size={16} color="#20B7E3" />
+              <Users size={16} color="#10B981" />
               <span>{room.capacity}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Bed size={16} color="#20B7E3" />
+              <Bed size={16} color="#10B981" />
               <span>{room.bedType}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Eye size={16} color="#20B7E3" />
+              <Eye size={16} color="#10B981" />
               <span>{room.view || 'Pleasant View'}</span>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Maximize size={16} color="#20B7E3" />
+              <Maximize size={16} color="#10B981" />
               <span>{room.size || 'Spacious Layout'}</span>
             </div>
           </div>
 
           {/* Description */}
           <div style={{ marginBottom: '20px' }}>
-            <h4 style={{ fontSize: '1rem', color: '#002E5B', marginBottom: '6px' }}>Description</h4>
+            <h4 style={{ fontSize: '1rem', color: '#0F3B2E', marginBottom: '6px' }}>Description</h4>
             <p style={{ fontSize: '0.9rem', color: '#475569', lineHeight: '1.6' }}>
               {room.description}
             </p>
@@ -95,7 +95,7 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
 
           {/* Features List */}
           <div style={{ marginBottom: '24px' }}>
-            <h4 style={{ fontSize: '1rem', color: '#002E5B', marginBottom: '10px' }}>Room Amenities & Facilities</h4>
+            <h4 style={{ fontSize: '1rem', color: '#0F3B2E', marginBottom: '10px' }}>Room Amenities & Facilities</h4>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '8px' }}>
               {room.features?.map((f, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: '#334155' }}>

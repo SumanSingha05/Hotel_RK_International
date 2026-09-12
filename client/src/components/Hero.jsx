@@ -50,7 +50,9 @@ const Hero = ({ onOpenBooking }) => {
       <div className="container" style={{ position: 'relative', zIndex: 3 }}>
         <div className="hero-content">
           <h1 className="hero-title">
-            Comfortable Rooms for Your Digha Getaway
+            <span className="hero-title-line">Comfortable Rooms</span>
+            <span className="hero-title-for">for</span>
+            <span className="hero-title-line">Your Digha Gateway</span>
           </h1>
 
           <div className="hero-buttons">

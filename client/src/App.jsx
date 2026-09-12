@@ -385,7 +385,7 @@ function App() {
       {/* Toast Notification */}
       {toastMessage && (
         <div className="toast">
-          <CheckCircle size={20} color="#20B7E3" />
+          <CheckCircle size={20} color="#10B981" />
           <span>{toastMessage}</span>
         </div>
       )}

@@ -7,18 +7,18 @@ const TopBar = () => {
       <div className="container topbar-content">
         <div className="topbar-left">
           <div className="topbar-item">
-            <MapPin size={14} color="#20B7E3" />
+            <MapPin size={14} color="#10B981" />
             <span>B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
           </div>
         </div>
 
         <div className="topbar-right">
           <div className="topbar-item">
-            <Phone size={14} color="#20B7E3" />
+            <Phone size={14} color="#10B981" />
             <a href="tel:+918910119231">+91 8910119231</a>
           </div>
           <div className="topbar-item">
-            <Mail size={14} color="#20B7E3" />
+            <Mail size={14} color="#10B981" />
             <a href="mailto:info@hotelrkinternational.com">info@hotelrkinternational.com</a>
           </div>
         </div>

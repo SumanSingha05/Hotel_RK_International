@@ -50,7 +50,7 @@ const ReviewsSection = ({ reviews, onOpenAddReview }) => {
             className="btn btn-outline"
             style={{ backgroundColor: '#ffffff' }}
           >
-            <MessageSquarePlus size={18} color="#20B7E3" />
+            <MessageSquarePlus size={18} color="#10B981" />
             <span>Share Your Stay Experience / Write a Review</span>
           </button>
         </div>

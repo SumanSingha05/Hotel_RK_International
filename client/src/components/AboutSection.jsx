@@ -38,7 +38,7 @@ const AboutSection = ({ onOpenBooking }) => {
             <div className="about-feature-boxes">
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <MapPin size={24} color="#20B7E3" />
+                  <MapPin size={24} color="#10B981" />
                 </div>
                 <h3 className="about-feature-title">Convenient Location</h3>
                 <p className="about-feature-desc">
@@ -48,7 +48,7 @@ const AboutSection = ({ onOpenBooking }) => {
 
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <Headphones size={24} color="#20B7E3" />
+                  <Headphones size={24} color="#10B981" />
                 </div>
                 <h3 className="about-feature-title">Easy Booking Assistance</h3>
                 <p className="about-feature-desc">
