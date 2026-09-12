@@ -23,11 +23,11 @@ const heroImages = [
 const Hero = ({ onOpenBooking }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto slide every 1.8 seconds (1.5 - 2 sec as requested)
+  // Auto slide with smooth luxury pacing (every 6 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 1800);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
