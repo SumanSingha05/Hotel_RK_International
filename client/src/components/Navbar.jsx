@@ -92,18 +92,50 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
         onClick={() => setMobileMenuOpen(false)}
       />
       <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-drawer-header">
+        <div
+          className="mobile-drawer-header"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+            paddingBottom: '14px',
+            marginBottom: '20px',
+            borderBottom: '1px solid #e2e8f0',
+          }}
+        >
           <img
             src="/logo-transparent.png"
             alt="Hotel RK International Logo"
-            style={{ height: '56px', maxWidth: '230px', objectFit: 'contain', imageRendering: '-webkit-optimize-contrast' }}
+            className="mobile-drawer-logo"
+            style={{ height: '42px', maxWidth: '160px', width: 'auto', objectFit: 'contain' }}
           />
+
+          {/* Direct Top-Right Close Button */}
           <button
-            className="modal-close-btn"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="Close menu"
+            id="mobile-drawer-close-btn"
+            title="Close menu"
+            style={{
+              width: '38px',
+              height: '38px',
+              minWidth: '38px',
+              borderRadius: '50%',
+              backgroundColor: '#002E5B',
+              color: '#ffffff',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '20px',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0, 46, 91, 0.25)',
+              padding: 0,
+              margin: 0,
+            }}
           >
-            <X size={24} />
+            ✕
           </button>
         </div>
 
