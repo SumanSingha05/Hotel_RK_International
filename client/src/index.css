@@ -69,6 +69,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden; /* prevents horizontal scroll site-wide without breaking sticky */
 }
 
 body {
@@ -76,7 +77,8 @@ body {
   color: var(--text-main);
   background-color: var(--bg-page);
   line-height: 1.6;
-  overflow-x: hidden;
+  /* overflow-x: hidden removed from body — breaks position:sticky on iOS Safari.
+     Moved to html instead, which does NOT create a new scroll container. */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -1031,8 +1033,9 @@ img {
 
 .room-spec-item {
   display: flex;
-  align-items: center;
+  align-items: start; /* Fix 6: prevents row misalignment when one label wraps */
   gap: 6px;
+  min-height: 26px; /* keeps rows visually consistent */
 }
 
 .room-spec-item svg {
@@ -1065,6 +1068,8 @@ img {
   gap: 30px;
   text-align: center;
 }
+
+/* Fix 5 (mobile): 2×2 grid for stats — applied in @media block below */
 
 .stat-card {
   padding: 20px;
@@ -1113,6 +1118,13 @@ img {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.dining-btn-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .dining-feature-item {
@@ -1679,13 +1691,16 @@ img {
 }
 
 @media (max-width: 768px) {
+  /* Fix 2: Sticky header — height compact on mobile.
+     NOTE: overflow-x:hidden has been moved to html (not body) so position:sticky
+     on .navbar works correctly on iOS Safari. */
   .navbar-inner {
-    height: 80px;
+    height: 64px;
   }
 
   .nav-logo-img {
-    height: 64px;
-    max-width: 225px;
+    height: 52px;
+    max-width: 200px;
   }
 
   .topbar {
@@ -1757,50 +1772,22 @@ img {
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
   }
 
-  /* Mobile Hero Side Action Logos (Left: Phone Call, Right: WhatsApp) - Moves with page scroll */
+  /* Fix 3: Hide hero-side-actions — floating-actions (fixed) takes over on mobile */
   .hero-mobile-side-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    bottom: 55px;
-    left: 18px;
-    right: 18px;
-    z-index: 10;
-    pointer-events: auto;
+    display: none;
   }
 
-  .hero-side-btn {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .hero-side-btn:active {
-    transform: scale(0.92);
-  }
-
-  .hero-side-call {
-    background: #0F3B2E;
-    border: 2px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-  }
-
-  .hero-side-whatsapp {
-    background: #25D366;
-    border: 2px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-  }
-
-  /* Hide fixed floating actions on mobile so logos move naturally with the page */
+  /* Fix 3: Restore floating Call + WhatsApp buttons as fixed position on mobile.
+     The bug was display:none !important here — removed so base CSS (position:fixed)
+     applies correctly. */
   .floating-actions {
-    display: none !important;
+    display: flex !important;
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
   }
 
   .quick-booking-wrapper {
@@ -1827,5 +1814,97 @@ img {
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 30px;
+  }
+
+  /* Fix 1: Horizontal overflow — rooms grid.
+     minmax(350px,1fr) produces a 350px column at 375px viewport = overflow.
+     Switch to 1-column on mobile. */
+  .rooms-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Fix 1: reviews-grid — same issue: minmax(320px,1fr) overflows at 375px */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Fix 1: Dining section — text must not clip on right edge */
+  .dining-content {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .dining-feature-item {
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .dining-feature-item span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-width: 0;
+    flex: 1;
+  }
+
+  /* Fix 1: Dining button row — wrap on small screens */
+  .dining-btn-row {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dining-btn-row .btn {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 120px;
+    white-space: nowrap;
+    justify-content: center;
+  }
+
+  /* Fix 1: Dining image stack — already 1fr 1fr but needs width containment */
+  .dining-img-stack {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Fix 1: "Share Your Stay Experience" button — long text clips on mobile */
+  .reviews-section-cta .btn,
+  #reviews .btn-outline {
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Fix 4: Amenities/Services — 2-col grid, reduced padding */
+  .services-grid {
+    grid-template-columns: 1fr 1fr !important; /* override the 640px 1-col rule */
+    gap: 12px !important;
+  }
+
+  .service-card {
+    padding: 24px 16px 20px 16px; /* was 46px 36px 42px 36px — ~50% reduction */
+  }
+
+  /* Fix 5: Stats — 2×2 grid, compact section padding */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+  }
+
+  .stat-card {
+    padding: 16px 8px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .experience-banner {
+    padding: 36px 0;
   }
 }

@@ -63,7 +63,7 @@ const DiningSection = ({ onOpenBooking }) => {
               </li>
             </ul>
 
-            <div style={{ display: 'flex', gap: '14px', marginTop: '30px' }}>
+            <div className="dining-btn-row">
               <button
                 onClick={() => onOpenBooking(null)}
                 className="btn btn-cyan"
