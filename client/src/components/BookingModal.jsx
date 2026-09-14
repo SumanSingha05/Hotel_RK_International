@@ -202,7 +202,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
               </div>
 
               {/* Date Pickers */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+              <div className="form-row-2col" style={{ marginBottom: '14px' }}>
                 <div className="form-group">
                   <label className="form-label">Check-In Date *</label>
                   <input
@@ -228,7 +228,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
               </div>
 
               {/* Guest Information */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '14px', marginBottom: '14px' }}>
+              <div className="form-row-2col" style={{ marginBottom: '14px' }}>
                 <div className="form-group">
                   <label className="form-label">Primary Guest Name *</label>
                   <input
@@ -256,7 +256,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+              <div className="form-row-2col" style={{ marginBottom: '14px' }}>
                 <div className="form-group">
                   <label className="form-label">Mobile / WhatsApp Number *</label>
                   <input
@@ -292,24 +292,23 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
               </div>
 
               {/* Price Calculation Box */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#f8fafc', padding: '12px 16px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #e2e8f0' }}>
+              <div className="modal-price-calc-box">
                 <div>
-                  <span style={{ fontSize: '0.85rem', color: '#64748b' }}>
+                  <span className="price-calc-note">
                     {nights} Night{nights > 1 ? 's' : ''} × Rs. {currentRoom.price}
                   </span>
-                  <div style={{ fontWeight: '700', color: '#002E5B' }}>Total Tariff Payable:</div>
+                  <div className="price-calc-label">Total Tariff Payable:</div>
                 </div>
-                <div style={{ fontSize: '1.4rem', fontWeight: '800', color: '#002E5B' }}>
+                <div className="price-calc-amount">
                   Rs. {totalAmount}
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="modal-actions-row">
                 <button
                   type="submit"
-                  className="btn btn-cyan btn-lg"
-                  style={{ flex: 1 }}
+                  className="btn btn-cyan btn-lg modal-submit-btn"
                   disabled={submitting}
                 >
                   <CheckCircle size={18} />
@@ -319,7 +318,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
                 <button
                   type="button"
                   onClick={handleWhatsAppBooking}
-                  className="btn btn-whatsapp"
+                  className="btn btn-whatsapp modal-whatsapp-btn"
                   title="Send to WhatsApp"
                 >
                   <MessageCircle size={18} />

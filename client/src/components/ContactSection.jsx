@@ -174,7 +174,7 @@ const ContactSection = ({ onShowToast }) => {
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-row-2col">
                 <div className="form-group">
                   <label className="form-label">Phone / WhatsApp Number *</label>
                   <input

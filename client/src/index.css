@@ -1469,12 +1469,15 @@ img {
   height: 100%;
   background-color: rgba(0, 31, 63, 0.7);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
   animation: fadeIn 0.2s ease-out;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-content {
@@ -1488,20 +1491,25 @@ img {
   border: 1px solid var(--border-light);
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 18px 24px;
   border-bottom: 1px solid var(--border-light);
   background-color: var(--bg-muted);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .modal-title {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--primary-navy);
+  margin-right: 12px;
 }
 
 .modal-close-btn {
@@ -1509,9 +1517,15 @@ img {
   border: none;
   color: var(--text-muted);
   cursor: pointer;
-  padding: 4px;
-  border-radius: var(--radius-sm);
+  padding: 6px;
+  border-radius: var(--radius-full);
   transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  flex-shrink: 0;
 }
 
 .modal-close-btn:hover {
@@ -1523,97 +1537,169 @@ img {
   padding: 24px;
 }
 
-/* Floating Action Buttons */
-.floating-actions {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  display: flex;
-  flex-direction: column;
+/* Modal Helper & Utility Classes */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
-  z-index: 999;
 }
 
-.floating-btn {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-full);
+.modal-price-calc-box {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  color: var(--text-white);
-  box-shadow: var(--shadow-lg);
+  background-color: #f8fafc;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  border: 1px solid var(--border-light);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.price-calc-note {
+  font-size: 0.85rem;
+  color: #64748b;
+  display: block;
+}
+
+.price-calc-label {
+  font-weight: 700;
+  color: var(--primary-navy);
+}
+
+.price-calc-amount {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.modal-submit-btn {
+  flex: 1 1 200px;
+}
+
+.modal-whatsapp-btn {
+  flex: 0 0 auto;
+}
+
+/* Room Detail Modal Elements */
+.room-modal-gallery {
+  margin-bottom: 18px;
+}
+
+.room-modal-main-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+}
+
+.room-modal-thumbnails {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.room-modal-thumb {
+  width: 68px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: all var(--transition-normal);
-  position: relative;
-  text-decoration: none;
+  border: 2px solid transparent;
+  opacity: 0.65;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
-.floating-whatsapp {
-  background-color: var(--accent-green);
-  box-shadow: var(--shadow-green);
+.room-modal-thumb.active {
+  border-color: var(--accent-cyan);
+  opacity: 1;
 }
 
-.floating-whatsapp:hover {
-  transform: scale(1.1);
-  background-color: var(--accent-green-dark);
+.room-modal-tariff {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.floating-call {
-  background-color: var(--primary-navy);
-  box-shadow: var(--shadow-lg);
+.room-modal-orig-price {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.95rem;
 }
 
-.floating-call:hover {
-  transform: scale(1.1);
-  background-color: var(--accent-cyan);
+.room-modal-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+  padding: 14px;
+  background-color: var(--bg-page);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  font-size: 0.85rem;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.room-modal-amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Toast Notifications */
-.toast {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--primary-navy);
-  color: var(--text-white);
-  padding: 14px 28px;
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-xl);
-  font-weight: 600;
-  font-size: 0.92rem;
-  z-index: 3000;
+.room-modal-amenity-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border: 1px solid var(--accent-cyan);
-  animation: slideUp 0.3s ease;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #334155;
 }
 
-/* Admin Dashboard Views */
+/* Admin Dashboard Specific Classes */
+.admin-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.admin-nav-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-tab-btn {
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  border-bottom: 3px solid transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.admin-tab-btn.active {
+  border-bottom-color: var(--accent-cyan);
+  color: var(--primary-navy);
+}
+
 .admin-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -1625,10 +1711,14 @@ img {
 
 .admin-table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
 }
 
 .admin-table {
   width: 100%;
+  min-width: 650px;
   border-collapse: collapse;
   text-align: left;
   font-size: 0.88rem;
@@ -1640,6 +1730,7 @@ img {
   padding: 12px 16px;
   font-weight: 600;
   border-bottom: 2px solid var(--border-light);
+  white-space: nowrap;
 }
 
 .admin-table td {
@@ -1672,10 +1763,105 @@ img {
   color: #b91c1c;
 }
 
-/* Responsive Media Queries */
+/* Floating Action Buttons */
+.floating-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 999;
+}
+
+.floating-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-white);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  text-decoration: none;
+}
+
+.floating-whatsapp {
+  background-color: var(--accent-green);
+  box-shadow: var(--shadow-green);
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.08);
+  background-color: var(--accent-green-dark);
+}
+
+.floating-call {
+  background-color: var(--primary-navy);
+  box-shadow: var(--shadow-lg);
+}
+
+.floating-call:hover {
+  transform: scale(1.08);
+  background-color: var(--accent-cyan);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary-navy);
+  color: var(--text-white);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-xl);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--accent-cyan);
+  animation: slideUp 0.3s ease;
+  max-width: calc(100vw - 32px);
+  text-align: center;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE MEDIA QUERIES
+   Supporting: 320px, 375px, 480px, 768px, 1024px, landscape & high-res
+   ========================================================================== */
+
+/* Tablets & Small Laptops (<= 1024px) */
 @media (max-width: 1024px) {
   .hero-title {
-    font-size: 2.6rem;
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
   }
 
   .about-grid,
@@ -1687,20 +1873,49 @@ img {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 32px;
   }
 }
 
+/* Standard Tablets & Large Phones (<= 768px) */
 @media (max-width: 768px) {
-  /* Fix 2: Sticky header — height compact on mobile.
-     NOTE: overflow-x:hidden has been moved to html (not body) so position:sticky
-     on .navbar works correctly on iOS Safari. */
+  /* Prevent iOS automatic zoom when focusing inputs */
+  .form-input,
+  .form-select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 5vw, 1.85rem);
+    margin-bottom: 10px;
+  }
+
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  /* Sticky Navbar */
   .navbar-inner {
     height: 64px;
   }
 
   .nav-logo-img {
-    height: 52px;
-    max-width: 200px;
+    height: 48px;
+    max-width: 180px;
   }
 
   .topbar {
@@ -1713,16 +1928,29 @@ img {
   }
 
   .nav-toggle {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: var(--radius-sm);
+    color: var(--primary-navy);
   }
 
+  #nav-book-now-btn {
+    padding: 8px 14px;
+    font-size: 0.84rem;
+  }
+
+  /* Hero Section */
   .hero {
-    padding: 48px 0 140px 0;
+    padding: 44px 0 54px 0;
+    min-height: auto;
     text-align: left;
-    min-height: 82vh;
     display: flex;
-    align-items: flex-start;
-    position: relative;
+    align-items: center;
   }
 
   .hero-content {
@@ -1733,10 +1961,10 @@ img {
   }
 
   .hero-title {
-    font-size: 1.65rem;
-    line-height: 1.22;
-    margin-bottom: 22px;
-    max-width: 330px;
+    font-size: clamp(1.65rem, 6vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    max-width: 100%;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -1744,7 +1972,7 @@ img {
   }
 
   .hero-title-for {
-    font-size: 0.6em;
+    font-size: 0.58em;
     margin: 1px 0;
   }
 
@@ -1752,8 +1980,8 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: auto;
-    margin: 0 0 16px 0;
+    width: 100%;
+    margin: 0 0 14px 0;
   }
 
   .hero-buttons .btn-call-hero,
@@ -1765,72 +1993,138 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 13px 28px;
+    padding: 13px 26px;
     font-size: 0.95rem;
     font-weight: 700;
     border-radius: var(--radius-full);
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
   }
 
-  /* Fix 3: Hide hero-side-actions — floating-actions (fixed) takes over on mobile */
   .hero-mobile-side-actions {
     display: none;
   }
 
-  /* Fix 3: Restore floating Call + WhatsApp buttons as fixed position on mobile.
-     The bug was display:none !important here — removed so base CSS (position:fixed)
-     applies correctly. */
+  /* Floating Call & WhatsApp Buttons */
   .floating-actions {
     display: flex !important;
     position: fixed;
-    bottom: 20px;
-    right: 16px;
+    bottom: 18px;
+    right: 14px;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     z-index: 999;
   }
 
-  .quick-booking-wrapper {
-    margin-top: -40px;
+  .floating-btn {
+    width: 48px;
+    height: 48px;
   }
 
-  .quick-booking-form {
-    grid-template-columns: 1fr;
-  }
-
-  .about-feature-boxes {
-    grid-template-columns: 1fr;
+  /* About Section */
+  .about-main-img {
+    height: 260px;
   }
 
   .about-floating-card {
     position: static;
-    margin-top: 16px;
+    margin-top: 14px;
+    width: 100%;
+    justify-content: center;
+    padding: 16px 20px;
   }
 
-  .section-title {
-    font-size: 1.8rem;
-  }
-
-  .footer-grid {
+  .about-feature-boxes {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 14px;
+    margin: 22px 0;
   }
 
-  /* Fix 1: Horizontal overflow — rooms grid.
-     minmax(350px,1fr) produces a 350px column at 375px viewport = overflow.
-     Switch to 1-column on mobile. */
+  /* Services Grid (2 Columns on Tablets) */
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .service-card {
+    padding: 24px 18px 20px 18px;
+  }
+
+  .service-title {
+    font-size: 1.18rem;
+  }
+
+  /* Rooms Section */
+  .room-filter-tabs {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .room-filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tab-btn {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.84rem;
+  }
+
   .rooms-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  /* Fix 1: reviews-grid — same issue: minmax(320px,1fr) overflows at 375px */
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .room-img-container {
+    height: 210px;
   }
 
-  /* Fix 1: Dining section — text must not clip on right edge */
+  .room-card-body {
+    padding: 20px 18px;
+  }
+
+  .room-card-title {
+    font-size: 1.25rem;
+  }
+
+  /* Experience / Stats Banner */
+  .experience-banner {
+    padding: 38px 0;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+  }
+
+  .stat-card {
+    padding: 14px 8px;
+  }
+
+  .stat-number {
+    font-size: 2.1rem;
+  }
+
+  .stat-label {
+    font-size: 0.88rem;
+  }
+
+  /* Dining Section */
+  .dining-img-stack {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    gap: 10px;
+  }
+
+  .dining-img-stack img {
+    height: 130px;
+  }
+
   .dining-content {
     min-width: 0;
     overflow-wrap: break-word;
@@ -1839,7 +2133,8 @@ img {
 
   .dining-feature-item {
     align-items: flex-start;
-    min-width: 0;
+    font-size: 0.9rem;
+    gap: 8px;
   }
 
   .dining-feature-item span {
@@ -1849,28 +2144,37 @@ img {
     flex: 1;
   }
 
-  /* Fix 1: Dining button row — wrap on small screens */
   .dining-btn-row {
     flex-wrap: wrap;
     gap: 10px;
   }
 
   .dining-btn-row .btn {
-    flex: 1 1 calc(50% - 5px);
-    min-width: 120px;
+    flex: 1 1 100%;
     white-space: nowrap;
     justify-content: center;
   }
 
-  /* Fix 1: Dining image stack — already 1fr 1fr but needs width containment */
-  .dining-img-stack {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+  /* Gallery Section */
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    gap: 12px;
   }
 
-  /* Fix 1: "Share Your Stay Experience" button — long text clips on mobile */
-  .reviews-section-cta .btn,
+  .gallery-item {
+    height: 190px;
+  }
+
+  /* Reviews Section */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .review-card {
+    padding: 22px 18px;
+  }
+
   #reviews .btn-outline {
     white-space: normal;
     word-break: break-word;
@@ -1880,31 +2184,227 @@ img {
     box-sizing: border-box;
   }
 
-  /* Fix 4: Amenities/Services — 2-col grid, reduced padding */
+  /* Contact Section */
+  .contact-info-card,
+  .contact-form-card {
+    padding: 26px 20px;
+  }
+
+  .contact-info-title {
+    font-size: 1.5rem;
+  }
+
+  .map-container {
+    height: 260px;
+    margin-top: 30px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 50px 0 20px 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .footer-bottom-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-content {
+    max-height: 94vh;
+    border-radius: var(--radius-md);
+  }
+
+  .modal-header {
+    padding: 14px 18px;
+  }
+
+  .modal-title {
+    font-size: 1.15rem;
+  }
+
+  .modal-body {
+    padding: 18px 16px;
+  }
+
+  .room-modal-main-img {
+    height: 220px;
+  }
+}
+
+/* Phablets & Standard Mobile Phones (<= 560px) */
+@media (max-width: 560px) {
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* Modern Smartphone Screens (<= 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  .nav-logo-img {
+    height: 42px;
+    max-width: 145px;
+  }
+
+  #nav-book-now-btn {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+    gap: 4px;
+  }
+
+  .hero-buttons .btn-booking-hero {
+    width: 100%;
+  }
+
+  /* Amenities 1-Column on Small Phones */
   .services-grid {
-    grid-template-columns: 1fr 1fr !important; /* override the 640px 1-col rule */
+    grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
 
   .service-card {
-    padding: 24px 16px 20px 16px; /* was 46px 36px 42px 36px — ~50% reduction */
+    padding: 20px 16px;
   }
 
-  /* Fix 5: Stats — 2×2 grid, compact section padding */
+  .service-icon-box {
+    margin-bottom: 14px;
+  }
+
+  .service-title {
+    font-size: 1.15rem;
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Room Card Actions Stacked */
+  .room-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .room-card-actions .btn {
+    width: 100%;
+  }
+
+  /* Room Detail Modal Grid */
+  .room-modal-specs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .room-modal-amenities-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .modal-actions-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-actions-row .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dining-img-stack img {
+    height: 110px;
+  }
+
+  .admin-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+/* Small Smartphone Screens like iPhone SE, Galaxy Mini (<= 360px) */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .nav-logo-img {
+    height: 36px;
+    max-width: 120px;
+  }
+
+  #nav-book-now-btn {
+    padding: 6px 9px;
+    font-size: 0.74rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 8px 12px;
+    gap: 8px;
   }
 
   .stat-card {
-    padding: 16px 8px;
+    padding: 10px 4px;
   }
 
   .stat-number {
-    font-size: 2rem;
+    font-size: 1.65rem;
   }
 
-  .experience-banner {
-    padding: 36px 0;
+  .stat-label {
+    font-size: 0.78rem;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    padding: 18px 12px;
+  }
+
+  .modal-header {
+    padding: 12px 14px;
+  }
+
+  .modal-body {
+    padding: 14px 12px;
+  }
+}
+
+/* Mobile Landscape Mode Optimization */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero {
+    min-height: 100vh;
+    padding: 30px 0 50px 0;
+  }
+
+  .modal-content {
+    max-height: 96vh;
+  }
+
+  .mobile-drawer {
+    overflow-y: auto;
   }
 }
