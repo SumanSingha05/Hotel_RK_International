@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone, MessageCircle, MapPin, Mail } from 'lucide-react';
 
 const heroImages = [
   {
@@ -90,8 +90,28 @@ const Hero = ({ onOpenBooking }) => {
               <span className="btn-text">Whatsapp</span>
             </a>
           </div>
+
+          {/* Mobile Address & Contact Info Bar */}
+          <div className="hero-mobile-contact-card">
+            <div className="hero-mobile-contact-item">
+              <MapPin size={16} color="#002E5B" className="contact-item-icon" />
+              <span>B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
+            </div>
+            <div className="hero-mobile-contact-row">
+              <a href="tel:+918910119231" className="hero-mobile-contact-item">
+                <Phone size={15} color="#002E5B" className="contact-item-icon" />
+                <span>+91 8910119231</span>
+              </a>
+              <a href="mailto:info@hotelrkinternational.com" className="hero-mobile-contact-item">
+                <Mail size={15} color="#002E5B" className="contact-item-icon" />
+                <span>info@hotelrkinternational.com</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
+
 
       {/* Mobile Side Action Logos (Left: Phone Call, Right: WhatsApp) - Moves with page scroll */}
       <div className="hero-mobile-side-actions">

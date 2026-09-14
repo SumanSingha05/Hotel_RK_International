@@ -671,6 +671,10 @@ img {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
+.hero-mobile-contact-card {
+  display: none;
+}
+
 .hero-mobile-side-actions {
   display: none;
 }
@@ -2059,6 +2063,7 @@ img {
     display: none;
   }
 
+
   .nav-links,
   .nav-actions .btn-call {
     display: none;
@@ -2083,12 +2088,13 @@ img {
 
   /* Hero Section */
   .hero {
-    padding: 44px 0 54px 0;
-    min-height: auto;
+    padding: 64px 0 80px 0;
+    min-height: 88vh;
     text-align: left;
     display: flex;
     align-items: center;
   }
+
 
   .hero-content {
     align-items: flex-start;
@@ -2115,31 +2121,92 @@ img {
 
   .hero-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
     width: 100%;
     margin: 0 0 14px 0;
   }
 
   .hero-buttons .btn-call-hero,
   .hero-buttons .btn-whatsapp-hero {
-    display: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
   }
 
   .hero-buttons .btn-booking-hero {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 13px 26px;
-    font-size: 0.95rem;
+    padding: 11px 16px;
+    font-size: 0.82rem;
     font-weight: 700;
     border-radius: var(--radius-full);
     box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
+    flex: 2 1 auto;
+    min-width: 0;
   }
+
+  .hero-mobile-contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+
+  .hero-mobile-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: #0f172a;
+    text-decoration: none;
+  }
+
+  .hero-mobile-contact-item:hover {
+    color: #0284c7;
+  }
+
+  .hero-mobile-contact-item .contact-item-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #002e5b;
+  }
+
+  .hero-mobile-contact-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
 
   .hero-mobile-side-actions {
     display: none;
   }
+
 
   /* Floating Call & WhatsApp Buttons */
   .floating-actions {
@@ -2457,8 +2524,15 @@ img {
   }
 
   .hero-buttons .btn-booking-hero {
-    width: 100%;
+    flex: 2 1 auto;
   }
+
+  .hero-buttons .btn-call-hero .btn-text,
+  .hero-buttons .btn-whatsapp-hero .btn-text {
+    display: none;
+  }
+
+
 
   /* Room Card Actions Stacked */
   .room-card-actions {
