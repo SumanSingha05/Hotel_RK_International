@@ -1,10 +1,34 @@
 import React from "react";
 import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
 
-const Footer = ({ onOpenPolicy, onOpenAdmin }) => {
+const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) => {
+  const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+
   const scrollToSection = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (isCorporateRoute) {
+      if (onNavigate) {
+        onNavigate('/', id);
+      } else {
+        window.history.pushState({}, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        setTimeout(() => {
+          const el = document.querySelector(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      const el = document.querySelector(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCorporateClick = () => {
+    if (onNavigate) {
+      onNavigate('/corporate booking');
+    } else {
+      window.history.pushState({}, '', '/corporate booking');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
   };
 
   return (
@@ -43,6 +67,15 @@ const Footer = ({ onOpenPolicy, onOpenAdmin }) => {
                   onClick={() => scrollToSection("#home")}
                 >
                   Home
+                </span>
+              </li>
+              <li>
+                <span
+                  className="footer-link"
+                  onClick={handleCorporateClick}
+                  style={{ color: isCorporateRoute ? 'var(--accent-cyan)' : 'inherit', fontWeight: isCorporateRoute ? '600' : 'normal' }}
+                >
+                  Corporate Booking
                 </span>
               </li>
               <li>
