@@ -77,19 +77,15 @@ const galleryItems = [
 ];
 
 const GallerySection = () => {
-  const [filter, setFilter] = useState('All');
   const [activePhoto, setActivePhoto] = useState(null);
 
-  const categories = ['All', 'Rooms', 'Dining', 'Lawn & Exterior'];
-
-  const filteredItems = filter === 'All'
-    ? galleryItems
-    : galleryItems.filter((i) => i.category === filter);
+  // Duplicate items for continuous seamless loop
+  const marqueeItems = [...galleryItems, ...galleryItems];
 
   return (
-    <section id="gallery" className="section">
+    <section id="gallery" className="section gallery-section-wrapper">
       <div className="container">
-        <div className="section-header">
+        <div className="section-header" style={{ marginBottom: '36px' }}>
           <span className="section-tag">Gallery</span>
           <h2 className="section-title">
             Take a Visual Tour of Hotel RK International
@@ -98,37 +94,36 @@ const GallerySection = () => {
             Explore our rooms, clean premises, children's lawn, dining spaces, and pleasant surroundings in New Digha.
           </p>
         </div>
+      </div>
 
-        {/* Filter Buttons */}
-        <div className="room-filter-tabs">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`filter-tab-btn ${filter === cat ? 'active' : ''}`}
-              onClick={() => setFilter(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Gallery Grid */}
-        <div className="gallery-grid">
-          {filteredItems.map((item) => (
+      {/* Infinite Moving Single-Row Carousel (Moving to the left) */}
+      <div className="gallery-marquee-viewport">
+        <div className="gallery-marquee-track">
+          {marqueeItems.map((item, index) => (
             <div
-              key={item.id}
-              className="gallery-item"
+              key={`${item.id}-${index}`}
+              className="gallery-marquee-card"
               onClick={() => setActivePhoto(item)}
+              title={`${item.title} - Click to enlarge`}
             >
               <img
                 src={item.src}
                 alt={item.title}
                 loading="lazy"
+                className="gallery-card-img"
               />
-              <div className="gallery-overlay">
-                <Maximize2 size={24} style={{ marginBottom: '8px' }} />
-                <span style={{ fontWeight: '600', fontSize: '0.9rem' }}>{item.title}</span>
-                <span style={{ fontSize: '0.75rem', opacity: 0.8 }}>{item.category}</span>
+              
+              {/* Bottom Picture Type Label Overlay */}
+              <div className="gallery-card-bottom-info">
+                <span className={`gallery-type-pill pill-${item.category.toLowerCase().replace(/[^a-z]/g, '-')}`}>
+                  {item.category}
+                </span>
+                <span className="gallery-card-title-text">{item.title}</span>
+              </div>
+
+              {/* Hover Zoom Icon */}
+              <div className="gallery-card-hover-icon">
+                <Maximize2 size={20} color="#ffffff" />
               </div>
             </div>
           ))}
@@ -164,10 +159,14 @@ const GallerySection = () => {
                 style={{ width: '100%', maxHeight: '75vh', objectFit: 'contain', borderRadius: '12px' }}
               />
               <div style={{ padding: '16px 20px', color: '#ffffff' }}>
+                <div style={{ display: 'inline-block', marginBottom: '6px' }}>
+                  <span className={`gallery-type-pill pill-${activePhoto.category.toLowerCase().replace(/[^a-z]/g, '-')}`}>
+                    {activePhoto.category}
+                  </span>
+                </div>
                 <h4 style={{ color: '#ffffff', fontSize: '1.2rem', marginBottom: '4px' }}>
                   {activePhoto.title}
                 </h4>
-                <p style={{ color: '#20B7E3', fontSize: '0.85rem' }}>{activePhoto.category}</p>
               </div>
             </div>
           </div>
