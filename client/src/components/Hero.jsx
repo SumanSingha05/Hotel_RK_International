@@ -34,7 +34,7 @@ const Hero = ({ onOpenBooking }) => {
   const whatsappUrl = "https://wa.me/918910119231?text=Hello%20Hotel%20RK%20International%2C%20I%20am%20interested%20in%20booking%20a%20room%20in%20New%20Digha.%20Please%20share%20availability.";
 
   return (
-    <section id="home" className="hero">
+    <section id="home" className="hero" aria-label="Hotel RK International – Best Hotel in New Digha near Sea Beach">
       {/* Background Image Carousel with Smooth Dissolve */}
       <div className="hero-slider-bg">
         {heroImages.map((item, index) => (
@@ -42,6 +42,8 @@ const Hero = ({ onOpenBooking }) => {
             key={index}
             className={`hero-bg-slide ${index === currentSlide ? 'active' : ''}`}
             style={{ backgroundImage: `url(${item.src})` }}
+            role="img"
+            aria-label={item.caption}
           />
         ))}
         <div className="hero-gradient-overlay" />
@@ -54,6 +56,9 @@ const Hero = ({ onOpenBooking }) => {
             <span className="hero-title-for">for</span>
             <span className="hero-title-line">Your Digha Gateway</span>
           </h1>
+          <p className="hero-subtitle" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.05rem', marginBottom: '8px', fontWeight: '400' }}>
+            Hotel RK International, New Digha &nbsp;•&nbsp; AC Rooms from ₹1800/night &nbsp;•&nbsp; Family &amp; Couple Suites
+          </p>
 
           <div className="hero-buttons">
             <a

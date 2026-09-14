@@ -1279,36 +1279,77 @@ img {
   transform: scale(1);
 }
 
-/* Reviews / Feedback Section */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 24px;
+/* Reviews / Feedback Section - Infinite Moving Single-Row Carousel */
+.reviews-section-wrapper {
+  overflow: hidden;
 }
 
-.review-card {
+.reviews-marquee-viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0 20px 0;
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+.reviews-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: reviewsMarqueeScroll 55s linear infinite;
+  will-change: transform;
+}
+
+.reviews-marquee-viewport:hover .reviews-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes reviewsMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.reviews-marquee-card {
+  width: 380px;
+  flex: 0 0 380px;
   background-color: var(--bg-card);
-  padding: 28px;
+  padding: 26px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
-.review-card:hover {
+.reviews-marquee-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
   border-color: var(--accent-cyan);
+}
+
+.review-stars-quote-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.review-quote-icon {
+  color: var(--accent-cyan);
+  opacity: 0.35;
 }
 
 .review-stars {
   display: flex;
   gap: 4px;
   color: var(--accent-gold);
-  margin-bottom: 14px;
 }
 
 .review-text {
@@ -1338,6 +1379,7 @@ img {
   justify-content: center;
   font-weight: 700;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .review-name {
@@ -1349,6 +1391,11 @@ img {
 .review-meta {
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+.review-room-tag {
+  color: #0284c7;
+  font-weight: 600;
 }
 
 /* Contact & Booking Inquiry Section */
@@ -2293,13 +2340,21 @@ img {
   }
 
   /* Reviews Section */
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .reviews-marquee-card {
+    width: 290px;
+    flex: 0 0 290px;
+    padding: 20px 16px;
   }
 
-  .review-card {
-    padding: 22px 18px;
+  .reviews-marquee-track {
+    gap: 14px;
+    animation-duration: 38s;
+  }
+
+  .review-text {
+    font-size: 0.86rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
   }
 
   #reviews .btn-outline {

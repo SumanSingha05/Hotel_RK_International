@@ -83,7 +83,7 @@ const GallerySection = () => {
   const marqueeItems = [...galleryItems, ...galleryItems];
 
   return (
-    <section id="gallery" className="section gallery-section-wrapper">
+    <section id="gallery" className="section gallery-section-wrapper" aria-label="Photo Gallery – Rooms, Dining and Lawn at Hotel RK International New Digha">
       <div className="container">
         <div className="section-header" style={{ marginBottom: '36px' }}>
           <span className="section-tag">Gallery</span>
@@ -91,7 +91,7 @@ const GallerySection = () => {
             Take a Visual Tour of Hotel RK International
           </h2>
           <p className="section-desc">
-            Explore our rooms, clean premises, children's lawn, dining spaces, and pleasant surroundings in New Digha.
+            Explore our AC rooms, children's lawn, multi-cuisine dining, and scenic surroundings in New Digha near the sea beach.
           </p>
         </div>
       </div>
