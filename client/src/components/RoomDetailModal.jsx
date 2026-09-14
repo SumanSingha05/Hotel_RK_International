@@ -23,29 +23,21 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
 
         <div className="modal-body">
           {/* Main Photo & Thumbnails */}
-          <div style={{ marginBottom: '20px' }}>
+          <div className="room-modal-gallery">
             <img
               src={room.images[activeImgIndex] || room.images[0]}
               alt={room.title}
-              style={{ width: '100%', height: '320px', objectFit: 'cover', borderRadius: '10px', marginBottom: '10px' }}
+              className="room-modal-main-img"
             />
             {room.images.length > 1 && (
-              <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+              <div className="room-modal-thumbnails">
                 {room.images.map((img, idx) => (
                   <img
                     key={idx}
                     src={img}
                     alt={`Thumbnail ${idx}`}
                     onClick={() => setActiveImgIndex(idx)}
-                    style={{
-                      width: '70px',
-                      height: '50px',
-                      objectFit: 'cover',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      border: activeImgIndex === idx ? '2px solid #20B7E3' : '2px solid transparent',
-                      opacity: activeImgIndex === idx ? 1 : 0.65
-                    }}
+                    className={`room-modal-thumb ${activeImgIndex === idx ? 'active' : ''}`}
                   />
                 ))}
               </div>
@@ -53,33 +45,33 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
           </div>
 
           {/* Seabird Tariff Bar */}
-          <div className="room-tariff-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="room-tariff-bar room-modal-tariff">
             <div>
               <span className="tariff-note">{room.priceNote || 'Including Breakfast + GST'}</span>
               <span className="tariff-price">RS.{room.price}/NIGHT</span>
             </div>
             {room.originalPrice && (
-              <span style={{ textDecoration: 'line-through', color: '#94a3b8', fontSize: '0.95rem' }}>
+              <span className="room-modal-orig-price">
                 Rs. {room.originalPrice}
               </span>
             )}
           </div>
 
           {/* Key Quick Specs */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '10px', margin: '18px 0', padding: '14px', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '0.85rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div className="room-modal-specs-grid">
+            <div className="room-spec-item">
               <Users size={16} color="#20B7E3" />
               <span>{room.capacity}</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div className="room-spec-item">
               <Bed size={16} color="#20B7E3" />
               <span>{room.bedType}</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div className="room-spec-item">
               <Eye size={16} color="#20B7E3" />
               <span>{room.view || 'Pleasant View'}</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div className="room-spec-item">
               <Maximize size={16} color="#20B7E3" />
               <span>{room.size || 'Spacious Layout'}</span>
             </div>
@@ -96,9 +88,9 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
           {/* Features List */}
           <div style={{ marginBottom: '24px' }}>
             <h4 style={{ fontSize: '1rem', color: '#002E5B', marginBottom: '10px' }}>Room Amenities & Facilities</h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '8px' }}>
+            <div className="room-modal-amenities-grid">
               {room.features?.map((f, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: '#334155' }}>
+                <div key={i} className="room-modal-amenity-item">
                   <Check size={15} color="#16a34a" />
                   <span>{f}</span>
                 </div>
@@ -107,19 +99,18 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
           </div>
 
           {/* Action */}
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div className="modal-actions-row">
             <button
               onClick={() => {
                 onClose();
                 onOpenBooking(room);
               }}
-              className="btn btn-cyan btn-lg"
-              style={{ flex: 1 }}
+              className="btn btn-cyan btn-lg modal-submit-btn"
             >
               <Calendar size={18} />
               <span>Book This Room Now</span>
             </button>
-            <button onClick={onClose} className="btn btn-outline">
+            <button onClick={onClose} className="btn btn-outline modal-close-action-btn">
               <span>Close</span>
             </button>
           </div>

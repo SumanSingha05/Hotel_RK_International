@@ -77,7 +77,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
 
         <div className="modal-body">
           {/* Quick Metrics */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', marginBottom: '24px' }}>
+          <div className="admin-metrics-grid">
             <div style={{ backgroundColor: '#f0f9fc', border: '1px solid #bce8f5', padding: '16px', borderRadius: '8px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0284c7', fontSize: '0.82rem', fontWeight: '600' }}>
                 <Calendar size={16} /> Total Bookings
@@ -116,32 +116,16 @@ const AdminDashboard = ({ isOpen, onClose }) => {
           </div>
 
           {/* Navigation Tabs */}
-          <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #e2e8f0', marginBottom: '20px' }}>
+          <div className="admin-nav-tabs">
             <button
               onClick={() => setActiveTab('bookings')}
-              style={{
-                padding: '10px 18px',
-                border: 'none',
-                background: 'none',
-                borderBottom: activeTab === 'bookings' ? '3px solid #20B7E3' : '3px solid transparent',
-                color: activeTab === 'bookings' ? '#002E5B' : '#64748b',
-                fontWeight: '700',
-                cursor: 'pointer'
-              }}
+              className={`admin-tab-btn ${activeTab === 'bookings' ? 'active' : ''}`}
             >
               Room Bookings ({bookings.length})
             </button>
             <button
               onClick={() => setActiveTab('contacts')}
-              style={{
-                padding: '10px 18px',
-                border: 'none',
-                background: 'none',
-                borderBottom: activeTab === 'contacts' ? '3px solid #20B7E3' : '3px solid transparent',
-                color: activeTab === 'contacts' ? '#002E5B' : '#64748b',
-                fontWeight: '700',
-                cursor: 'pointer'
-              }}
+              className={`admin-tab-btn ${activeTab === 'contacts' ? 'active' : ''}`}
             >
               Contact Messages ({contacts.length})
             </button>

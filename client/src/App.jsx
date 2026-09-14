@@ -221,6 +221,27 @@ const fallbackReviews = [
     rating: 5,
     roomType: "Deluxe Room",
     comment: "Best budget luxury hotel in New Digha near the sea beach. Clean sparkling washrooms, prompt room service, and the lawn area was great for my kids to play in the evening."
+  },
+  {
+    guestName: "Rajesh Banerjee",
+    designation: "Doctor, Durgapur",
+    rating: 5,
+    roomType: "Family Suite Room",
+    comment: "Stayed here with my parents and children for 3 nights. Superb hospitality, authentic Bengali thali in the dining restaurant, and very safe car parking facility."
+  },
+  {
+    guestName: "Priyanka Chakraborty",
+    designation: "Bank Officer, Siliguri",
+    rating: 5,
+    roomType: "Front Sea Facing Deluxe",
+    comment: "Morning sea breeze from the balcony was surreal. 24/7 power backup and hot water geyser worked seamlessly. Highly recommended for couples and families visiting New Digha!"
+  },
+  {
+    guestName: "Amitabh Sen",
+    designation: "Architect, Midnapore",
+    rating: 5,
+    roomType: "Premium Deluxe Room",
+    comment: "Modern aesthetic interior, clean white linens, and extremely polite front desk staff. Online check-in process was very fast and completely hassle-free."
   }
 ];
 
@@ -319,14 +340,14 @@ function App() {
         onOpenRoomDetail={handleOpenRoomDetail}
       />
 
-      {/* 8. Experience & Counters Banner */}
+      {/* 8. Photo Gallery with Lightbox */}
+      <GallerySection />
+
+      {/* 9. Experience & Counters Banner */}
       <ExperienceBanner onOpenBooking={handleOpenBooking} />
 
-      {/* 9. Multi-Cuisine Restaurant & Dining */}
+      {/* 10. Multi-Cuisine Restaurant & Dining */}
       <DiningSection onOpenBooking={handleOpenBooking} />
-
-      {/* 10. Photo Gallery with Lightbox */}
-      <GallerySection />
 
       {/* 11. Guest Feedback & Reviews */}
       <ReviewsSection

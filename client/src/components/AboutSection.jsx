@@ -3,21 +3,22 @@ import { MapPin, Headphones, CheckCircle2, Calendar } from 'lucide-react';
 
 const AboutSection = ({ onOpenBooking }) => {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section" aria-label="About Hotel RK International – New Digha Hotel near Sea Beach">
       <div className="container">
         <div className="about-grid">
           {/* Left Column: Image Collage */}
           <div className="about-images-wrapper">
             <img
               src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
-              alt="Hotel RK International New Digha"
+              alt="Hotel RK International New Digha – Reception and Lobby Area near Sea Beach"
               className="about-main-img"
+              loading="lazy"
             />
             <div className="about-floating-card">
               <div className="floating-number">2022</div>
               <div className="floating-text">
                 Founded With<br />
-                <strong>Warm Hospitality & Luxury</strong>
+                <strong>Warm Hospitality &amp; Luxury</strong>
               </div>
             </div>
           </div>
@@ -41,9 +42,9 @@ const AboutSection = ({ onOpenBooking }) => {
                   <MapPin size={24} color="#20B7E3" />
                 </div>
                 <h3 className="about-feature-title">Convenient Location</h3>
-                <p className="about-feature-desc">
+                <address className="about-feature-desc" style={{ fontStyle: 'normal' }}>
                   Situated in B-1 Sector, New Digha — minutes away from the main sea beach, railway station, and vibrant local sea beach market.
-                </p>
+                </address>
               </div>
 
               <div className="about-feature-card">

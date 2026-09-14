@@ -66,12 +66,12 @@ const ContactSection = ({ onShowToast }) => {
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section" aria-label="Contact Hotel RK International – Book AC Rooms in New Digha">
       <div className="container">
         <div className="section-header">
           <span className="section-tag">Contact Us</span>
           <h2 className="section-title">
-            Easy & Convenient Digha Hotel Booking
+            Easy &amp; Convenient Digha Hotel Booking
           </h2>
           <p className="section-desc">
             Planning your next weekend trip or family holiday to Digha? Contact Hotel RK International for instant room reservations, group discounts, and custom stay packages.
@@ -81,7 +81,7 @@ const ContactSection = ({ onShowToast }) => {
         <div className="contact-grid">
           {/* Left Column: Direct Hotel RK Info */}
           <div className="contact-info-card">
-            <div>
+            <address style={{ fontStyle: 'normal' }}>
               <h3 className="contact-info-title">Reach Out to Us</h3>
               <p className="contact-info-desc">
                 Our reservations and front desk team is on standby 24 hours a day to assist you with room tariff, check-in logistics, and travel queries.
@@ -105,7 +105,7 @@ const ContactSection = ({ onShowToast }) => {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <div className="channel-label">Reservations & Desk</div>
+                    <div className="channel-label">Reservations &amp; Desk</div>
                     <div className="channel-value">
                       <a href="tel:+918910119231" style={{ color: '#fff', textDecoration: 'underline' }}>+91 8910119231</a>
                     </div>
@@ -117,7 +117,7 @@ const ContactSection = ({ onShowToast }) => {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <div className="channel-label">Email & Website</div>
+                    <div className="channel-label">Email &amp; Website</div>
                     <div className="channel-value">
                       <a href="mailto:info@hotelrkinternational.com" style={{ color: '#fff', textDecoration: 'underline' }}>info@hotelrkinternational.com</a><br />
                       <a href="https://www.hotelrkinternational.com" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline' }}>www.hotelrkinternational.com</a>
@@ -137,7 +137,7 @@ const ContactSection = ({ onShowToast }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </address>
 
             <a
               href="https://wa.me/918910119231?text=Hello%20Hotel%20RK%20International%2C%20I%20have%20an%20inquiry%20regarding%20booking%20rooms."
@@ -174,7 +174,7 @@ const ContactSection = ({ onShowToast }) => {
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-row-2col">
                 <div className="form-group">
                   <label className="form-label">Phone / WhatsApp Number *</label>
                   <input

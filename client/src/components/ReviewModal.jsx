@@ -75,7 +75,7 @@ const ReviewModal = ({ isOpen, onClose, onReviewSubmitted, onShowToast }) => {
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+            <div className="form-row-2col">
               <div className="form-group">
                 <label className="form-label">Profession / City</label>
                 <input
