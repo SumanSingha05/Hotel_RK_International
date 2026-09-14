@@ -319,14 +319,14 @@ function App() {
         onOpenRoomDetail={handleOpenRoomDetail}
       />
 
-      {/* 8. Experience & Counters Banner */}
+      {/* 8. Photo Gallery with Lightbox */}
+      <GallerySection />
+
+      {/* 9. Experience & Counters Banner */}
       <ExperienceBanner onOpenBooking={handleOpenBooking} />
 
-      {/* 9. Multi-Cuisine Restaurant & Dining */}
+      {/* 10. Multi-Cuisine Restaurant & Dining */}
       <DiningSection onOpenBooking={handleOpenBooking} />
-
-      {/* 10. Photo Gallery with Lightbox */}
-      <GallerySection />
 
       {/* 11. Guest Feedback & Reviews */}
       <ReviewsSection
