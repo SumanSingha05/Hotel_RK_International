@@ -17,6 +17,7 @@ import RoomDetailModal from './components/RoomDetailModal';
 import ReviewModal from './components/ReviewModal';
 import PolicyModal from './components/PolicyModal';
 import AdminDashboard from './components/AdminDashboard';
+import CorporateBookingPage from './components/CorporateBookingPage';
 import { CheckCircle } from 'lucide-react';
 
 // Fallback initial rooms if backend is starting
@@ -249,6 +250,34 @@ function App() {
   const [rooms, setRooms] = useState(fallbackRooms);
   const [reviews, setReviews] = useState(fallbackReviews);
 
+  // Routing State
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (path, targetHash = null) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    if (targetHash) {
+      setTimeout(() => {
+        const element = document.querySelector(targetHash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 120);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+
   // Modal States
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [selectedRoomForBooking, setSelectedRoomForBooking] = useState(null);
@@ -322,46 +351,63 @@ function App() {
       {/* 2. Main Sticky Navigation Bar */}
       <Navbar
         onOpenBooking={handleOpenBooking}
+        currentPath={currentPath}
+        onNavigate={navigateTo}
       />
 
-      {/* 3. Hero Section */}
-      <Hero onOpenBooking={handleOpenBooking} />
+      {/* Conditional Route Rendering */}
+      {isCorporateRoute ? (
+        /* Dedicated Corporate Booking Page */
+        <CorporateBookingPage
+          onNavigate={navigateTo}
+          onShowToast={showToast}
+          onOpenBooking={handleOpenBooking}
+        />
+      ) : (
+        /* Main Home Landing Sections */
+        <>
+          {/* 3. Hero Section */}
+          <Hero onOpenBooking={handleOpenBooking} />
 
-      {/* 4. About Section */}
-      <AboutSection onOpenBooking={handleOpenBooking} />
+          {/* 4. About Section */}
+          <AboutSection onOpenBooking={handleOpenBooking} />
 
-      {/* 6. Services & Amenities Section */}
-      <ServicesSection />
+          {/* 6. Services & Amenities Section */}
+          <ServicesSection />
 
-      {/* 7. Rooms & Tariff Section (Exact Seabird Digha layout) */}
-      <RoomsSection
-        rooms={rooms}
-        onOpenBooking={handleOpenBooking}
-        onOpenRoomDetail={handleOpenRoomDetail}
-      />
+          {/* 7. Rooms & Tariff Section */}
+          <RoomsSection
+            rooms={rooms}
+            onOpenBooking={handleOpenBooking}
+            onOpenRoomDetail={handleOpenRoomDetail}
+          />
 
-      {/* 8. Photo Gallery with Lightbox */}
-      <GallerySection />
+          {/* 8. Photo Gallery with Lightbox */}
+          <GallerySection />
 
-      {/* 9. Experience & Counters Banner */}
-      <ExperienceBanner onOpenBooking={handleOpenBooking} />
+          {/* 9. Experience & Counters Banner */}
+          <ExperienceBanner onOpenBooking={handleOpenBooking} />
 
-      {/* 10. Multi-Cuisine Restaurant & Dining */}
-      <DiningSection onOpenBooking={handleOpenBooking} />
+          {/* 10. Multi-Cuisine Restaurant & Dining */}
+          <DiningSection onOpenBooking={handleOpenBooking} />
 
-      {/* 11. Guest Feedback & Reviews */}
-      <ReviewsSection
-        reviews={reviews}
-        onOpenAddReview={() => setReviewModalOpen(true)}
-      />
+          {/* 11. Guest Feedback & Reviews */}
+          <ReviewsSection
+            reviews={reviews}
+            onOpenAddReview={() => setReviewModalOpen(true)}
+          />
 
-      {/* 12. Contact & Booking Inquiry Section + Google Map */}
-      <ContactSection onShowToast={showToast} />
+          {/* 12. Contact & Booking Inquiry Section + Google Map */}
+          <ContactSection onShowToast={showToast} />
+        </>
+      )}
 
       {/* 13. Footer */}
       <Footer
         onOpenPolicy={(type) => setPolicyType(type)}
         onOpenAdmin={() => setAdminOpen(true)}
+        onNavigate={navigateTo}
+        currentPath={currentPath}
       />
 
       {/* 14. Floating WhatsApp and Call Action Buttons */}

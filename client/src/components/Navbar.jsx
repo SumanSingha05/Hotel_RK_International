@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Menu, X } from 'lucide-react';
+import SlideFillButton from './SlideFillButton';
 
-const Navbar = ({ onOpenBooking, activeSection }) => {
+const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -13,9 +14,11 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+
   const navItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Corporate Booking', href: '#contact', isCorporate: true },
+    { label: 'Corporate Booking', href: '/corporate booking', isCorporate: true },
     { label: 'Services', href: '#services' },
     { label: 'Gallery', href: '#gallery' },
     { label: 'Reviews', href: '#reviews' },
@@ -23,13 +26,37 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
 
   const handleNavClick = (item) => {
     setMobileMenuOpen(false);
-    const href = typeof item === 'string' ? item : item.href;
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    
+    if (item.isCorporate) {
+      if (onNavigate) {
+        onNavigate('/corporate booking');
+      } else {
+        window.history.pushState({}, '', '/corporate booking');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
+      return;
     }
-    if (item && item.isCorporate) {
-      window.dispatchEvent(new CustomEvent('select-corporate-booking'));
+
+    const href = typeof item === 'string' ? item : item.href;
+
+    if (isCorporateRoute) {
+      // If we are currently on Corporate Booking page, navigate back to home then scroll
+      if (onNavigate) {
+        onNavigate('/', href);
+      } else {
+        window.history.pushState({}, '', '/');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      // On Home Page, smooth scroll to element
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -38,7 +65,14 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="container navbar-inner">
           {/* Authentic Logo Image */}
-          <a href="#home" className="nav-brand" onClick={(e) => { e.preventDefault(); handleNavClick({ href: '#home' }); }}>
+          <a
+            href="#home"
+            className="nav-brand"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick({ href: '#home', label: 'Home' });
+            }}
+          >
             <img
               src="/logo-transparent.png"
               alt="Hotel RK International Logo"
@@ -48,32 +82,55 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
 
           {/* Desktop Nav Links */}
           <ul className="nav-links">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  className={`nav-link ${activeSection === item.href.slice(1) ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(item);
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.isCorporate 
+                ? isCorporateRoute 
+                : (!isCorporateRoute && activeSection === item.href.slice(1));
+
+              return (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className={`nav-link ${isActive ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item);
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Desktop Nav Actions */}
           <div className="nav-actions">
-            <button
-              onClick={() => onOpenBooking(null)}
-              className="btn btn-cyan btn-sm"
+            <SlideFillButton
               id="nav-book-now-btn"
+              label="Book Now"
+              onClick={() => onOpenBooking(null)}
+              padding="9px 18px"
+              rounded={20}
+              colors={{ fill: "#E6F8FD", textColor: "#000000" }}
+              icon={{ color: "#000000", hoverColor: "#FFFFFF", size: 15 }}
+              border={{ borderWidth: 1, borderStyle: "solid", borderColor: "#BAE6FD" }}
+              water={{
+                color: "#002E5B",
+                direction: "up",
+                textColor: "#FFFFFF",
+                waveSpeed: 60,
+                defaultFill: 3,
+              }}
+              font={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: 600,
+                fontSize: "0.88rem",
+                letterSpacing: "0.3px",
+              }}
             >
-              <Calendar size={16} />
-              <span>Book Now</span>
-            </button>
+              <Calendar size={15} style={{ marginRight: "6px" }} />
+            </SlideFillButton>
 
             <button
               className="nav-toggle"
@@ -140,34 +197,57 @@ const Navbar = ({ onOpenBooking, activeSection }) => {
         </div>
 
         <ul className="mobile-drawer-links">
-          {navItems.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className="mobile-drawer-link"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item);
-                }}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            const isActive = item.isCorporate
+              ? isCorporateRoute
+              : (!isCorporateRoute && activeSection === item.href.slice(1));
+
+            return (
+              <li key={item.label}>
+                <a
+                  href={item.href}
+                  className={`mobile-drawer-link ${isActive ? 'active' : ''}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item);
+                  }}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: 'auto' }}>
-          <button
+          <SlideFillButton
+            label="Book Now"
             onClick={() => {
               setMobileMenuOpen(false);
               onOpenBooking(null);
             }}
-            className="btn btn-cyan"
-            style={{ width: '100%' }}
+            padding="12px 24px"
+            rounded={16}
+            colors={{ fill: "#E6F8FD", textColor: "#000000" }}
+            icon={{ color: "#000000", hoverColor: "#FFFFFF", size: 18 }}
+            border={{ borderWidth: 1, borderStyle: "solid", borderColor: "#BAE6FD" }}
+            water={{
+              color: "#002E5B",
+              direction: "up",
+              textColor: "#FFFFFF",
+              waveSpeed: 60,
+              defaultFill: 3,
+            }}
+            style={{ width: "100%" }}
+            font={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: 600,
+              fontSize: "0.95rem",
+              letterSpacing: "0.4px",
+            }}
           >
-            <Calendar size={18} />
-            <span>Book Now</span>
-          </button>
+            <Calendar size={18} style={{ marginRight: "8px" }} />
+          </SlideFillButton>
         </div>
       </div>
     </>
