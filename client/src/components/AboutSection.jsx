@@ -148,7 +148,7 @@ const AboutSection = ({ onOpenBooking }) => {
                     <h4 className="sat-title">Digha Railway Station</h4>
                     <div className="sat-dist-badge" style={{ color: "#8b5cf6" }}>
                       <MapPin size={11} />
-                      <span>900m • 3 Mins Drive</span>
+                      <span>900m • 10 - 12 Mins Walk</span>
                     </div>
                   </div>
                 </div>
@@ -183,7 +183,7 @@ const AboutSection = ({ onOpenBooking }) => {
                     <h4 className="sat-title">Digha Jagannath Temple</h4>
                     <div className="sat-dist-badge" style={{ color: "#d97706" }}>
                       <MapPin size={11} />
-                      <span>1.8 km • 7 Mins Drive</span>
+                      <span>1.8 km • 18 - 20 Mins Walk</span>
                     </div>
                   </div>
                 </div>
