@@ -7,8 +7,9 @@ const TopBar = () => {
       <div className="container topbar-content">
         <div className="topbar-left">
           <div className="topbar-item">
-            <MapPin size={14} color="#20B7E3" />
-            <span>B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
+            <MapPin size={14} color="#20B7E3" className="topbar-pin-icon" />
+            <span className="topbar-address-desktop">B1 Sector, Plot G-13, New Digha, Purba Midnapore, Pin - 721 463 (Near Jahaz Bari)</span>
+            <span className="topbar-address-mobile">B1 Sector, Plot G-13, New Digha</span>
           </div>
         </div>
 
