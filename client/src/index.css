@@ -305,6 +305,14 @@ img {
   color: var(--accent-cyan);
 }
 
+.topbar-address-mobile {
+  display: none;
+}
+
+.topbar-address-desktop {
+  display: inline;
+}
+
 .navbar {
   position: sticky;
   top: 0;
@@ -669,10 +677,6 @@ img {
 .hero-buttons .btn-cyan {
   box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.hero-mobile-contact-card {
-  display: none;
 }
 
 .hero-mobile-side-actions {
@@ -2154,16 +2158,18 @@ img {
 .floating-actions {
   position: fixed;
   bottom: 24px;
+  left: 24px;
   right: 24px;
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
   z-index: 999;
 }
 
 .floating-btn {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -2174,6 +2180,7 @@ img {
   transition: all var(--transition-normal);
   position: relative;
   text-decoration: none;
+  pointer-events: auto;
 }
 
 .floating-whatsapp {
@@ -2306,9 +2313,46 @@ img {
   }
 
   .topbar {
+    display: block;
+    background-color: var(--primary-navy);
+    padding: 7px 0;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .topbar-content {
+    justify-content: center;
+    gap: 0;
+  }
+
+  .topbar-left {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .topbar-item {
+    font-size: 0.8rem;
+    font-weight: 500;
+    justify-content: center;
+    text-align: center;
+    color: #e2e8f0;
+    gap: 6px;
+  }
+
+  .topbar-address-desktop {
     display: none;
   }
 
+  .topbar-address-mobile {
+    display: inline;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+
+  .topbar-right {
+    display: none;
+  }
 
   .nav-links,
   .nav-actions .btn-call {
@@ -2366,88 +2410,8 @@ img {
   }
 
   .hero-buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    margin: 0 0 14px 0;
+    display: none !important;
   }
-
-  .hero-buttons .btn-call-hero,
-  .hero-buttons .btn-whatsapp-hero {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 7px;
-    padding: 11px 16px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    border-radius: var(--radius-full);
-    flex: 1 1 auto;
-    justify-content: center;
-    min-width: 0;
-  }
-
-  .hero-buttons .btn-booking-hero {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 11px 16px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    border-radius: var(--radius-full);
-    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45);
-    flex: 2 1 auto;
-    min-width: 0;
-  }
-
-  .hero-mobile-contact-card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    margin-top: 12px;
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    border-radius: var(--radius-md);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-
-  .hero-mobile-contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    line-height: 1.35;
-    color: #0f172a;
-    text-decoration: none;
-  }
-
-  .hero-mobile-contact-item:hover {
-    color: #0284c7;
-  }
-
-  .hero-mobile-contact-item .contact-item-icon {
-    flex-shrink: 0;
-    margin-top: 1px;
-    color: #002e5b;
-  }
-
-  .hero-mobile-contact-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-  }
-
 
   .hero-mobile-side-actions {
     display: none;
@@ -2458,10 +2422,13 @@ img {
   .floating-actions {
     display: flex !important;
     position: fixed;
-    bottom: 18px;
-    right: 14px;
-    flex-direction: column;
-    gap: 10px;
+    bottom: 20px;
+    left: 16px;
+    right: 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
     z-index: 999;
   }
 
@@ -2808,15 +2775,6 @@ img {
     padding: 7px 11px;
     font-size: 0.78rem;
     gap: 4px;
-  }
-
-  .hero-buttons .btn-booking-hero {
-    flex: 2 1 auto;
-  }
-
-  .hero-buttons .btn-call-hero .btn-text,
-  .hero-buttons .btn-whatsapp-hero .btn-text {
-    display: none;
   }
 
 

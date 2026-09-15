@@ -105,14 +105,6 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#dining")}
-                >
-                  Restaurant & Dining
-                </span>
-              </li>
-              <li>
-                <span
-                  className="footer-link"
                   onClick={() => scrollToSection("#gallery")}
                 >
                   Photo Gallery
@@ -124,14 +116,6 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
                   onClick={() => scrollToSection("#reviews")}
                 >
                   Guest Reviews
-                </span>
-              </li>
-              <li>
-                <span
-                  className="footer-link"
-                  onClick={() => scrollToSection("#contact")}
-                >
-                  Contact & Booking
                 </span>
               </li>
             </ul>

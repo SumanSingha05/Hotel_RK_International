@@ -6,10 +6,8 @@ import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
 import RoomsSection from './components/RoomsSection';
 import ExperienceBanner from './components/ExperienceBanner';
-import DiningSection from './components/DiningSection';
 import GallerySection from './components/GallerySection';
 import ReviewsSection from './components/ReviewsSection';
-import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import BookingModal from './components/BookingModal';
@@ -388,17 +386,11 @@ function App() {
           {/* 9. Experience & Counters Banner */}
           <ExperienceBanner onOpenBooking={handleOpenBooking} />
 
-          {/* 10. Multi-Cuisine Restaurant & Dining */}
-          <DiningSection onOpenBooking={handleOpenBooking} />
-
-          {/* 11. Guest Feedback & Reviews */}
+          {/* 10. Guest Feedback & Reviews */}
           <ReviewsSection
             reviews={reviews}
             onOpenAddReview={() => setReviewModalOpen(true)}
           />
-
-          {/* 12. Contact & Booking Inquiry Section + Google Map */}
-          <ContactSection onShowToast={showToast} />
         </>
       )}
 
