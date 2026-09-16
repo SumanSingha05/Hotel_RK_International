@@ -1,12 +1,11 @@
 import React from "react";
 import {
   MapPin,
-  Headphones,
+  CalendarCheck,
   CheckCircle2,
-  Calendar,
   Compass,
   Briefcase,
-  Sparkles,
+  Coffee,
 } from "lucide-react";
 
 const AboutSection = ({ onOpenBooking }) => {
@@ -216,7 +215,7 @@ const AboutSection = ({ onOpenBooking }) => {
 
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <Headphones size={20} color="#20B7E3" />
+                  <CalendarCheck size={20} color="#20B7E3" />
                 </div>
                 <h3 className="about-feature-title">Easy Booking</h3>
               </div>
@@ -230,7 +229,7 @@ const AboutSection = ({ onOpenBooking }) => {
 
               <div className="about-feature-card">
                 <div className="feature-card-icon">
-                  <Sparkles size={20} color="#20B7E3" />
+                  <Coffee size={20} color="#20B7E3" />
                 </div>
                 <h3 className="about-feature-title">All amenities provided</h3>
               </div>
@@ -240,18 +239,12 @@ const AboutSection = ({ onOpenBooking }) => {
               style={{
                 display: "flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: "20px",
                 flexWrap: "wrap",
+                marginTop: "15px"
               }}
             >
-              <button
-                onClick={() => onOpenBooking(null)}
-                className="btn btn-cyan btn-lg"
-              >
-                <Calendar size={18} />
-                <span>Book Now</span>
-              </button>
-
               <div
                 style={{
                   display: "flex",
