@@ -3053,7 +3053,7 @@ img {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-light);
   box-shadow: var(--shadow-md);
-  padding: 22px;
+  padding: 18px;
   align-items: stretch;
   width: 100%;
   box-sizing: border-box;
@@ -3077,7 +3077,7 @@ img {
 
 .gallery-motion-div {
   position: relative;
-  height: 380px;
+  height: 300px;
   border-radius: var(--radius-md);
   overflow: hidden;
   background-color: #002244;
@@ -3237,25 +3237,20 @@ img {
   width: 28px;
 }
 
-/* Footer tags under image */
-.gallery-image-footer-tags {
+/* Venue details above the action buttons */
+.gallery-venue-details {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.hall-tag,
-.rooms-tag {
+.gallery-venue-details span {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   font-size: 0.76rem;
   font-weight: 600;
-  padding: 4px 9px;
-  border-radius: var(--radius-sm);
-  background-color: #f1f5f9;
   color: var(--primary-navy);
-  border: 1px solid var(--border-light);
 }
 
 
@@ -3263,8 +3258,8 @@ img {
 .gallery-details-col {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
+  justify-content: flex-start;
+  gap: 12px;
   min-width: 0;
   width: 100%;
 }
@@ -3328,18 +3323,18 @@ img {
 .event-metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
 .metric-box {
   display: flex;
   align-items: flex-start;
-  gap: 9px;
+  gap: 8px;
   background-color: #f8fafc;
   border: 1px solid #eef2f6;
   border-radius: var(--radius-md);
-  padding: 9px 11px;
+  padding: 7px 9px;
   min-width: 0;
   box-sizing: border-box;
   transition: all var(--transition-fast);
@@ -3351,8 +3346,8 @@ img {
 }
 
 .metric-icon {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
@@ -3376,6 +3371,10 @@ img {
 
 .metric-icon.days-icon {
   background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.metric-icon.dining-icon {
+  background: linear-gradient(135deg, #c2410c, #fb923c);
 }
 
 .metric-content {

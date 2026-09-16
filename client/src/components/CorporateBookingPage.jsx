@@ -38,100 +38,92 @@ const WhatsAppIcon = ({ size = 26, className = "" }) => (
 const corporateGalleryEvents = [
   {
     id: "event-1",
-    company: "Tata Consultancy Services (TCS) & Partner Network",
-    companyBadge: "Technology & Enterprise",
-    eventTitle: "Annual Strategic Leadership Conclave & Tech Summit",
+    company: "VAIBWORK",
+    companyBadge: "Software Development Company",
+    eventTitle: "Annual Meet and Success Party",
     occasion: "Corporate Annual Meet & Strategy Planning",
-    capacity: "180 Delegates (Theater Style Layout)",
+    capacity: "20 Attendees",
     bookingDays: "3 Days / 2 Nights (Full Residential Retreat)",
     dateHosted: "August 2026",
     hallUsed: "Grand AC Conclave Hall & Private Executive Lounge",
     diningPlan: "Full Board: High Tea, Executive Lunch & Lawn Gala Dinner",
     stayRooms: "42 Deluxe & Suite Rooms",
-    facilitiesUsed: [
-      "4K Projector with Dual Display",
-      "Collar & Handheld Wireless Mics",
-      "Enterprise Wi-Fi & Live Stream Setup",
-      "100% Soundproof Generator Backup",
-    ],
+
     images: [
       {
-        url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
-        title: "AC Conference & Presentation Hall",
-        subtitle:
-          "Main auditorium setup with theater seating and 4K projection",
+        url: "/hotel pics/ln.jpeg",
       },
       {
-        url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
-        title: "Evening Gala & Lawn Dinner Buffet",
-        subtitle: "Round table dining with live multi-cuisine buffet counters",
+        url: "/hotel pics/lounge pic.jpg",
       },
     ],
   },
   {
     id: "event-2",
-    company: "Eastern India Retail & FMCG Distributors Forum",
-    companyBadge: "Retail & Distribution",
-    eventTitle: "Quarterly Sales Leaders Meet & Product Showcase",
+    company: "Shaw Manufacturing",
+    companyBadge: "Pulses Manufacturing Company",
+    eventTitle: "Annual Meet and Success Party",
     occasion: "Business Seminar, Product Launch & Awards Night",
-    capacity: "120 Attendees (Cluster / Round Table Layout)",
+    capacity: "100 Attendees",
     bookingDays: "2 Days / 1 Night (Stay & Conference Package)",
     dateHosted: "July 2026",
-    hallUsed: "Crystal Banquet & Open Lawn Stage",
+    hallUsed: "Crystal Banquet",
     diningPlan:
       "Welcome Breakfast, High Tea Snacks & Royal Bengali Thali Dinner",
     stayRooms: "30 AC Deluxe Rooms",
-    facilitiesUsed: [
-      "Product Display Stage & Lighting",
-      "Acoustic Sound System",
-      "Private Valet & Bus Parking",
-      "Dedicated Event Coordinator",
-    ],
+
     images: [
       {
-        url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
-        title: "Interactive Seminar & Workshop Setup",
-        subtitle:
-          "Round cluster tables with attendee stationery & digital displays",
+        url: "/hotel pics/lounge pic.jpg",
       },
       {
-        url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
-        title: "Awards Ceremony & Stage Presentation",
-        subtitle: "Illuminated stage backdrop with professional audio mixer",
+        url: "/hotel pics/room pic.jpeg",
       },
     ],
   },
   {
     id: "event-3",
-    company: "Cognizant Engineering & Product Teams",
-    companyBadge: "IT & Software Development",
-    eventTitle: "Executive Team Offsite & Outdoor Hackathon",
+    company: "Maharaja Hosiery",
+    companyBadge: "Lux Cozi Dealer",
+    eventTitle: "Annual Meet and Success Party",
     occasion: "Team Offsite, Strategy Hackathon & Team Building Retreat",
-    capacity: "90 Engineers & Project Managers",
+    capacity: "150 Attendees",
     bookingDays: "3 Days / 2 Nights (Weekend Team Getaway)",
     dateHosted: "June 2026",
-    hallUsed: "Executive Boardroom + Beachside Green Lawn",
+    hallUsed: "Executive Boardroom",
     diningPlan:
       "Continental & Indian Buffets with Evening Barbecue by the Lawn",
     stayRooms: "25 Couple & Deluxe Suite Rooms",
-    facilitiesUsed: [
-      "High-Bandwidth Wi-Fi for 90+ Devices",
-      "Outdoor Lawn Team Games Setup",
-      "24/7 Tea & Coffee Station",
-      "Digha Beach Excursion Logistics",
-    ],
+
     images: [
       {
-        url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80",
-        title: "Team Offsite & Collaborative Sessions",
-        subtitle:
-          "Breakout brainstorming groups with modern workplace amenities",
+        url: "/hotel pics/room pic.jpeg",
       },
       {
-        url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80",
-        title: "Lawn Dinner & Social Networking",
-        subtitle:
-          "Evening outdoor get-together under ambient festival lighting",
+        url: "/hotel pics/ln.jpeg",
+      },
+    ],
+  },
+  {
+    id: "event-4",
+    company: "Ankita Traders",
+    companyBadge: "Wholesaler of Pulses",
+    eventTitle: "Annual Meet and Success Party",
+    occasion: "Team Offsite, Strategy Hackathon & Team Building Retreat",
+    capacity: "30 Attendees",
+    bookingDays: "3 Days / 2 Nights (Weekend Team Getaway)",
+    dateHosted: "June 2026",
+    hallUsed: "Executive Boardroom",
+    diningPlan:
+      "Continental & Indian Buffets with Evening Barbecue by the Lawn",
+    stayRooms: "25 Couple & Deluxe Suite Rooms",
+
+    images: [
+      {
+        url: "/hotel pics/ln.jpeg",
+      },
+      {
+        url: "/hotel pics/room pic.jpeg",
       },
     ],
   },
@@ -218,18 +210,6 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             ))}
           </div>
         </div>
-
-        {/* Quick Venue Highlights under Image */}
-        <div className="gallery-image-footer-tags">
-          <span className="hall-tag">
-            <Building2 size={13} />
-            {event.hallUsed}
-          </span>
-          <span className="rooms-tag">
-            <Layers size={13} />
-            {event.stayRooms}
-          </span>
-        </div>
       </div>
 
       {/* ================= RIGHT SIDE: EVENT DETAILS (CAPACITY, DAYS, COMPANY) ================= */}
@@ -253,18 +233,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
 
         {/* Primary Event Hosted Metrics Grid */}
         <div className="event-metrics-grid">
-          {/* 1. Event Booked Company */}
-          <div className="metric-box">
-            <div className="metric-icon company-icon">
-              <Building2 size={18} />
-            </div>
-            <div className="metric-content">
-              <span className="metric-label">Event Booked Company</span>
-              <strong className="metric-val">{event.company}</strong>
-            </div>
-          </div>
-
-          {/* 2. Event / Occasion */}
+          {/* 1. Event / Occasion */}
           <div className="metric-box">
             <div className="metric-icon occasion-icon">
               <Sparkles size={18} />
@@ -275,7 +244,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             </div>
           </div>
 
-          {/* 3. Capacity Booking */}
+          {/* 2. Capacity Booking */}
           <div className="metric-box">
             <div className="metric-icon capacity-icon">
               <Users size={18} />
@@ -286,7 +255,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             </div>
           </div>
 
-          {/* 4. Booking Days */}
+          {/* 3. Booking Days */}
           <div className="metric-box">
             <div className="metric-icon days-icon">
               <Calendar size={18} />
@@ -296,26 +265,28 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
               <strong className="metric-val">{event.bookingDays}</strong>
             </div>
           </div>
-        </div>
 
-        {/* Facilities & Dining Summary */}
-        <div className="event-features-wrapper">
-          <div className="feature-row">
-            <Utensils size={16} className="feature-row-icon" />
-            <div>
-              <span className="feature-row-label">Dining Arrangement:</span>
-              <span className="feature-row-text">{event.diningPlan}</span>
+          {/* 4. Dining Arrangement */}
+          <div className="metric-box">
+            <div className="metric-icon dining-icon">
+              <Utensils size={18} />
+            </div>
+            <div className="metric-content">
+              <span className="metric-label">Dining Arrangement</span>
+              <strong className="metric-val">{event.diningPlan}</strong>
             </div>
           </div>
+        </div>
 
-          <div className="facilities-chips-list">
-            {event.facilitiesUsed.map((fac, fIdx) => (
-              <span key={fIdx} className="facility-chip">
-                <CheckCircle2 size={13} color="#20B7E3" />
-                {fac}
-              </span>
-            ))}
-          </div>
+        <div className="gallery-venue-details">
+          <span>
+            <Building2 size={13} />
+            {event.hallUsed}
+          </span>
+          <span>
+            <Layers size={13} />
+            {event.stayRooms}
+          </span>
         </div>
 
         {/* Action Button */}
