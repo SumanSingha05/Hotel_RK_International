@@ -75,7 +75,7 @@ const Hero = ({ onOpenBooking }) => {
               onClick={() => onOpenBooking(null)}
               className="btn btn-cyan btn-booking-hero"
             >
-              <span>Instant Booking</span>
+              <span>Book Now</span>
             </button>
 
             <a

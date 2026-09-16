@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { X, Calendar, User, Phone, Mail, MessageSquare, CheckCircle, MessageCircle, AlertCircle } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { X, CheckCircle, MessageCircle } from 'lucide-react';
 
-const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onBookingSuccess }) => {
-  if (!isOpen) return null;
-
+const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms }) => {
   const today = new Date().toISOString().split('T')[0];
   const tomorrowDate = new Date();
   tomorrowDate.setDate(tomorrowDate.getDate() + 1);
@@ -27,8 +25,26 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
-  const [submitting, setSubmitting] = useState(false);
-  const [confirmedBooking, setConfirmedBooking] = useState(null);
+  const [enquirySent, setEnquirySent] = useState(false);
+  const whatsappTimerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    setRoomId(initialParams?.roomId || defaultRoom.id);
+    setCheckIn(initialParams?.checkIn || tomorrow);
+    setCheckOut(initialParams?.checkOut || dayAfter);
+    setGuests(initialParams?.guests || 2);
+    setGuestName('');
+    setPhone('');
+    setEmail('');
+    setSpecialRequests('');
+    setEnquirySent(false);
+  }, [isOpen, selectedRoom, initialParams]);
+
+  useEffect(() => () => {
+    if (whatsappTimerRef.current) clearTimeout(whatsappTimerRef.current);
+  }, []);
 
   const currentRoom = rooms?.find((r) => r.id === roomId) || defaultRoom;
 
@@ -37,7 +53,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
     try {
       const d1 = new Date(checkIn);
       const d2 = new Date(checkOut);
-      const diffTime = Math.abs(d2 - d1);
+      const diffTime = d2 - d1;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       return diffDays > 0 ? diffDays : 1;
     } catch {
@@ -48,14 +64,21 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
   const nights = calculateNights();
   const totalAmount = currentRoom.price * nights;
 
-  const handleOnlineBooking = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
+  const formatDisplayDate = (value) => {
+    if (!value) return 'Not provided';
+    return new Date(`${value}T00:00:00`).toLocaleDateString('en-IN', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  };
 
+  const handleSendEnquiry = (e) => {
+    e.preventDefault();
     const bookingPayload = {
-      guestName,
-      email: email || 'guest@hotelrkinternational.com',
-      phone,
+      guestName: guestName.trim(),
+      email: email.trim() || 'guest@hotelrkinternational.com',
+      phone: phone.trim(),
       roomId: currentRoom.id,
       roomTitle: currentRoom.title,
       checkIn,
@@ -63,110 +86,82 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
       guests: Number(guests),
       nights,
       totalAmount,
-      specialRequests
+      specialRequests: specialRequests.trim()
     };
 
-    try {
-      const res = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bookingPayload)
-      });
-      const data = await res.json();
-      if (data.success) {
-        setConfirmedBooking(data.data);
-        if (onBookingSuccess) onBookingSuccess(data.data);
-      } else {
-        alert(data.message || 'Booking submission failed. Please try again.');
-      }
-    } catch (err) {
-      // Local fallback confirmation
-      const fallbackBooking = {
-        bookingId: `HRK-${Math.floor(1000 + Math.random() * 9000)}`,
-        ...bookingPayload,
-        status: 'Confirmed'
-      };
-      setConfirmedBooking(fallbackBooking);
-      if (onBookingSuccess) onBookingSuccess(fallbackBooking);
-    } finally {
-      setSubmitting(false);
+    const lines = [
+      '*ROOM BOOKING ENQUIRY — HOTEL RK INTERNATIONAL*',
+      '',
+      `*Guest Name:* ${guestName.trim()}`,
+      `*Phone:* ${phone.trim()}`,
+      email.trim() ? `*Email:* ${email.trim()}` : null,
+      `*Room:* ${currentRoom.title}`,
+      `*Check-in:* ${formatDisplayDate(checkIn)}`,
+      `*Check-out:* ${formatDisplayDate(checkOut)}`,
+      `*Guests:* ${guests}`,
+      `*Number of Nights:* ${nights}`,
+      `*Estimated Amount:* ₹${totalAmount.toLocaleString('en-IN')}`,
+      `*Special Request:* ${specialRequests.trim() || 'None'}`,
+      '',
+      'Please confirm room availability and the final price.',
+      'Thank you.'
+    ].filter((line) => line !== null);
+
+    const whatsappUrl = `https://wa.me/918910119231?text=${encodeURIComponent(lines.join('\n'))}`;
+
+    // Save the enquiry silently for hotel staff while keeping WhatsApp as the guest-facing flow.
+    void fetch('/api/bookings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bookingPayload),
+      keepalive: true
+    }).catch(() => {
+      // WhatsApp remains the reliable delivery path if the background save is unavailable.
+    });
+
+    setEnquirySent(true);
+
+    whatsappTimerRef.current = setTimeout(() => {
+      window.location.href = whatsappUrl;
+    }, 2800);
+  };
+
+  const handleClose = () => {
+    if (whatsappTimerRef.current) {
+      clearTimeout(whatsappTimerRef.current);
+      whatsappTimerRef.current = null;
     }
+    onClose();
   };
 
-  const handleWhatsAppBooking = () => {
-    const text = `*HOTEL RK INTERNATIONAL - NEW DIGHA BOOKING INQUIRY*%0A%0A` +
-      `*Guest Name:* ${guestName || 'Valued Guest'}%0A` +
-      `*Phone:* ${phone || 'N/A'}%0A` +
-      `*Room Category:* ${currentRoom.title}%0A` +
-      `*Check-In:* ${checkIn}%0A` +
-      `*Check-Out:* ${checkOut} (${nights} Night${nights > 1 ? 's' : ''})%0A` +
-      `*Guests:* ${guests}%0A` +
-      `*Estimated Amount:* Rs. ${totalAmount} (Incl. Breakfast + GST)%0A` +
-      `*Special Notes:* ${specialRequests || 'None'}%0A%0A` +
-      `Please confirm room availability and payment instructions.`;
-
-    window.open(`https://wa.me/918910119231?text=${text}`, '_blank');
-  };
+  if (!isOpen) return null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={handleClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h3 className="modal-title">
-            {confirmedBooking ? 'Booking Confirmed!' : 'Book Your Stay at Hotel RK International'}
-          </h3>
-          <button className="modal-close-btn" onClick={onClose} aria-label="Close">
+        <div className={`modal-header ${enquirySent ? 'booking-enquiry-header' : ''}`}>
+          {!enquirySent && <h3 className="modal-title">Send Your Room Enquiry</h3>}
+          <button className="modal-close-btn" onClick={handleClose} aria-label="Close">
             <X size={22} />
           </button>
         </div>
 
         <div className="modal-body">
-          {confirmedBooking ? (
-            <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <div style={{ display: 'inline-flex', padding: '16px', borderRadius: '50%', backgroundColor: '#dcfce7', color: '#16a34a', marginBottom: '16px' }}>
+          {enquirySent ? (
+            <div className="booking-enquiry-success" role="status" aria-live="polite">
+              <div className="booking-enquiry-success-icon">
                 <CheckCircle size={48} />
               </div>
-              <h4 style={{ fontSize: '1.4rem', color: '#002E5B', marginBottom: '8px' }}>
-                Thank You, {confirmedBooking.guestName}!
+              <h4>
+                Please send the message in WhatsApp 🙏
               </h4>
-              <p style={{ color: '#64748b', marginBottom: '20px' }}>
-                Your booking request has been logged successfully with Reference ID:
+              <p>
+                Someone from the hotel will connect with you soon. Thanks.
               </p>
-              <div style={{ display: 'inline-block', backgroundColor: '#eaf4fb', border: '2px dashed #20B7E3', padding: '10px 24px', borderRadius: '8px', fontSize: '1.3rem', fontWeight: '800', color: '#002E5B', marginBottom: '24px' }}>
-                {confirmedBooking.bookingId}
-              </div>
-
-              <div style={{ textAlign: 'left', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '16px', marginBottom: '24px', fontSize: '0.9rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#64748b' }}>Room Category:</span>
-                  <strong>{confirmedBooking.roomTitle}</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#64748b' }}>Dates:</span>
-                  <strong>{confirmedBooking.checkIn} to {confirmedBooking.checkOut} ({confirmedBooking.nights} Nights)</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                  <span style={{ color: '#64748b' }}>Guests:</span>
-                  <strong>{confirmedBooking.guests} Person(s)</strong>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid #e2e8f0', paddingTop: '8px', marginTop: '8px' }}>
-                  <span style={{ color: '#002E5B', fontWeight: '700' }}>Total (Pay at Hotel):</span>
-                  <strong style={{ color: '#002E5B', fontSize: '1.1rem' }}>Rs. {confirmedBooking.totalAmount}</strong>
-                </div>
-              </div>
-
-              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                <button onClick={handleWhatsAppBooking} className="btn btn-whatsapp">
-                  <MessageCircle size={18} />
-                  <span>Send Details to Hotel WhatsApp</span>
-                </button>
-                <button onClick={onClose} className="btn btn-navy">
-                  <span>Close</span>
-                </button>
-              </div>
+              <span className="booking-enquiry-opening">Opening WhatsApp…</span>
             </div>
           ) : (
-            <form onSubmit={handleOnlineBooking}>
+            <form onSubmit={handleSendEnquiry}>
               {/* Room & Pricing Summary */}
               <div style={{ backgroundColor: '#f0f9fc', border: '1px solid #bce8f5', borderRadius: '8px', padding: '14px 18px', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
@@ -304,25 +299,14 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms, onB
                 </div>
               </div>
 
-              {/* Action Buttons */}
+              {/* Enquiry Action */}
               <div className="modal-actions-row">
                 <button
                   type="submit"
-                  className="btn btn-cyan btn-lg modal-submit-btn"
-                  disabled={submitting}
-                >
-                  <CheckCircle size={18} />
-                  <span>{submitting ? 'Confirming...' : 'Confirm Booking (Pay at Hotel)'}</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={handleWhatsAppBooking}
-                  className="btn btn-whatsapp modal-whatsapp-btn"
-                  title="Send to WhatsApp"
+                  className="btn btn-whatsapp btn-lg modal-submit-btn"
                 >
                   <MessageCircle size={18} />
-                  <span>WhatsApp</span>
+                  <span>Send Enquiry</span>
                 </button>
               </div>
             </form>

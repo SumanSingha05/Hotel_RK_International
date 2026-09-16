@@ -296,7 +296,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             onClick={() => onBookSimilar(event)}
             className="btn btn-cyan btn-sm"
           >
-            <span>Book Similar Corporate Event</span>
+            <span>Book Now</span>
             <ArrowRight size={16} />
           </button>
           

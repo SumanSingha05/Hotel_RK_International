@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Check, Bed, Users, Eye, Maximize, Bath, Wifi, Calendar, Sparkles } from 'lucide-react';
 
 const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
-  if (!isOpen || !room) return null;
-
   const [activeImgIndex, setActiveImgIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveImgIndex(0);
+  }, [room]);
+
+  if (!isOpen || !room) return null;
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -108,7 +112,7 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
               className="btn btn-cyan btn-lg modal-submit-btn"
             >
               <Calendar size={18} />
-              <span>Book This Room Now</span>
+              <span>Book Now</span>
             </button>
             <button onClick={onClose} className="btn btn-outline modal-close-action-btn">
               <span>Close</span>

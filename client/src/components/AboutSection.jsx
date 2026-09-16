@@ -249,7 +249,7 @@ const AboutSection = ({ onOpenBooking }) => {
                 className="btn btn-cyan btn-lg"
               >
                 <Calendar size={18} />
-                <span>Book Your Stay Now</span>
+                <span>Book Now</span>
               </button>
 
               <div

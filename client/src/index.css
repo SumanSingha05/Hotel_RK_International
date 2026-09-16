@@ -1972,7 +1972,9 @@ img {
 }
 
 .modal-submit-btn {
-  flex: 1 1 200px;
+  flex: 1 1 auto;
+  min-width: 200px;
+  min-height: 52px;
 }
 
 .modal-whatsapp-btn {
@@ -2811,6 +2813,14 @@ img {
     justify-content: center;
   }
 
+  .modal-actions-row .modal-submit-btn {
+    flex: 0 0 auto;
+    min-width: 0;
+    min-height: 50px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+
   .dining-img-stack img {
     height: 110px;
   }
@@ -3522,4 +3532,74 @@ img {
   }
 }
 
-
+
+/* WhatsApp booking enquiry confirmation */
+.booking-enquiry-success {
+  padding: 28px 12px 20px;
+  text-align: center;
+}
+
+.modal-header.booking-enquiry-header {
+  justify-content: flex-end;
+}
+
+.booking-enquiry-success-icon {
+  display: inline-flex;
+  padding: 16px;
+  margin-bottom: 18px;
+  color: #16a34a;
+  background: #dcfce7;
+  border-radius: 50%;
+  animation: enquiryTickPop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.35) both;
+}
+
+.booking-enquiry-success h4 {
+  max-width: 520px;
+  margin: 0 auto 10px;
+  color: #002e5b;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.booking-enquiry-success > p {
+  margin: 0 0 22px;
+  color: #64748b;
+}
+
+.booking-enquiry-whatsapp-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.booking-enquiry-opening {
+  display: block;
+  margin-top: 14px;
+  color: #64748b;
+  font-size: 0.85rem;
+  animation: enquiryOpeningPulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes enquiryTickPop {
+  0% { opacity: 0; transform: scale(0.35) rotate(-18deg); }
+  70% { opacity: 1; transform: scale(1.12) rotate(3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+@keyframes enquiryOpeningPulse {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-enquiry-success-icon,
+  .booking-enquiry-opening {
+    animation: none;
+  }
+}

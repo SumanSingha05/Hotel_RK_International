@@ -43,7 +43,7 @@ const ExperienceBanner = ({ onOpenBooking }) => {
             className="btn btn-cyan btn-lg"
           >
             <Calendar size={18} />
-            <span>Book Your Stay Direct</span>
+            <span>Book Now</span>
           </button>
           
           <a

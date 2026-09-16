@@ -412,9 +412,6 @@ function App() {
         selectedRoom={selectedRoomForBooking}
         initialParams={bookingParams}
         rooms={rooms}
-        onBookingSuccess={(booking) => {
-          showToast(`Booking ${booking.bookingId} confirmed! Check-in details sent.`);
-        }}
       />
 
       <RoomDetailModal
