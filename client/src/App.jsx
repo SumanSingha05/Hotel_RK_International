@@ -5,7 +5,6 @@ import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
 import RoomsSection from './components/RoomsSection';
-import ExperienceBanner from './components/ExperienceBanner';
 import GallerySection from './components/GallerySection';
 import ReviewsSection from './components/ReviewsSection';
 import Footer from './components/Footer';
@@ -382,9 +381,6 @@ function App() {
 
           {/* 8. Photo Gallery with Lightbox */}
           <GallerySection />
-
-          {/* 9. Experience & Counters Banner */}
-          <ExperienceBanner onOpenBooking={handleOpenBooking} />
 
           {/* 10. Guest Feedback & Reviews */}
           <ReviewsSection
