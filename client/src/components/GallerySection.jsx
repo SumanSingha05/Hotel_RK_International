@@ -5,7 +5,7 @@ const galleryItems = [
   {
     id: 1,
     title: 'Hotel RK International Sunset Facade',
-    category: 'Lawn & Exterior',
+    category: 'Lawn',
     src: '/hero-building.png'
   },
   {
@@ -59,13 +59,13 @@ const galleryItems = [
   {
     id: 10,
     title: 'Kids Play Lawn & Tropical Greenery',
-    category: 'Lawn & Exterior',
+    category: 'Lawn',
     src: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: 11,
     title: 'Hotel Entrance & Reception Lobby',
-    category: 'Lawn & Exterior',
+    category: 'Interiors',
     src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -78,9 +78,12 @@ const galleryItems = [
 
 const GallerySection = () => {
   const [activePhoto, setActivePhoto] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('All');
 
-  // Duplicate items for continuous seamless loop
-  const marqueeItems = [...galleryItems, ...galleryItems];
+  // Filter items based on active filter
+  const filteredItems = activeFilter === 'All' ? galleryItems : galleryItems.filter(item => item.category === activeFilter);
+  // Duplicate items for continuous seamless loop, filling array heavily to support small filtered sets
+  const marqueeItems = Array(10).fill(filteredItems).flat();
 
   return (
     <section id="gallery" className="section gallery-section-wrapper" aria-label="Photo Gallery – Rooms, Dining and Lawn at Hotel RK International New Digha">
@@ -93,12 +96,52 @@ const GallerySection = () => {
           <p className="section-desc">
             Explore our AC rooms, children's lawn, multi-cuisine dining, and scenic surroundings in New Digha near the sea beach.
           </p>
+          <div 
+            style={{ 
+              display: 'flex', 
+              justifyContent: 'flex-start', 
+              gap: '10px', 
+              flexWrap: 'nowrap', 
+              marginTop: '20px',
+              overflowX: 'auto',
+              paddingBottom: '10px', /* space for scrollbar if visible */
+              WebkitOverflowScrolling: 'touch',
+              scrollbarWidth: 'none', /* Firefox */
+              msOverflowStyle: 'none'  /* IE/Edge */
+            }}
+            className="hide-scrollbar"
+          >
+            {['All', 'Rooms', 'Interiors', 'Lawn', 'Dining'].map(filter => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                style={{
+                  padding: '8px 20px',
+                  borderRadius: '30px',
+                  border: '2px solid #20B7E3',
+                  backgroundColor: activeFilter === filter ? '#20B7E3' : 'transparent',
+                  color: activeFilter === filter ? '#fff' : '#002E5B',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                  fontSize: '0.9rem',
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
+                }}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Infinite Moving Single-Row Carousel (Moving to the left) */}
       <div className="gallery-marquee-viewport">
-        <div className="gallery-marquee-track">
+        <div 
+          className="gallery-marquee-track"
+          style={{ animationDuration: `${filteredItems.length * 8}s` }}
+        >
           {marqueeItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
