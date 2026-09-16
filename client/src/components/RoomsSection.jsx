@@ -1,6 +1,16 @@
-import React, { useState } from 'react';
-import { Users, Bed, Wifi, Tv, Bath, Check, ArrowRight } from 'lucide-react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React, { useRef, useState } from "react";
+import {
+  Users,
+  Bed,
+  Wifi,
+  Tv,
+  Bath,
+  Check,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
   const x = useMotionValue(0);
@@ -30,7 +40,15 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
   };
 
   return (
-    <div style={{ perspective: "1200px", flexShrink: 0, scrollSnapAlign: 'start', width: '360px', maxWidth: '85vw' }}>
+    <div
+      style={{
+        perspective: "1200px",
+        flexShrink: 0,
+        scrollSnapAlign: "start",
+        width: "360px",
+        maxWidth: "85vw",
+      }}
+    >
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -45,7 +63,13 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
         }}
         whileHover={{ scale: 1.02 }}
       >
-        <div className="room-img-container" style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}>
+        <div
+          className="room-img-container"
+          style={{
+            transform: "translateZ(30px)",
+            transformStyle: "preserve-3d",
+          }}
+        >
           <img
             src={room.images[0]}
             alt={room.title}
@@ -54,25 +78,47 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
             style={{ borderRadius: "16px 16px 0 0" }} // Ensure corners stay rounded if overflow issues occur
           />
           {room.tag && (
-            <span 
-              className={`room-tag ${room.tag.toLowerCase().includes('sea') ? 'sea-view' : ''}`}
-              style={{ transform: "translateZ(40px)", boxShadow: "0 10px 20px rgba(0,0,0,0.3)" }}
+            <span
+              className={`room-tag ${room.tag.toLowerCase().includes("sea") ? "sea-view" : ""}`}
+              style={{
+                transform: "translateZ(40px)",
+                boxShadow: "0 10px 20px rgba(0,0,0,0.3)",
+              }}
             >
               {room.tag}
             </span>
           )}
         </div>
 
-        <div className="room-card-body" style={{ transform: "translateZ(40px)", transformStyle: "preserve-3d" }}>
-          <h3 className="room-card-title" style={{ transform: "translateZ(10px)" }}>{room.title}</h3>
+        <div
+          className="room-card-body"
+          style={{
+            transform: "translateZ(40px)",
+            transformStyle: "preserve-3d",
+          }}
+        >
+          <h3
+            className="room-card-title"
+            style={{ transform: "translateZ(10px)" }}
+          >
+            {room.title}
+          </h3>
           <p className="room-card-subtitle">{room.subtitle}</p>
 
-          <div className="room-tariff-bar" style={{ transform: "translateZ(20px)" }}>
-            <span className="tariff-note">{room.priceNote || 'Including Breakfast + GST'}</span>
+          <div
+            className="room-tariff-bar"
+            style={{ transform: "translateZ(20px)" }}
+          >
+            <span className="tariff-note">
+              {room.priceNote || "Including Breakfast + GST"}
+            </span>
             <span className="tariff-price">RS.{room.price}/NIGHT</span>
           </div>
 
-          <div className="room-specs-list" style={{ transform: "translateZ(15px)" }}>
+          <div
+            className="room-specs-list"
+            style={{ transform: "translateZ(15px)" }}
+          >
             <div className="room-spec-item">
               <Users size={15} />
               <span>{room.capacity}</span>
@@ -91,7 +137,10 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
             </div>
           </div>
 
-          <div className="room-card-actions" style={{ transform: "translateZ(50px)" }}>
+          <div
+            className="room-card-actions"
+            style={{ transform: "translateZ(50px)" }}
+          >
             <button
               onClick={() => onOpenBooking(room)}
               className="btn btn-cyan btn-sm"
@@ -113,16 +162,31 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
 };
 
 const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState("All");
+  const roomsScrollRef = useRef(null);
 
-  const categories = ['All', 'Deluxe', 'Suite', 'Family'];
+  const categories = ["All", "Deluxe", "Suite", "Family"];
 
-  const filteredRooms = activeFilter === 'All'
-    ? rooms
-    : rooms.filter((r) => r.category === activeFilter);
+  const filteredRooms =
+    activeFilter === "All"
+      ? rooms
+      : rooms.filter((r) => r.category === activeFilter);
+
+  const scrollRooms = (direction) => {
+    const scrollContainer = roomsScrollRef.current;
+    if (!scrollContainer) return;
+
+    const firstRoom = scrollContainer.firstElementChild;
+    const scrollDistance =
+      firstRoom?.getBoundingClientRect().width || scrollContainer.clientWidth;
+    scrollContainer.scrollBy({
+      left: direction * (scrollDistance + 30),
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <section id="rooms" className="section" style={{ overflow: 'hidden' }}>
+    <section id="rooms" className="section" style={{ overflow: "hidden" }}>
       <div className="container">
         <div className="section-header">
           <span className="section-tag">Rooms</span>
@@ -130,7 +194,8 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
             Fascinating Rooms & Suites at New Digha
           </h2>
           <p className="section-desc">
-            Choose from our comfortable, well-appointed AC rooms and suites. All tariffs include complimentary breakfast, GST, and 24*7 power backup.
+            Choose from our comfortable, well-appointed AC rooms and suites. All
+            tariffs include complimentary breakfast, GST, and 24*7 power backup.
           </p>
         </div>
 
@@ -139,36 +204,56 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
           {categories.map((cat) => (
             <button
               key={cat}
-              className={`filter-tab-btn ${activeFilter === cat ? 'active' : ''}`}
+              className={`filter-tab-btn ${activeFilter === cat ? "active" : ""}`}
               onClick={() => setActiveFilter(cat)}
             >
-              {cat === 'All' ? 'All Accommodations' : `${cat} Rooms`}
+              {cat === "All" ? "All Accommodations" : `${cat} Rooms`}
             </button>
           ))}
         </div>
 
         {/* Rooms Horizontal Scroll Container */}
-        <div 
-          className="hide-scrollbar"
-          style={{
-            display: 'flex',
-            overflowX: 'auto',
-            gap: '30px',
-            padding: '40px 10px 60px 10px', /* Extra padding for 3D popout effect and shadows */
-            scrollSnapType: 'x mandatory',
-            WebkitOverflowScrolling: 'touch',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none'
-          }}
-        >
-          {filteredRooms.map((room) => (
-            <ParallaxRoomCard 
-              key={room.id}
-              room={room}
-              onOpenBooking={onOpenBooking}
-              onOpenRoomDetail={onOpenRoomDetail}
-            />
-          ))}
+        <div className="rooms-carousel-shell">
+          <button
+            type="button"
+            className="rooms-carousel-arrow rooms-carousel-arrow-prev"
+            onClick={() => scrollRooms(-1)}
+            aria-label="View previous room"
+          >
+            <ChevronLeft size={22} />
+          </button>
+          <div
+            ref={roomsScrollRef}
+            className="hide-scrollbar rooms-carousel-scroll"
+            style={{
+              display: "flex",
+              overflowX: "auto",
+              gap: "30px",
+              padding:
+                "40px 10px 60px 10px" /* Extra padding for 3D popout effect and shadows */,
+              scrollSnapType: "x mandatory",
+              WebkitOverflowScrolling: "touch",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {filteredRooms.map((room) => (
+              <ParallaxRoomCard
+                key={room.id}
+                room={room}
+                onOpenBooking={onOpenBooking}
+                onOpenRoomDetail={onOpenRoomDetail}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            className="rooms-carousel-arrow rooms-carousel-arrow-next"
+            onClick={() => scrollRooms(1)}
+            aria-label="View next room"
+          >
+            <ChevronRight size={22} />
+          </button>
         </div>
       </div>
     </section>

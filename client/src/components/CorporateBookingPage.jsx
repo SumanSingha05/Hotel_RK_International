@@ -1,105 +1,140 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Users, 
-  Calendar, 
-  Building2, 
-  CheckCircle2, 
-  Sparkles, 
-  Phone, 
-  MessageCircle, 
-  ChevronLeft, 
-  ChevronRight, 
-  Tv, 
-  Wifi, 
-  Utensils, 
-  Zap, 
+import React, { useState, useEffect } from "react";
+import {
+  Users,
+  Calendar,
+  Building2,
+  CheckCircle2,
+  Sparkles,
+  Phone,
+  MessageCircle,
+  ChevronLeft,
+  ChevronRight,
+  Tv,
+  Wifi,
+  Utensils,
+  Zap,
   ArrowRight,
   Home,
   Briefcase,
   Layers,
   MapPin,
-  Clock
-} from 'lucide-react';
+  Clock,
+} from "lucide-react";
+
+const WhatsAppIcon = ({ size = 26, className = "" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495.16.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+  </svg>
+);
 
 const corporateGalleryEvents = [
   {
-    id: 'event-1',
-    company: 'Tata Consultancy Services (TCS) & Partner Network',
-    companyBadge: 'Technology & Enterprise',
-    eventTitle: 'Annual Strategic Leadership Conclave & Tech Summit',
-    occasion: 'Corporate Annual Meet & Strategy Planning',
-    capacity: '180 Delegates (Theater Style Layout)',
-    bookingDays: '3 Days / 2 Nights (Full Residential Retreat)',
-    dateHosted: 'August 2026',
-    hallUsed: 'Grand AC Conclave Hall & Private Executive Lounge',
-    diningPlan: 'Full Board: High Tea, Executive Lunch & Lawn Gala Dinner',
-    stayRooms: '42 Deluxe & Suite Rooms',
-    facilitiesUsed: ['4K Projector with Dual Display', 'Collar & Handheld Wireless Mics', 'Enterprise Wi-Fi & Live Stream Setup', '100% Soundproof Generator Backup'],
+    id: "event-1",
+    company: "Tata Consultancy Services (TCS) & Partner Network",
+    companyBadge: "Technology & Enterprise",
+    eventTitle: "Annual Strategic Leadership Conclave & Tech Summit",
+    occasion: "Corporate Annual Meet & Strategy Planning",
+    capacity: "180 Delegates (Theater Style Layout)",
+    bookingDays: "3 Days / 2 Nights (Full Residential Retreat)",
+    dateHosted: "August 2026",
+    hallUsed: "Grand AC Conclave Hall & Private Executive Lounge",
+    diningPlan: "Full Board: High Tea, Executive Lunch & Lawn Gala Dinner",
+    stayRooms: "42 Deluxe & Suite Rooms",
+    facilitiesUsed: [
+      "4K Projector with Dual Display",
+      "Collar & Handheld Wireless Mics",
+      "Enterprise Wi-Fi & Live Stream Setup",
+      "100% Soundproof Generator Backup",
+    ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80',
-        title: 'AC Conference & Presentation Hall',
-        subtitle: 'Main auditorium setup with theater seating and 4K projection'
+        url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+        title: "AC Conference & Presentation Hall",
+        subtitle:
+          "Main auditorium setup with theater seating and 4K projection",
       },
       {
-        url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-        title: 'Evening Gala & Lawn Dinner Buffet',
-        subtitle: 'Round table dining with live multi-cuisine buffet counters'
-      }
-    ]
+        url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+        title: "Evening Gala & Lawn Dinner Buffet",
+        subtitle: "Round table dining with live multi-cuisine buffet counters",
+      },
+    ],
   },
   {
-    id: 'event-2',
-    company: 'Eastern India Retail & FMCG Distributors Forum',
-    companyBadge: 'Retail & Distribution',
-    eventTitle: 'Quarterly Sales Leaders Meet & Product Showcase',
-    occasion: 'Business Seminar, Product Launch & Awards Night',
-    capacity: '120 Attendees (Cluster / Round Table Layout)',
-    bookingDays: '2 Days / 1 Night (Stay & Conference Package)',
-    dateHosted: 'July 2026',
-    hallUsed: 'Crystal Banquet & Open Lawn Stage',
-    diningPlan: 'Welcome Breakfast, High Tea Snacks & Royal Bengali Thali Dinner',
-    stayRooms: '30 AC Deluxe Rooms',
-    facilitiesUsed: ['Product Display Stage & Lighting', 'Acoustic Sound System', 'Private Valet & Bus Parking', 'Dedicated Event Coordinator'],
+    id: "event-2",
+    company: "Eastern India Retail & FMCG Distributors Forum",
+    companyBadge: "Retail & Distribution",
+    eventTitle: "Quarterly Sales Leaders Meet & Product Showcase",
+    occasion: "Business Seminar, Product Launch & Awards Night",
+    capacity: "120 Attendees (Cluster / Round Table Layout)",
+    bookingDays: "2 Days / 1 Night (Stay & Conference Package)",
+    dateHosted: "July 2026",
+    hallUsed: "Crystal Banquet & Open Lawn Stage",
+    diningPlan:
+      "Welcome Breakfast, High Tea Snacks & Royal Bengali Thali Dinner",
+    stayRooms: "30 AC Deluxe Rooms",
+    facilitiesUsed: [
+      "Product Display Stage & Lighting",
+      "Acoustic Sound System",
+      "Private Valet & Bus Parking",
+      "Dedicated Event Coordinator",
+    ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80',
-        title: 'Interactive Seminar & Workshop Setup',
-        subtitle: 'Round cluster tables with attendee stationery & digital displays'
+        url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80",
+        title: "Interactive Seminar & Workshop Setup",
+        subtitle:
+          "Round cluster tables with attendee stationery & digital displays",
       },
       {
-        url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
-        title: 'Awards Ceremony & Stage Presentation',
-        subtitle: 'Illuminated stage backdrop with professional audio mixer'
-      }
-    ]
+        url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80",
+        title: "Awards Ceremony & Stage Presentation",
+        subtitle: "Illuminated stage backdrop with professional audio mixer",
+      },
+    ],
   },
   {
-    id: 'event-3',
-    company: 'Cognizant Engineering & Product Teams',
-    companyBadge: 'IT & Software Development',
-    eventTitle: 'Executive Team Offsite & Outdoor Hackathon',
-    occasion: 'Team Offsite, Strategy Hackathon & Team Building Retreat',
-    capacity: '90 Engineers & Project Managers',
-    bookingDays: '3 Days / 2 Nights (Weekend Team Getaway)',
-    dateHosted: 'June 2026',
-    hallUsed: 'Executive Boardroom + Beachside Green Lawn',
-    diningPlan: 'Continental & Indian Buffets with Evening Barbecue by the Lawn',
-    stayRooms: '25 Couple & Deluxe Suite Rooms',
-    facilitiesUsed: ['High-Bandwidth Wi-Fi for 90+ Devices', 'Outdoor Lawn Team Games Setup', '24/7 Tea & Coffee Station', 'Digha Beach Excursion Logistics'],
+    id: "event-3",
+    company: "Cognizant Engineering & Product Teams",
+    companyBadge: "IT & Software Development",
+    eventTitle: "Executive Team Offsite & Outdoor Hackathon",
+    occasion: "Team Offsite, Strategy Hackathon & Team Building Retreat",
+    capacity: "90 Engineers & Project Managers",
+    bookingDays: "3 Days / 2 Nights (Weekend Team Getaway)",
+    dateHosted: "June 2026",
+    hallUsed: "Executive Boardroom + Beachside Green Lawn",
+    diningPlan:
+      "Continental & Indian Buffets with Evening Barbecue by the Lawn",
+    stayRooms: "25 Couple & Deluxe Suite Rooms",
+    facilitiesUsed: [
+      "High-Bandwidth Wi-Fi for 90+ Devices",
+      "Outdoor Lawn Team Games Setup",
+      "24/7 Tea & Coffee Station",
+      "Digha Beach Excursion Logistics",
+    ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80',
-        title: 'Team Offsite & Collaborative Sessions',
-        subtitle: 'Breakout brainstorming groups with modern workplace amenities'
+        url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80",
+        title: "Team Offsite & Collaborative Sessions",
+        subtitle:
+          "Breakout brainstorming groups with modern workplace amenities",
       },
       {
-        url: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80',
-        title: 'Lawn Dinner & Social Networking',
-        subtitle: 'Evening outdoor get-together under ambient festival lighting'
-      }
-    ]
-  }
+        url: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80",
+        title: "Lawn Dinner & Social Networking",
+        subtitle:
+          "Evening outdoor get-together under ambient festival lighting",
+      },
+    ],
+  },
 ];
 
 // Single Motion Picture Card Component
@@ -125,9 +160,8 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
 
   return (
     <div className="corporate-gallery-card">
-      
       {/* ================= LEFT SIDE: IMAGE CONTAINER WITH MOTION ================= */}
-      <div 
+      <div
         className="gallery-motion-col"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -136,7 +170,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
           {event.images.map((img, idx) => (
             <div
               key={idx}
-              className={`gallery-motion-slide ${idx === slideIndex ? 'active' : 'inactive'}`}
+              className={`gallery-motion-slide ${idx === slideIndex ? "active" : "inactive"}`}
             >
               <img
                 src={img.url}
@@ -145,7 +179,9 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
               />
               <div className="gallery-slide-overlay" />
               <div className="gallery-slide-floating-info">
-                <span className="gallery-slide-number-badge">Photo {idx + 1} of {event.images.length}</span>
+                <span className="gallery-slide-number-badge">
+                  Photo {idx + 1} of {event.images.length}
+                </span>
                 <h4 className="gallery-slide-name">{img.title}</h4>
                 <p className="gallery-slide-sub">{img.subtitle}</p>
               </div>
@@ -153,16 +189,16 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
           ))}
 
           {/* Navigation motion arrows */}
-          <button 
-            onClick={prevSlide} 
-            className="gallery-nav-arrow prev" 
+          <button
+            onClick={prevSlide}
+            className="gallery-nav-arrow prev"
             aria-label="Previous photo"
           >
             <ChevronLeft size={20} />
           </button>
-          <button 
-            onClick={nextSlide} 
-            className="gallery-nav-arrow next" 
+          <button
+            onClick={nextSlide}
+            className="gallery-nav-arrow next"
             aria-label="Next photo"
           >
             <ChevronRight size={20} />
@@ -174,7 +210,7 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
               <button
                 key={idx}
                 onClick={() => setSlideIndex(idx)}
-                className={`gallery-dot ${idx === slideIndex ? 'active' : ''}`}
+                className={`gallery-dot ${idx === slideIndex ? "active" : ""}`}
                 aria-label={`Slide ${idx + 1}`}
               >
                 <span className="dot-bar" />
@@ -196,10 +232,8 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
         </div>
       </div>
 
-
       {/* ================= RIGHT SIDE: EVENT DETAILS (CAPACITY, DAYS, COMPANY) ================= */}
       <div className="gallery-details-col">
-        
         {/* Top Company & Event Title Header */}
         <div className="event-client-header">
           <div className="company-badge-row">
@@ -213,17 +247,12 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             </span>
           </div>
 
-          <h3 className="event-booked-company">
-            {event.company}
-          </h3>
-          <h2 className="event-hosted-title">
-            {event.eventTitle}
-          </h2>
+          <h3 className="event-booked-company">{event.company}</h3>
+          <h2 className="event-hosted-title">{event.eventTitle}</h2>
         </div>
 
         {/* Primary Event Hosted Metrics Grid */}
         <div className="event-metrics-grid">
-          
           {/* 1. Event Booked Company */}
           <div className="metric-box">
             <div className="metric-icon company-icon">
@@ -267,7 +296,6 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
               <strong className="metric-val">{event.bookingDays}</strong>
             </div>
           </div>
-
         </div>
 
         {/* Facilities & Dining Summary */}
@@ -299,20 +327,18 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             <span>Book Now</span>
             <ArrowRight size={16} />
           </button>
-          
+
           <a
             href={`https://wa.me/918910119231?text=${encodeURIComponent(`Hello Hotel RK International, I saw the corporate event hosted for ${event.company} (${event.eventTitle}). We would like to inquire for a similar corporate booking.`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-whatsapp btn-sm"
           >
-            <MessageCircle size={16} />
+            <WhatsAppIcon size={16} />
             <span>WhatsApp Inquiry</span>
           </a>
         </div>
-
       </div>
-
     </div>
   );
 };
@@ -323,15 +349,15 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
   // Quick Inquiry Form State
   const [formData, setFormData] = useState({
-    companyName: '',
-    contactPerson: '',
-    phone: '',
-    email: '',
-    occasion: 'Corporate Annual Meet',
-    capacity: '50-100 Attendees',
-    duration: '2 Days / 1 Night',
-    tentativeDate: '',
-    specialRequirements: ''
+    companyName: "",
+    contactPerson: "",
+    phone: "",
+    email: "",
+    occasion: "Corporate Annual Meet",
+    capacity: "50-100 Attendees",
+    duration: "2 Days / 1 Night",
+    tentativeDate: "",
+    specialRequirements: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -340,8 +366,8 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
     setFormData((prev) => ({
       ...prev,
       occasion: event.occasion,
-      capacity: event.capacity.split('(')[0].trim(),
-      duration: event.bookingDays.split('(')[0].trim()
+      capacity: event.capacity.split("(")[0].trim(),
+      duration: event.bookingDays.split("(")[0].trim(),
     }));
     setInquiryModalOpen(true);
   };
@@ -354,66 +380,76 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const messageContent = `[CORPORATE BOOKING INQUIRY]\nCompany: ${formData.companyName}\nContact Person: ${formData.contactPerson}\nOccasion: ${formData.occasion}\nCapacity / Attendees: ${formData.capacity}\nDuration: ${formData.duration}\nDate: ${formData.tentativeDate || 'Flexible'}\nRequirements: ${formData.specialRequirements || 'Standard setup'}`;
+    const messageContent = `[CORPORATE BOOKING INQUIRY]\nCompany: ${formData.companyName}\nContact Person: ${formData.contactPerson}\nOccasion: ${formData.occasion}\nCapacity / Attendees: ${formData.capacity}\nDuration: ${formData.duration}\nDate: ${formData.tentativeDate || "Flexible"}\nRequirements: ${formData.specialRequirements || "Standard setup"}`;
 
     try {
-      const res = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.contactPerson,
           phone: formData.phone,
           email: formData.email,
           subject: `Corporate Booking: ${formData.companyName} (${formData.occasion})`,
-          message: messageContent
-        })
+          message: messageContent,
+        }),
       });
       const data = await res.json();
       if (data.success) {
-        onShowToast('Corporate inquiry received! Our manager will call you within 2 business hours.');
+        onShowToast(
+          "Corporate inquiry received! Our manager will call you within 2 business hours.",
+        );
       } else {
-        onShowToast('Corporate inquiry submitted! We will reach out shortly.');
+        onShowToast("Corporate inquiry submitted! We will reach out shortly.");
       }
     } catch (err) {
-      onShowToast('Inquiry recorded! Our corporate events team will contact you at ' + formData.phone);
+      onShowToast(
+        "Inquiry recorded! Our corporate events team will contact you at " +
+          formData.phone,
+      );
     } finally {
       setIsSubmitting(false);
       setInquiryModalOpen(false);
       setFormData({
-        companyName: '',
-        contactPerson: '',
-        phone: '',
-        email: '',
-        occasion: 'Corporate Annual Meet',
-        capacity: '50-100 Attendees',
-        duration: '2 Days / 1 Night',
-        tentativeDate: '',
-        specialRequirements: ''
+        companyName: "",
+        contactPerson: "",
+        phone: "",
+        email: "",
+        occasion: "Corporate Annual Meet",
+        capacity: "50-100 Attendees",
+        duration: "2 Days / 1 Night",
+        tentativeDate: "",
+        specialRequirements: "",
       });
     }
   };
 
   return (
     <div className="corporate-gallery-page">
-      
       {/* Top Header Bar with Clean Breadcrumb */}
       <div className="corporate-gallery-top-bar">
         <div className="container">
           <div className="gallery-header-row">
             <div>
               <div className="corporate-breadcrumb">
-                <button onClick={() => onNavigate('/')} className="breadcrumb-link">
+                <button
+                  onClick={() => onNavigate("/")}
+                  className="breadcrumb-link"
+                >
                   <Home size={14} />
                   <span>Home</span>
                 </button>
                 <span className="breadcrumb-separator">/</span>
-                <span className="breadcrumb-current">Corporate Booking Gallery</span>
+                <span className="breadcrumb-current">
+                  Corporate Booking Gallery
+                </span>
               </div>
               <h1 className="gallery-page-main-title">
                 Corporate Events &amp; Conclaves Gallery
               </h1>
               <p className="gallery-page-tagline">
-                Explore real corporate events, leadership offsites, and conferences hosted at Hotel RK International.
+                Explore real corporate events, leadership offsites, and
+                conferences hosted at Hotel RK International.
               </p>
             </div>
 
@@ -425,10 +461,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                 <Sparkles size={16} />
                 <span>Request Corporate Proposal</span>
               </button>
-              <a
-                href="tel:+918910119231"
-                className="btn btn-navy"
-              >
+              <a href="tel:+918910119231" className="btn btn-navy">
                 <Phone size={16} />
                 <span>+91 8910119231</span>
               </a>
@@ -451,12 +484,17 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
       </div>
 
       {/* Bottom Quick Booking / Assistance Bar */}
-      <div className="container" style={{ marginTop: '40px' }}>
+      <div className="container" style={{ marginTop: "40px" }}>
         <div className="gallery-bottom-cta-banner">
           <div className="cta-banner-text">
-            <h3 className="cta-banner-title">Planning an upcoming corporate gathering or annual offsite in Digha?</h3>
+            <h3 className="cta-banner-title">
+              Planning an upcoming corporate gathering or annual offsite in
+              Digha?
+            </h3>
             <p className="cta-banner-desc">
-              We offer customized corporate packages with AC conference hall, audiovisual technology, multi-room accommodation, and seaside dining.
+              We offer customized corporate packages with AC conference hall,
+              audiovisual technology, multi-room accommodation, and seaside
+              dining.
             </p>
           </div>
           <div className="cta-banner-btns">
@@ -473,18 +511,23 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
       {/* Corporate Inquiry Modal */}
       {inquiryModalOpen && (
-        <div className="modal-overlay open" onClick={() => setInquiryModalOpen(false)}>
-          <div 
+        <div
+          className="modal-overlay open"
+          onClick={() => setInquiryModalOpen(false)}
+        >
+          <div
             className="modal-container"
-            style={{ maxWidth: '640px' }}
+            style={{ maxWidth: "640px" }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="modal-header">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "8px" }}
+              >
                 <Sparkles size={20} color="#20B7E3" />
                 <h3 className="modal-title">Corporate Booking Inquiry</h3>
               </div>
-              <button 
+              <button
                 className="modal-close"
                 onClick={() => setInquiryModalOpen(false)}
               >
@@ -496,7 +539,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
               <form onSubmit={handleSubmit} className="corporate-inquiry-form">
                 <div className="form-grid-2col">
                   <div className="form-group">
-                    <label className="form-label">Company / Organization Name <span className="req">*</span></label>
+                    <label className="form-label">
+                      Company / Organization Name <span className="req">*</span>
+                    </label>
                     <input
                       type="text"
                       name="companyName"
@@ -509,7 +554,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Contact Person Name <span className="req">*</span></label>
+                    <label className="form-label">
+                      Contact Person Name <span className="req">*</span>
+                    </label>
                     <input
                       type="text"
                       name="contactPerson"
@@ -524,7 +571,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
                 <div className="form-grid-2col">
                   <div className="form-group">
-                    <label className="form-label">Phone Number <span className="req">*</span></label>
+                    <label className="form-label">
+                      Phone Number <span className="req">*</span>
+                    </label>
                     <input
                       type="tel"
                       name="phone"
@@ -537,7 +586,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Email Address <span className="req">*</span></label>
+                    <label className="form-label">
+                      Email Address <span className="req">*</span>
+                    </label>
                     <input
                       type="email"
                       name="email"
@@ -586,7 +637,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Tentative Event Date (Optional)</label>
+                  <label className="form-label">
+                    Tentative Event Date (Optional)
+                  </label>
                   <input
                     type="date"
                     name="tentativeDate"
@@ -597,7 +650,9 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Special Requirements / Notes</label>
+                  <label className="form-label">
+                    Special Requirements / Notes
+                  </label>
                   <textarea
                     name="specialRequirements"
                     rows="3"
@@ -612,16 +667,17 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                   type="submit"
                   disabled={isSubmitting}
                   className="btn btn-cyan btn-lg"
-                  style={{ width: '100%', marginTop: '8px' }}
+                  style={{ width: "100%", marginTop: "8px" }}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit Corporate Proposal Request'}
+                  {isSubmitting
+                    ? "Submitting..."
+                    : "Submit Corporate Proposal Request"}
                 </button>
               </form>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 };

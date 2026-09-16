@@ -1180,6 +1180,14 @@ img {
   gap: 30px;
 }
 
+.rooms-carousel-shell {
+  position: relative;
+}
+
+.rooms-carousel-arrow {
+  display: none;
+}
+
 .room-card {
   background-color: var(--bg-card);
   border-radius: var(--radius-lg);
@@ -2518,6 +2526,37 @@ img {
   .rooms-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .rooms-carousel-arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(0, 46, 91, 0.15);
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.96);
+    color: var(--primary-navy);
+    box-shadow: 0 5px 16px rgba(0, 46, 91, 0.2);
+    transform: translateY(-50%);
+  }
+
+  .rooms-carousel-arrow:active {
+    background-color: var(--accent-cyan);
+    color: var(--text-white);
+  }
+
+  .rooms-carousel-arrow-prev {
+    left: 0;
+  }
+
+  .rooms-carousel-arrow-next {
+    right: 0;
   }
 
   .room-img-container {
