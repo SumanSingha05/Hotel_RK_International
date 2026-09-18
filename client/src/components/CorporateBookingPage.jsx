@@ -535,11 +535,11 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
       {/* Corporate Inquiry Modal */}
       {inquiryModalOpen && (
         <div
-          className="modal-overlay open"
+          className="modal-backdrop"
           onClick={handleCloseInquiry}
         >
           <div
-            className="modal-container"
+            className="modal-content"
             style={{ maxWidth: "640px" }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -551,7 +551,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                 </div>
               )}
               <button
-                className="modal-close"
+                className="modal-close-btn"
                 onClick={handleCloseInquiry}
                 aria-label="Close"
               >
