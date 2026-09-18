@@ -15,6 +15,7 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
   }, []);
 
   const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+  const isInnerRoute = typeof currentPath === 'string' && currentPath !== '/';
 
   const navItems = [
     { label: 'Home', href: '#home' },
@@ -39,7 +40,7 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
 
     const href = typeof item === 'string' ? item : item.href;
 
-    if (isCorporateRoute) {
+    if (isInnerRoute) {
       // If we are currently on Corporate Booking page, navigate back to home then scroll
       if (onNavigate) {
         onNavigate('/', href);

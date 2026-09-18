@@ -15,6 +15,7 @@ import ReviewModal from './components/ReviewModal';
 import PolicyModal from './components/PolicyModal';
 import AdminDashboard from './components/AdminDashboard';
 import CorporateBookingPage from './components/CorporateBookingPage';
+import AboutUsPage from './components/AboutUsPage';
 import { CheckCircle } from 'lucide-react';
 
 // Fallback initial rooms if backend is starting
@@ -279,6 +280,7 @@ function App() {
   };
 
   const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+  const isAboutRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') === '/about-us';
 
   // Modal States
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -363,6 +365,11 @@ function App() {
         <CorporateBookingPage
           onNavigate={navigateTo}
           onShowToast={showToast}
+          onOpenBooking={handleOpenBooking}
+        />
+      ) : isAboutRoute ? (
+        <AboutUsPage
+          onNavigate={navigateTo}
           onOpenBooking={handleOpenBooking}
         />
       ) : (

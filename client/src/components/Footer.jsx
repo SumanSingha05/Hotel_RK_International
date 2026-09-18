@@ -3,9 +3,11 @@ import { MapPin, Phone, Mail, Clock, ArrowRight } from "lucide-react";
 
 const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) => {
   const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
+  const isAboutRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') === '/about-us';
+  const isInnerRoute = typeof currentPath === 'string' && currentPath !== '/';
 
   const scrollToSection = (id) => {
-    if (isCorporateRoute) {
+    if (isInnerRoute) {
       if (onNavigate) {
         onNavigate('/', id);
       } else {
@@ -27,6 +29,15 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
       onNavigate('/corporate-booking');
     } else {
       window.history.pushState({}, '', '/corporate-booking');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  };
+
+  const handleAboutClick = () => {
+    if (onNavigate) {
+      onNavigate('/about-us');
+    } else {
+      window.history.pushState({}, '', '/about-us');
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
   };
@@ -81,7 +92,8 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#about")}
+                  onClick={handleAboutClick}
+                  style={{ color: isAboutRoute ? 'var(--accent-cyan)' : 'inherit', fontWeight: isAboutRoute ? '600' : 'normal' }}
                 >
                   About Us
                 </span>
