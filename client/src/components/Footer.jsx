@@ -24,9 +24,9 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
 
   const handleCorporateClick = () => {
     if (onNavigate) {
-      onNavigate('/corporate booking');
+      onNavigate('/corporate-booking');
     } else {
-      window.history.pushState({}, '', '/corporate booking');
+      window.history.pushState({}, '', '/corporate-booking');
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Users,
   Calendar,
@@ -19,6 +19,8 @@ import {
   Layers,
   MapPin,
   Clock,
+  CheckCircle,
+  X,
 } from "lucide-react";
 
 const WhatsAppIcon = ({ size = 26, className = "" }) => (
@@ -130,7 +132,7 @@ const corporateGalleryEvents = [
 ];
 
 // Single Motion Picture Card Component
-const GalleryEventCard = ({ event, onBookSimilar }) => {
+const GalleryEventCard = ({ event, onBookSimilar, onWhatsAppInquiry }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -299,15 +301,14 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
             <ArrowRight size={16} />
           </button>
 
-          <a
-            href={`https://wa.me/918910119231?text=${encodeURIComponent(`Hello Hotel RK International, I saw the corporate event hosted for ${event.company} (${event.eventTitle}). We would like to inquire for a similar corporate booking.`)}`}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => onWhatsAppInquiry(event)}
             className="btn btn-whatsapp btn-sm"
           >
             <WhatsAppIcon size={16} />
             <span>WhatsApp Inquiry</span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -317,6 +318,8 @@ const GalleryEventCard = ({ event, onBookSimilar }) => {
 const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
   const [selectedEventForModal, setSelectedEventForModal] = useState(null);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
+  const [enquirySent, setEnquirySent] = useState(false);
+  const whatsappTimerRef = useRef(null);
 
   // Quick Inquiry Form State
   const [formData, setFormData] = useState({
@@ -330,69 +333,117 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
     tentativeDate: "",
     specialRequirements: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  useEffect(() => () => {
+    if (whatsappTimerRef.current) clearTimeout(whatsappTimerRef.current);
+  }, []);
+
+  const openGeneralInquiry = () => {
+    setSelectedEventForModal(null);
+    setEnquirySent(false);
+    setFormData({
+      companyName: "",
+      contactPerson: "",
+      phone: "",
+      email: "",
+      occasion: "Corporate Annual Meet",
+      capacity: "50-100 Attendees",
+      duration: "2 Days / 1 Night",
+      tentativeDate: "",
+      specialRequirements: "",
+    });
+    setInquiryModalOpen(true);
+  };
 
   const handleBookSimilar = (event) => {
     setSelectedEventForModal(event);
-    setFormData((prev) => ({
-      ...prev,
+    setEnquirySent(false);
+    setFormData({
+      companyName: "",
+      contactPerson: "",
+      phone: "",
+      email: "",
       occasion: event.occasion,
       capacity: event.capacity.split("(")[0].trim(),
       duration: event.bookingDays.split("(")[0].trim(),
-    }));
+      tentativeDate: "",
+      specialRequirements: "",
+    });
     setInquiryModalOpen(true);
+  };
+
+  const handleDirectWhatsAppInquiry = (event) => {
+    const message = [
+      "*CORPORATE EVENT ENQUIRY — HOTEL RK INTERNATIONAL*",
+      "",
+      `*Event Type:* ${event.occasion}`,
+      `*Reference Event:* ${event.company} — ${event.eventTitle}`,
+      `*Expected Attendees:* ${event.capacity}`,
+      `*Expected Duration:* ${event.bookingDays}`,
+      "",
+      "I would like to organize a similar event at Hotel RK International. Please share availability and package details.",
+      "Thank you."
+    ].join("\n");
+
+    window.location.href = `https://wa.me/918910119231?text=${encodeURIComponent(message)}`;
   };
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    const messageContent = `[CORPORATE BOOKING INQUIRY]\nCompany: ${formData.companyName}\nContact Person: ${formData.contactPerson}\nOccasion: ${formData.occasion}\nCapacity / Attendees: ${formData.capacity}\nDuration: ${formData.duration}\nDate: ${formData.tentativeDate || "Flexible"}\nRequirements: ${formData.specialRequirements || "Standard setup"}`;
+    const messageLines = [
+      "*CORPORATE EVENT ENQUIRY — HOTEL RK INTERNATIONAL*",
+      "",
+      `*Event Type:* ${formData.occasion.trim()}`,
+      selectedEventForModal
+        ? `*Reference Event:* ${selectedEventForModal.company} — ${selectedEventForModal.eventTitle}`
+        : null,
+      `*Company / Organization:* ${formData.companyName.trim()}`,
+      `*Contact Person:* ${formData.contactPerson.trim()}`,
+      `*Phone:* ${formData.phone.trim()}`,
+      `*Email:* ${formData.email.trim()}`,
+      `*Attendees:* ${formData.capacity.trim()}`,
+      `*Duration:* ${formData.duration.trim()}`,
+      `*Tentative Date:* ${formData.tentativeDate || "Flexible"}`,
+      `*Requirements:* ${formData.specialRequirements.trim() || "Standard setup"}`,
+      "",
+      "I would like to organize this event at Hotel RK International. Please share availability and package details.",
+      "Thank you."
+    ].filter(Boolean);
+    const messageContent = messageLines.join("\n");
+    const whatsappUrl = `https://wa.me/918910119231?text=${encodeURIComponent(messageContent)}`;
 
-    try {
-      const res = await fetch("/api/contacts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.contactPerson,
-          phone: formData.phone,
-          email: formData.email,
-          subject: `Corporate Booking: ${formData.companyName} (${formData.occasion})`,
-          message: messageContent,
-        }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        onShowToast(
-          "Corporate inquiry received! Our manager will call you within 2 business hours.",
-        );
-      } else {
-        onShowToast("Corporate inquiry submitted! We will reach out shortly.");
-      }
-    } catch (err) {
-      onShowToast(
-        "Inquiry recorded! Our corporate events team will contact you at " +
-          formData.phone,
-      );
-    } finally {
-      setIsSubmitting(false);
-      setInquiryModalOpen(false);
-      setFormData({
-        companyName: "",
-        contactPerson: "",
-        phone: "",
-        email: "",
-        occasion: "Corporate Annual Meet",
-        capacity: "50-100 Attendees",
-        duration: "2 Days / 1 Night",
-        tentativeDate: "",
-        specialRequirements: "",
-      });
+    void fetch("/api/contacts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.contactPerson.trim(),
+        phone: formData.phone.trim(),
+        email: formData.email.trim(),
+        subject: `Corporate Booking: ${formData.companyName.trim()} (${formData.occasion.trim()})`,
+        message: messageContent,
+      }),
+      keepalive: true,
+    }).catch(() => {
+      // WhatsApp remains the guest-facing delivery path if background saving is unavailable.
+    });
+
+    setEnquirySent(true);
+    whatsappTimerRef.current = setTimeout(() => {
+      window.location.href = whatsappUrl;
+    }, 2800);
+  };
+
+  const handleCloseInquiry = () => {
+    if (whatsappTimerRef.current) {
+      clearTimeout(whatsappTimerRef.current);
+      whatsappTimerRef.current = null;
     }
+    setInquiryModalOpen(false);
+    setEnquirySent(false);
   };
 
   return (
@@ -426,7 +477,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
             <div className="gallery-top-actions">
               <button
-                onClick={() => setInquiryModalOpen(true)}
+                onClick={openGeneralInquiry}
                 className="btn btn-cyan"
               >
                 <Sparkles size={16} />
@@ -449,6 +500,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
               key={event.id}
               event={event}
               onBookSimilar={handleBookSimilar}
+              onWhatsAppInquiry={handleDirectWhatsAppInquiry}
             />
           ))}
         </div>
@@ -470,7 +522,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
           </div>
           <div className="cta-banner-btns">
             <button
-              onClick={() => setInquiryModalOpen(true)}
+              onClick={openGeneralInquiry}
               className="btn btn-cyan btn-lg"
             >
               <span>Instant Event Proposal</span>
@@ -484,29 +536,40 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
       {inquiryModalOpen && (
         <div
           className="modal-overlay open"
-          onClick={() => setInquiryModalOpen(false)}
+          onClick={handleCloseInquiry}
         >
           <div
             className="modal-container"
             style={{ maxWidth: "640px" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="modal-header">
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "8px" }}
-              >
-                <Sparkles size={20} color="#20B7E3" />
-                <h3 className="modal-title">Corporate Booking Inquiry</h3>
-              </div>
+            <div className={`modal-header ${enquirySent ? "booking-enquiry-header" : ""}`}>
+              {!enquirySent && (
+                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                  <Sparkles size={20} color="#20B7E3" />
+                  <h3 className="modal-title">Corporate Booking Inquiry</h3>
+                </div>
+              )}
               <button
                 className="modal-close"
-                onClick={() => setInquiryModalOpen(false)}
+                onClick={handleCloseInquiry}
+                aria-label="Close"
               >
-                ✕
+                <X size={22} />
               </button>
             </div>
 
             <div className="modal-body">
+              {enquirySent ? (
+                <div className="booking-enquiry-success" role="status" aria-live="polite">
+                  <div className="booking-enquiry-success-icon">
+                    <CheckCircle size={48} />
+                  </div>
+                  <h4>Please send the message in WhatsApp 🙏</h4>
+                  <p>Someone from the hotel will connect with you soon. Thanks.</p>
+                  <span className="booking-enquiry-opening">Opening WhatsApp…</span>
+                </div>
+              ) : (
               <form onSubmit={handleSubmit} className="corporate-inquiry-form">
                 <div className="form-grid-2col">
                   <div className="form-group">
@@ -574,10 +637,11 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
                 <div className="form-grid-3col">
                   <div className="form-group">
-                    <label className="form-label">Occasion / Event</label>
+                    <label className="form-label">Event Type</label>
                     <input
                       type="text"
                       name="occasion"
+                      required
                       value={formData.occasion}
                       onChange={handleInputChange}
                       className="form-input"
@@ -589,6 +653,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                     <input
                       type="text"
                       name="capacity"
+                      required
                       value={formData.capacity}
                       onChange={handleInputChange}
                       className="form-input"
@@ -600,6 +665,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                     <input
                       type="text"
                       name="duration"
+                      required
                       value={formData.duration}
                       onChange={handleInputChange}
                       className="form-input"
@@ -636,15 +702,14 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-cyan btn-lg"
+                  className="btn btn-whatsapp btn-lg modal-submit-btn"
                   style={{ width: "100%", marginTop: "8px" }}
                 >
-                  {isSubmitting
-                    ? "Submitting..."
-                    : "Submit Corporate Proposal Request"}
+                  <WhatsAppIcon size={18} />
+                  <span>Send Enquiry</span>
                 </button>
               </form>
+              )}
             </div>
           </div>
         </div>

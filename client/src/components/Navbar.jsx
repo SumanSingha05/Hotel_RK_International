@@ -18,7 +18,7 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
 
   const navItems = [
     { label: 'Home', href: '#home' },
-    { label: 'Corporate Booking', href: '/corporate booking', isCorporate: true },
+    { label: 'Corporate Booking', href: '/corporate-booking', isCorporate: true },
     { label: 'Services', href: '#services' },
     { label: 'Gallery', href: '#gallery' },
     { label: 'Reviews', href: '#reviews' },
@@ -29,9 +29,9 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
     
     if (item.isCorporate) {
       if (onNavigate) {
-        onNavigate('/corporate booking');
+        onNavigate('/corporate-booking');
       } else {
-        window.history.pushState({}, '', '/corporate booking');
+        window.history.pushState({}, '', '/corporate-booking');
         window.dispatchEvent(new PopStateEvent('popstate'));
       }
       return;

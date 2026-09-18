@@ -251,6 +251,11 @@ function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   useEffect(() => {
+    if (decodeURIComponent(window.location.pathname).toLowerCase() === '/corporate booking') {
+      window.history.replaceState({}, '', '/corporate-booking');
+      setCurrentPath('/corporate-booking');
+    }
+
     const handlePopState = () => {
       setCurrentPath(window.location.pathname);
     };
