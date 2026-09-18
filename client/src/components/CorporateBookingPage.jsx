@@ -337,21 +337,17 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
     if (whatsappTimerRef.current) clearTimeout(whatsappTimerRef.current);
   }, []);
 
-  const openGeneralInquiry = () => {
-    setSelectedEventForModal(null);
-    setEnquirySent(false);
-    setFormData({
-      companyName: "",
-      contactPerson: "",
-      phone: "",
-      email: "",
-      occasion: "Corporate Annual Meet",
-      capacity: "50-100 Attendees",
-      duration: "2 Days / 1 Night",
-      tentativeDate: "",
-      specialRequirements: "",
-    });
-    setInquiryModalOpen(true);
+  const handleGeneralWhatsAppInquiry = () => {
+    const message = [
+      "*CORPORATE EVENT ENQUIRY — HOTEL RK INTERNATIONAL*",
+      "",
+      "Hello Hotel RK International, I want to organize a corporate event at your hotel.",
+      "Please share the available event packages, venue details, accommodation options, dining arrangements, and pricing.",
+      "",
+      "Thank you."
+    ].join("\n");
+
+    window.location.href = `https://wa.me/918910119231?text=${encodeURIComponent(message)}`;
   };
 
   const handleBookSimilar = (event) => {
@@ -477,10 +473,10 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
             <div className="gallery-top-actions">
               <button
-                onClick={openGeneralInquiry}
-                className="btn btn-cyan"
+                onClick={handleGeneralWhatsAppInquiry}
+                className="btn btn-whatsapp"
               >
-                <Sparkles size={16} />
+                <WhatsAppIcon size={16} />
                 <span>Request Corporate Proposal</span>
               </button>
               <a href="tel:+918910119231" className="btn btn-navy">
@@ -522,11 +518,11 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
           </div>
           <div className="cta-banner-btns">
             <button
-              onClick={openGeneralInquiry}
-              className="btn btn-cyan btn-lg"
+              onClick={handleGeneralWhatsAppInquiry}
+              className="btn btn-whatsapp btn-lg"
             >
+              <WhatsAppIcon size={18} />
               <span>Instant Event Proposal</span>
-              <ArrowRight size={18} />
             </button>
           </div>
         </div>
