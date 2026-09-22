@@ -13,7 +13,6 @@ import {
   Wifi,
   Utensils,
   Zap,
-  ArrowRight,
   Home,
   Briefcase,
   Layers,
@@ -132,7 +131,7 @@ const corporateGalleryEvents = [
 ];
 
 // Single Motion Picture Card Component
-const GalleryEventCard = ({ event, onBookSimilar, onWhatsAppInquiry }) => {
+const GalleryEventCard = ({ event }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -291,32 +290,12 @@ const GalleryEventCard = ({ event, onBookSimilar, onWhatsAppInquiry }) => {
           </span>
         </div>
 
-        {/* Action Button */}
-        <div className="gallery-card-actions">
-          <button
-            onClick={() => onBookSimilar(event)}
-            className="btn btn-cyan btn-sm"
-          >
-            <span>Book Now</span>
-            <ArrowRight size={16} />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onWhatsAppInquiry(event)}
-            className="btn btn-whatsapp btn-sm"
-          >
-            <WhatsAppIcon size={16} />
-            <span>WhatsApp Inquiry</span>
-          </button>
-        </div>
       </div>
     </div>
   );
 };
 
 const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
-  const [selectedEventForModal, setSelectedEventForModal] = useState(null);
   const [inquiryModalOpen, setInquiryModalOpen] = useState(false);
   const [enquirySent, setEnquirySent] = useState(false);
   const whatsappTimerRef = useRef(null);
@@ -327,15 +306,33 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
     contactPerson: "",
     phone: "",
     email: "",
-    occasion: "Corporate Annual Meet",
-    capacity: "50-100 Attendees",
-    duration: "2 Days / 1 Night",
+    occasion: "",
+    capacity: "",
+    days: "",
+    nights: "",
     tentativeDate: "",
     specialRequirements: "",
   });
   useEffect(() => () => {
     if (whatsappTimerRef.current) clearTimeout(whatsappTimerRef.current);
   }, []);
+
+  const handleOpenProposalForm = () => {
+    setEnquirySent(false);
+    setFormData({
+      companyName: "",
+      contactPerson: "",
+      phone: "",
+      email: "",
+      occasion: "",
+      capacity: "",
+      days: "",
+      nights: "",
+      tentativeDate: "",
+      specialRequirements: "",
+    });
+    setInquiryModalOpen(true);
+  };
 
   const handleGeneralWhatsAppInquiry = () => {
     const message = [
@@ -344,39 +341,6 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
       "Hello Hotel RK International, I want to organize a corporate event at your hotel.",
       "Please share the available event packages, venue details, accommodation options, dining arrangements, and pricing.",
       "",
-      "Thank you."
-    ].join("\n");
-
-    window.location.href = `https://wa.me/918910119231?text=${encodeURIComponent(message)}`;
-  };
-
-  const handleBookSimilar = (event) => {
-    setSelectedEventForModal(event);
-    setEnquirySent(false);
-    setFormData({
-      companyName: "",
-      contactPerson: "",
-      phone: "",
-      email: "",
-      occasion: event.occasion,
-      capacity: event.capacity.split("(")[0].trim(),
-      duration: event.bookingDays.split("(")[0].trim(),
-      tentativeDate: "",
-      specialRequirements: "",
-    });
-    setInquiryModalOpen(true);
-  };
-
-  const handleDirectWhatsAppInquiry = (event) => {
-    const message = [
-      "*CORPORATE EVENT ENQUIRY — HOTEL RK INTERNATIONAL*",
-      "",
-      `*Event Type:* ${event.occasion}`,
-      `*Reference Event:* ${event.company} — ${event.eventTitle}`,
-      `*Expected Attendees:* ${event.capacity}`,
-      `*Expected Duration:* ${event.bookingDays}`,
-      "",
-      "I would like to organize a similar event at Hotel RK International. Please share availability and package details.",
       "Thank you."
     ].join("\n");
 
@@ -394,15 +358,12 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
       "*CORPORATE EVENT ENQUIRY — HOTEL RK INTERNATIONAL*",
       "",
       `*Event Type:* ${formData.occasion.trim()}`,
-      selectedEventForModal
-        ? `*Reference Event:* ${selectedEventForModal.company} — ${selectedEventForModal.eventTitle}`
-        : null,
       `*Company / Organization:* ${formData.companyName.trim()}`,
       `*Contact Person:* ${formData.contactPerson.trim()}`,
       `*Phone:* ${formData.phone.trim()}`,
       `*Email:* ${formData.email.trim()}`,
       `*Attendees:* ${formData.capacity.trim()}`,
-      `*Duration:* ${formData.duration.trim()}`,
+      `*Duration:* ${formData.days} Days / ${formData.nights} Nights`,
       `*Tentative Date:* ${formData.tentativeDate || "Flexible"}`,
       `*Requirements:* ${formData.specialRequirements.trim() || "Standard setup"}`,
       "",
@@ -473,10 +434,10 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
 
             <div className="gallery-top-actions">
               <button
-                onClick={handleGeneralWhatsAppInquiry}
-                className="btn btn-whatsapp"
+                onClick={handleOpenProposalForm}
+                className="btn btn-cyan"
               >
-                <WhatsAppIcon size={16} />
+                <Sparkles size={16} />
                 <span>Request Corporate Proposal</span>
               </button>
               <a href="tel:+918910119231" className="btn btn-navy">
@@ -495,8 +456,6 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
             <GalleryEventCard
               key={event.id}
               event={event}
-              onBookSimilar={handleBookSimilar}
-              onWhatsAppInquiry={handleDirectWhatsAppInquiry}
             />
           ))}
         </div>
@@ -631,7 +590,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                   </div>
                 </div>
 
-                <div className="form-grid-3col">
+                <div className="form-grid-2col">
                   <div className="form-group">
                     <label className="form-label">Event Type</label>
                     <input
@@ -645,7 +604,7 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label">Capacity / Attendees</label>
+                    <label className="form-label">Attendees</label>
                     <input
                       type="text"
                       name="capacity"
@@ -656,16 +615,40 @@ const CorporateBookingPage = ({ onNavigate, onShowToast, onOpenBooking }) => {
                     />
                   </div>
 
-                  <div className="form-group">
-                    <label className="form-label">Booking Days</label>
-                    <input
-                      type="text"
-                      name="duration"
-                      required
-                      value={formData.duration}
-                      onChange={handleInputChange}
-                      className="form-input"
-                    />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Event Duration</label>
+                  <div className="corporate-duration-fields">
+                    <label className="corporate-duration-input">
+                      <input
+                        type="number"
+                        name="days"
+                        required
+                        min="1"
+                        inputMode="numeric"
+                        placeholder="0"
+                        value={formData.days}
+                        onChange={handleInputChange}
+                        className="form-input"
+                      />
+                      <span>Days</span>
+                    </label>
+                    <span className="corporate-duration-separator">/</span>
+                    <label className="corporate-duration-input">
+                      <input
+                        type="number"
+                        name="nights"
+                        required
+                        min="0"
+                        inputMode="numeric"
+                        placeholder="0"
+                        value={formData.nights}
+                        onChange={handleInputChange}
+                        className="form-input"
+                      />
+                      <span>Nights</span>
+                    </label>
                   </div>
                 </div>
 

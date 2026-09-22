@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
+const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail, pageLayout = false }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -41,12 +41,13 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
 
   return (
     <div
+      className={pageLayout ? "room-page-card-wrapper" : ""}
       style={{
         perspective: "1200px",
         flexShrink: 0,
         scrollSnapAlign: "start",
-        width: "360px",
-        maxWidth: "85vw",
+        width: pageLayout ? "100%" : "360px",
+        maxWidth: pageLayout ? "none" : "85vw",
       }}
     >
       <motion.div
@@ -161,7 +162,7 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail }) => {
   );
 };
 
-const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
+const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail, pageLayout = false }) => {
   const [activeFilter, setActiveFilter] = useState("All");
   const roomsScrollRef = useRef(null);
 
@@ -212,8 +213,9 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
           ))}
         </div>
 
-        {/* Rooms Horizontal Scroll Container */}
-        <div className="rooms-carousel-shell">
+        {/* Rooms display */}
+        <div className={pageLayout ? "rooms-page-grid" : "rooms-carousel-shell"}>
+          {!pageLayout && (
           <button
             type="button"
             className="rooms-carousel-arrow rooms-carousel-arrow-prev"
@@ -222,10 +224,11 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
           >
             <ChevronLeft size={22} />
           </button>
+          )}
           <div
             ref={roomsScrollRef}
-            className="hide-scrollbar rooms-carousel-scroll"
-            style={{
+            className={pageLayout ? "rooms-page-grid-inner" : "hide-scrollbar rooms-carousel-scroll"}
+            style={pageLayout ? undefined : {
               display: "flex",
               overflowX: "auto",
               gap: "30px",
@@ -243,9 +246,11 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
                 room={room}
                 onOpenBooking={onOpenBooking}
                 onOpenRoomDetail={onOpenRoomDetail}
+                pageLayout={pageLayout}
               />
             ))}
           </div>
+          {!pageLayout && (
           <button
             type="button"
             className="rooms-carousel-arrow rooms-carousel-arrow-next"
@@ -254,6 +259,7 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail }) => {
           >
             <ChevronRight size={22} />
           </button>
+          )}
         </div>
       </div>
     </section>

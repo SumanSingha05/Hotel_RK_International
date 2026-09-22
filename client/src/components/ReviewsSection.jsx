@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star, MessageSquarePlus, Quote } from 'lucide-react';
 
-const ReviewsSection = ({ reviews, onOpenAddReview }) => {
+const ReviewsSection = ({ reviews, onOpenAddReview, pageLayout = false }) => {
   // Duplicate reviews for continuous infinite marquee loop
   const marqueeReviews = [...reviews, ...reviews];
 
@@ -19,11 +19,11 @@ const ReviewsSection = ({ reviews, onOpenAddReview }) => {
         </div>
       </div>
 
-      {/* Infinite Moving Single-Row Carousel (Moving to the left) */}
-      <div className="reviews-marquee-viewport">
-        <div className="reviews-marquee-track">
-          {marqueeReviews.map((rev, idx) => (
-            <div key={`${rev.id || rev._id || 'rev'}-${idx}`} className="review-card reviews-marquee-card">
+      {/* Moving carousel on home, full review grid on dedicated page */}
+      <div className={pageLayout ? "container reviews-page-grid" : "reviews-marquee-viewport"}>
+        <div className={pageLayout ? "reviews-page-grid-inner" : "reviews-marquee-track"}>
+          {(pageLayout ? reviews : marqueeReviews).map((rev, idx) => (
+            <div key={`${rev.id || rev._id || 'rev'}-${idx}`} className={`review-card reviews-marquee-card ${pageLayout ? 'reviews-page-card' : ''}`}>
               <div>
                 <div className="review-stars-quote-row">
                   <div className="review-stars">

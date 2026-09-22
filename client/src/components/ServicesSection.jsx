@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { BedDouble, ShowerHead, Sparkles } from 'lucide-react';
 
 const services = [
   {
@@ -10,7 +11,8 @@ const services = [
         <circle cx="12" cy="19.5" r="1.5" fill="#8C5938" stroke="none" />
       </svg>
     ),
-    title: 'Free WiFi'
+    title: 'Free WiFi',
+    description: 'Stay connected throughout the hotel with complimentary high-speed internet.'
   },
   {
     icon: (
@@ -22,7 +24,8 @@ const services = [
         <circle cx="17" cy="9.2" r="1" />
       </svg>
     ),
-    title: '24 / 7 Room Services'
+    title: '24 / 7 Room Services',
+    description: 'Friendly assistance and room service are available around the clock.'
   },
   {
     icon: (
@@ -31,7 +34,8 @@ const services = [
         <line x1="12" y1="2" x2="12" y2="12" />
       </svg>
     ),
-    title: '24 / 7 Power Backup'
+    title: '24 / 7 Power Backup',
+    description: 'Reliable generator backup keeps your stay comfortable without interruption.'
   },
   {
     icon: (
@@ -41,7 +45,8 @@ const services = [
         <circle cx="12" cy="4" r="0.8" />
       </svg>
     ),
-    title: 'AC Multi-Cuisine Restaurant'
+    title: 'AC Multi-Cuisine Restaurant',
+    description: 'Enjoy Bengali favourites, coastal dishes, and familiar multi-cuisine meals.'
   },
   {
     icon: (
@@ -55,7 +60,8 @@ const services = [
         <path d="M3 20.5c1.5-1 3.5-1 5 0s3.5 1 5 0 3.5-1 5 0 2 0.7 3 0" />
       </svg>
     ),
-    title: 'Swimming Pool'
+    title: 'Swimming Pool',
+    description: 'Relax and refresh in the hotel pool during your New Digha holiday.'
   },
   {
     icon: (
@@ -63,11 +69,30 @@ const services = [
         <path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11v6a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-1H7v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6zm2.5-3.5L6.3 11h11.4l-1.2-3.5a.5.5 0 0 0-.5-.5H8a.5.5 0 0 0-.5.5zM6.5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm11 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
       </svg>
     ),
-    title: 'Car Parking'
+    title: 'Car Parking',
+    description: 'Convenient on-site parking is available for resident hotel guests.'
   }
 ];
 
-const ServicesSection = () => {
+const additionalServices = [
+  {
+    icon: <BedDouble size={32} strokeWidth={2.2} />,
+    title: 'Furnished AC Rooms',
+    description: 'Comfortable air-conditioned rooms with clean bedding and thoughtful essentials.'
+  },
+  {
+    icon: <ShowerHead size={32} strokeWidth={2.2} />,
+    title: 'Hot Water & Attached Bath',
+    description: 'Private attached bathrooms include dependable hot and cold water facilities.'
+  },
+  {
+    icon: <Sparkles size={32} strokeWidth={2.2} />,
+    title: 'Daily Housekeeping',
+    description: 'Regular housekeeping helps keep rooms fresh, clean, and welcoming.'
+  }
+];
+
+const ServicesSection = ({ pageLayout = false }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
@@ -88,8 +113,10 @@ const ServicesSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  const displayedServices = pageLayout ? [...services, ...additionalServices] : services;
+
   return (
-    <section id="services" className="section section-bg-muted" ref={sectionRef}>
+    <section id="services" className={`section section-bg-muted ${pageLayout ? 'services-page-layout' : ''}`} ref={sectionRef}>
       <div className="container" style={{ overflow: 'hidden' }}>
         <div className="section-header">
           <span className="section-tag">Services</span>
@@ -102,7 +129,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="services-grid">
-          {services.map((s, idx) => {
+          {displayedServices.map((s, idx) => {
             const isFirstRow = idx < 3;
             const directionClass = isFirstRow ? 'service-card-left' : 'service-card-right';
             const staggerDelay = isFirstRow
@@ -119,6 +146,7 @@ const ServicesSection = () => {
                   {s.icon}
                 </div>
                 <h3 className="service-title">{s.title}</h3>
+                {pageLayout && <p className="service-description">{s.description}</p>}
               </div>
             );
           })}

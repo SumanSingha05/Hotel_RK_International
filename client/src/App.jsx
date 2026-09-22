@@ -16,6 +16,7 @@ import PolicyModal from './components/PolicyModal';
 import AdminDashboard from './components/AdminDashboard';
 import CorporateBookingPage from './components/CorporateBookingPage';
 import AboutUsPage from './components/AboutUsPage';
+import SectionPageShell from './components/SectionPageShell';
 import { CheckCircle } from 'lucide-react';
 
 // Fallback initial rooms if backend is starting
@@ -279,8 +280,15 @@ function App() {
     }
   };
 
-  const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
-  const isAboutRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') === '/about-us';
+  const normalizedPath = typeof currentPath === 'string'
+    ? decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') || '/'
+    : '/';
+  const isCorporateRoute = normalizedPath === '/corporate-booking';
+  const isAboutRoute = normalizedPath === '/about-us';
+  const isServicesRoute = normalizedPath === '/services-amenities';
+  const isRoomsRoute = normalizedPath === '/rooms-tariff';
+  const isGalleryRoute = normalizedPath === '/photo-gallery';
+  const isReviewsRoute = normalizedPath === '/guest-reviews';
 
   // Modal States
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
@@ -372,6 +380,59 @@ function App() {
           onNavigate={navigateTo}
           onOpenBooking={handleOpenBooking}
         />
+      ) : isServicesRoute ? (
+        <SectionPageShell
+          title="Services & Amenities"
+          tagline="Everything you need for a comfortable, convenient stay in New Digha."
+          path="/services-amenities"
+          metaTitle="Hotel Services & Amenities | Hotel RK International New Digha"
+          metaDescription="Explore Wi-Fi, room service, power backup, dining, swimming pool, parking, AC rooms, hot water, and housekeeping at Hotel RK International."
+          onNavigate={navigateTo}
+        >
+          <ServicesSection pageLayout />
+        </SectionPageShell>
+      ) : isRoomsRoute ? (
+        <SectionPageShell
+          title="Rooms & Tariff"
+          tagline="Compare our AC rooms and suites, view tariffs, and send your booking enquiry."
+          path="/rooms-tariff"
+          metaTitle="Rooms & Tariff | Hotel RK International New Digha"
+          metaDescription="View rooms, suites, facilities, capacity, and tariffs at Hotel RK International near New Digha Sea Beach."
+          onNavigate={navigateTo}
+        >
+          <RoomsSection
+            rooms={rooms}
+            onOpenBooking={handleOpenBooking}
+            onOpenRoomDetail={handleOpenRoomDetail}
+            pageLayout
+          />
+        </SectionPageShell>
+      ) : isGalleryRoute ? (
+        <SectionPageShell
+          title="Photo Gallery"
+          tagline="Explore our rooms, interiors, dining spaces, lawn, and hotel surroundings."
+          path="/photo-gallery"
+          metaTitle="Hotel Photo Gallery | Hotel RK International New Digha"
+          metaDescription="Browse photos of Hotel RK International rooms, interiors, dining, lawn, and facilities in New Digha."
+          onNavigate={navigateTo}
+        >
+          <GallerySection pageLayout />
+        </SectionPageShell>
+      ) : isReviewsRoute ? (
+        <SectionPageShell
+          title="Guest Reviews"
+          tagline="Read what guests say about their rooms, dining, service, and stay with us."
+          path="/guest-reviews"
+          metaTitle="Guest Reviews | Hotel RK International New Digha"
+          metaDescription="Read guest feedback about rooms, hospitality, food, and stays at Hotel RK International in New Digha."
+          onNavigate={navigateTo}
+        >
+          <ReviewsSection
+            reviews={reviews}
+            onOpenAddReview={() => setReviewModalOpen(true)}
+            pageLayout
+          />
+        </SectionPageShell>
       ) : (
         /* Main Home Landing Sections */
         <>

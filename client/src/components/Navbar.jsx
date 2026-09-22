@@ -20,19 +20,19 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
   const navItems = [
     { label: 'Home', href: '#home' },
     { label: 'Corporate Booking', href: '/corporate-booking', isCorporate: true },
-    { label: 'Services', href: '#services' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Reviews', href: '#reviews' },
+    { label: 'Services', href: '/services-amenities', isPage: true },
+    { label: 'Gallery', href: '/photo-gallery', isPage: true },
+    { label: 'Reviews', href: '/guest-reviews', isPage: true },
   ];
 
   const handleNavClick = (item) => {
     setMobileMenuOpen(false);
     
-    if (item.isCorporate) {
+    if (item.isCorporate || item.isPage) {
       if (onNavigate) {
-        onNavigate('/corporate-booking');
+        onNavigate(item.href);
       } else {
-        window.history.pushState({}, '', '/corporate-booking');
+        window.history.pushState({}, '', item.href);
         window.dispatchEvent(new PopStateEvent('popstate'));
       }
       return;
@@ -84,9 +84,12 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
           {/* Desktop Nav Links */}
           <ul className="nav-links">
             {navItems.map((item) => {
-              const isActive = item.isCorporate 
-                ? isCorporateRoute 
-                : (!isCorporateRoute && activeSection === item.href.slice(1));
+              const normalizedCurrentPath = decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') || '/';
+              const isActive = item.isCorporate
+                ? isCorporateRoute
+                : item.isPage
+                  ? normalizedCurrentPath === item.href
+                  : (!isInnerRoute && activeSection === item.href.slice(1));
 
               return (
                 <li key={item.label}>
@@ -199,9 +202,12 @@ const Navbar = ({ onOpenBooking, activeSection, currentPath = '/', onNavigate })
 
         <ul className="mobile-drawer-links">
           {navItems.map((item) => {
+            const normalizedCurrentPath = decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') || '/';
             const isActive = item.isCorporate
               ? isCorporateRoute
-              : (!isCorporateRoute && activeSection === item.href.slice(1));
+              : item.isPage
+                ? normalizedCurrentPath === item.href
+                : (!isInnerRoute && activeSection === item.href.slice(1));
 
             return (
               <li key={item.label}>

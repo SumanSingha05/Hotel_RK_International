@@ -5,6 +5,7 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
   const isCorporateRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().includes('corporate');
   const isAboutRoute = typeof currentPath === 'string' && decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') === '/about-us';
   const isInnerRoute = typeof currentPath === 'string' && currentPath !== '/';
+  const normalizedPath = typeof currentPath === 'string' ? decodeURIComponent(currentPath).toLowerCase().replace(/\/$/, '') || '/' : '/';
 
   const scrollToSection = (id) => {
     if (isInnerRoute) {
@@ -38,6 +39,15 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
       onNavigate('/about-us');
     } else {
       window.history.pushState({}, '', '/about-us');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  };
+
+  const navigateToPage = (path) => {
+    if (onNavigate) {
+      onNavigate(path);
+    } else {
+      window.history.pushState({}, '', path);
       window.dispatchEvent(new PopStateEvent('popstate'));
     }
   };
@@ -101,7 +111,8 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#services")}
+                  onClick={() => navigateToPage('/services-amenities')}
+                  style={{ color: normalizedPath === '/services-amenities' ? 'var(--accent-cyan)' : 'inherit', fontWeight: normalizedPath === '/services-amenities' ? '600' : 'normal' }}
                 >
                   Services & Amenities
                 </span>
@@ -109,7 +120,8 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#rooms")}
+                  onClick={() => navigateToPage('/rooms-tariff')}
+                  style={{ color: normalizedPath === '/rooms-tariff' ? 'var(--accent-cyan)' : 'inherit', fontWeight: normalizedPath === '/rooms-tariff' ? '600' : 'normal' }}
                 >
                   Rooms & Tariff
                 </span>
@@ -117,7 +129,8 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#gallery")}
+                  onClick={() => navigateToPage('/photo-gallery')}
+                  style={{ color: normalizedPath === '/photo-gallery' ? 'var(--accent-cyan)' : 'inherit', fontWeight: normalizedPath === '/photo-gallery' ? '600' : 'normal' }}
                 >
                   Photo Gallery
                 </span>
@@ -125,7 +138,8 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
               <li>
                 <span
                   className="footer-link"
-                  onClick={() => scrollToSection("#reviews")}
+                  onClick={() => navigateToPage('/guest-reviews')}
+                  style={{ color: normalizedPath === '/guest-reviews' ? 'var(--accent-cyan)' : 'inherit', fontWeight: normalizedPath === '/guest-reviews' ? '600' : 'normal' }}
                 >
                   Guest Reviews
                 </span>

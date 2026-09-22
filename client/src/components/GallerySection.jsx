@@ -76,7 +76,7 @@ const galleryItems = [
   }
 ];
 
-const GallerySection = () => {
+const GallerySection = ({ pageLayout = false }) => {
   const [activePhoto, setActivePhoto] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
 
@@ -136,16 +136,16 @@ const GallerySection = () => {
         </div>
       </div>
 
-      {/* Infinite Moving Single-Row Carousel (Moving to the left) */}
-      <div className="gallery-marquee-viewport">
+      {/* Gallery carousel on home, full grid on dedicated page */}
+      <div className={pageLayout ? "container gallery-page-grid" : "gallery-marquee-viewport"}>
         <div 
-          className="gallery-marquee-track"
-          style={{ animationDuration: `${filteredItems.length * 8}s` }}
+          className={pageLayout ? "gallery-page-grid-inner" : "gallery-marquee-track"}
+          style={pageLayout ? undefined : { animationDuration: `${filteredItems.length * 8}s` }}
         >
-          {marqueeItems.map((item, index) => (
+          {(pageLayout ? filteredItems : marqueeItems).map((item, index) => (
             <div
               key={`${item.id}-${index}`}
-              className="gallery-marquee-card"
+              className={`gallery-marquee-card ${pageLayout ? 'gallery-page-card' : ''}`}
               onClick={() => setActivePhoto(item)}
               title={`${item.title} - Click to enlarge`}
             >
