@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       checkOut,
       guests: Number(guests) || 2,
       nights: Number(nights) || 1,
-      totalAmount: Number(totalAmount) || 1800,
+      totalAmount: Number(totalAmount) || 2000,
       specialRequests: specialRequests || ''
     });
 

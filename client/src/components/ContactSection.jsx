@@ -210,10 +210,10 @@ const ContactSection = ({ onShowToast }) => {
                   onChange={handleChange}
                 >
                   <option value="Room Booking Inquiry">Room Booking Inquiry</option>
-                  <option value="Deluxe Room (Rs. 1,800)">Deluxe Room (Rs. 1,800)</option>
-                  <option value="Premium Deluxe Room (Rs. 2,400)">Premium Deluxe Room (Rs. 2,400)</option>
-                  <option value="Three Bedded Deluxe (Rs. 2,800)">Three Bedded Deluxe (Rs. 2,800)</option>
-                  <option value="Couple Suite Room (Rs. 3,200)">Couple Suite Room (Rs. 3,200)</option>
+                  <option value="Deluxe Room (Rs. 2,000)">Deluxe Room (Rs. 2,000)</option>
+                  <option value="Premium Deluxe Room (Rs. 2,200)">Premium Deluxe Room (Rs. 2,200)</option>
+                  <option value="Three Bedded Deluxe (Rs. 2,500)">Three Bedded Deluxe (Rs. 2,500)</option>
+                  <option value="Couple Suite Room (Rs. 5,000)">Couple Suite Room (Rs. 5,000)</option>
                   <option value="Family Suite Room (Rs. 4,500)">Family Suite Room (Rs. 4,500)</option>
                   <option value="Corporate / Group Booking">Corporate / Group Booking</option>
                 </select>

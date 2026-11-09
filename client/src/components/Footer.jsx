@@ -73,7 +73,7 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
             <p className="footer-desc">
               Founded in 2022, Hotel RK International offers one of the most
               delightful hospitality experiences in New Digha. Clean, fully
-              furnished AC rooms, 24/7 power backup, lawn, and authentic
+              furnished AC rooms, 24/7 power backup, and authentic
               multi-cuisine dining near the sea beach.
             </p>
           </div>
@@ -189,14 +189,6 @@ const Footer = ({ onOpenPolicy, onOpenAdmin, onNavigate, currentPath = '/' }) =>
                   onClick={() => scrollToSection("#rooms")}
                 >
                   Family Suite Room
-                </span>
-              </li>
-              <li>
-                <span
-                  className="footer-link"
-                  onClick={() => scrollToSection("#rooms")}
-                >
-                  Front Sea Facing Deluxe
                 </span>
               </li>
             </ul>

@@ -5,38 +5,38 @@ const galleryItems = [
   {
     id: 1,
     title: 'Hotel RK International Sunset Facade',
-    category: 'Lawn',
+    category: 'Interiors',
     src: '/hero-building.png'
   },
   {
     id: 2,
     title: 'Deluxe AC Room with Plush Bedding',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/Deluxe/WhatsApp Image 2026-11-06 at 9.41.30 AM.jpeg'
   },
   {
     id: 3,
     title: 'Premium Room Lounge & Seating Area',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.38.44 AM.jpeg'
   },
   {
     id: 4,
     title: 'Family Suite with Interconnected Bedrooms',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM.jpeg'
   },
   {
     id: 5,
     title: 'Romantic Couple Suite Décor & Ambiance',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM.jpeg'
   },
   {
     id: 6,
-    title: 'Modern Luxury Bathroom & Rain Shower',
+    title: 'Three Bedded Deluxe Room',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/ThreeBedRoom/WhatsApp Image 2026-11-06 at 9.44.37 AM.jpeg'
   },
   {
     id: 7,
@@ -58,21 +58,33 @@ const galleryItems = [
   },
   {
     id: 10,
-    title: 'Kids Play Lawn & Tropical Greenery',
-    category: 'Lawn',
-    src: 'https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80'
+    title: 'Hotel Reception & Grand Lobby',
+    category: 'Interiors',
+    src: '/RK International/Interior/ab9d7340fba537a6ce8e9a0a318fa708.jpeg'
   },
   {
     id: 11,
-    title: 'Hotel Entrance & Reception Lobby',
+    title: 'Modern Interior Hallway & Lounge',
     category: 'Interiors',
-    src: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/Interior/5f7085e48d61a445896e4c3e25ea351f.jpeg'
   },
   {
     id: 12,
-    title: 'Sea Facing Balcony with Coastal Sun View',
+    title: 'Contemporary Guest Seating Area',
+    category: 'Interiors',
+    src: '/RK International/Interior/cb174215103cd99de17f416a32155d2e.jpeg'
+  },
+  {
+    id: 13,
+    title: 'Hotel RK International Interior Décor',
+    category: 'Interiors',
+    src: '/RK International/Interior/07e6e035eba92f5640d23a8a2a83bb3d.webp'
+  },
+  {
+    id: 14,
+    title: 'Couple Suite Room with Private Balcony',
     category: 'Rooms',
-    src: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80'
+    src: '/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (1).jpeg'
   }
 ];
 
@@ -86,7 +98,7 @@ const GallerySection = ({ pageLayout = false }) => {
   const marqueeItems = Array(10).fill(filteredItems).flat();
 
   return (
-    <section id="gallery" className="section gallery-section-wrapper" aria-label="Photo Gallery – Rooms, Dining and Lawn at Hotel RK International New Digha">
+    <section id="gallery" className="section gallery-section-wrapper" aria-label="Photo Gallery – Rooms and Dining at Hotel RK International New Digha">
       <div className="container">
         <div className="section-header" style={{ marginBottom: '36px' }}>
           <span className="section-tag">Gallery</span>
@@ -94,7 +106,7 @@ const GallerySection = ({ pageLayout = false }) => {
             Take a Visual Tour of Hotel RK International
           </h2>
           <p className="section-desc">
-            Explore our AC rooms, children's lawn, multi-cuisine dining, and scenic surroundings in New Digha near the sea beach.
+            Explore our AC rooms, multi-cuisine dining, and scenic surroundings in New Digha near the sea beach.
           </p>
           <div 
             style={{ 
@@ -111,7 +123,7 @@ const GallerySection = ({ pageLayout = false }) => {
             }}
             className="hide-scrollbar"
           >
-            {['All', 'Rooms', 'Interiors', 'Lawn', 'Dining'].map(filter => (
+            {['All', 'Rooms', 'Interiors', 'Dining'].map(filter => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}

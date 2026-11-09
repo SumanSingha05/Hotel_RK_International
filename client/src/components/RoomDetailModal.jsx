@@ -51,7 +51,7 @@ const RoomDetailModal = ({ isOpen, onClose, room, onOpenBooking }) => {
           {/* Seabird Tariff Bar */}
           <div className="room-tariff-bar room-modal-tariff">
             <div>
-              <span className="tariff-note">{room.priceNote || 'Including Breakfast + GST'}</span>
+              <span className="tariff-note">{room.priceNote || 'Including GST'}</span>
               <span className="tariff-price">RS.{room.price}/NIGHT</span>
             </div>
             {room.originalPrice && (

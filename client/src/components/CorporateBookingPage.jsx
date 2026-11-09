@@ -47,12 +47,12 @@ const corporateGalleryEvents = [
     bookingDays: "3 Days / 2 Nights (Full Residential Retreat)",
     dateHosted: "August 2026",
     hallUsed: "Grand AC Conclave Hall & Private Executive Lounge",
-    diningPlan: "Full Board: High Tea, Executive Lunch & Lawn Gala Dinner",
+    diningPlan: "Full Board: High Tea, Executive Lunch & Grand Banquet Gala Dinner",
     stayRooms: "42 Deluxe & Suite Rooms",
 
     images: [
       {
-        url: "/hotel pics/ln.jpeg",
+        url: "/hero-building.png",
       },
       {
         url: "/hotel pics/lounge pic.jpg",
@@ -93,7 +93,7 @@ const corporateGalleryEvents = [
     dateHosted: "June 2026",
     hallUsed: "Executive Boardroom",
     diningPlan:
-      "Continental & Indian Buffets with Evening Barbecue by the Lawn",
+      "Continental & Indian Buffets with Evening Barbecue Dinner",
     stayRooms: "25 Couple & Deluxe Suite Rooms",
 
     images: [
@@ -101,7 +101,7 @@ const corporateGalleryEvents = [
         url: "/hotel pics/room pic.jpeg",
       },
       {
-        url: "/hotel pics/ln.jpeg",
+        url: "/hero-building.png",
       },
     ],
   },
@@ -116,12 +116,12 @@ const corporateGalleryEvents = [
     dateHosted: "June 2026",
     hallUsed: "Executive Boardroom",
     diningPlan:
-      "Continental & Indian Buffets with Evening Barbecue by the Lawn",
+      "Continental & Indian Buffets with Evening Barbecue Dinner",
     stayRooms: "25 Couple & Deluxe Suite Rooms",
 
     images: [
       {
-        url: "/hotel pics/ln.jpeg",
+        url: "/hero-building.png",
       },
       {
         url: "/hotel pics/room pic.jpeg",

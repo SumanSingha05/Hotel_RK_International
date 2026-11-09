@@ -9,7 +9,7 @@ const roomSchema = new mongoose.Schema(
     tag: { type: String },
     price: { type: Number, required: true },
     originalPrice: { type: Number },
-    priceNote: { type: String, default: 'Including Breakfast + GST' },
+    priceNote: { type: String, default: 'Including GST' },
     capacity: { type: String, required: true },
     bedType: { type: String, required: true },
     view: { type: String },

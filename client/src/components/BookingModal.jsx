@@ -26,8 +26,8 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms }) =
   const defaultRoom = selectedRoom || (rooms && rooms[0]) || {
     id: 'deluxe-room',
     title: 'Deluxe Room',
-    price: 1800,
-    priceNote: 'Including Breakfast + GST'
+    price: 2000,
+    priceNote: 'Including GST'
   };
 
   const [roomId, setRoomId] = useState(initialParams?.roomId || defaultRoom.id);
@@ -185,7 +185,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms }) =
                     <h4 style={{ fontSize: '1.15rem', color: '#002E5B' }}>{currentRoom.title}</h4>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Including Breakfast + GST</span>
+                    <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Including GST</span>
                     <div style={{ fontSize: '1.25rem', fontWeight: '800', color: '#002E5B' }}>
                       Rs. {currentRoom.price} / Night
                     </div>
@@ -203,7 +203,7 @@ const BookingModal = ({ isOpen, onClose, selectedRoom, initialParams, rooms }) =
                 >
                   {rooms?.map((r) => (
                     <option key={r.id} value={r.id}>
-                      {r.title} — Rs. {r.price}/Night (Incl. Breakfast)
+                      {r.title} — Rs. {r.price}/Night
                     </option>
                   ))}
                 </select>

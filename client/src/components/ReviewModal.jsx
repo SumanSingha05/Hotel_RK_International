@@ -99,7 +99,6 @@ const ReviewModal = ({ isOpen, onClose, onReviewSubmitted, onShowToast }) => {
                   <option value="Three Bedded Deluxe Room">Three Bedded Deluxe</option>
                   <option value="Couple Suite Room">Couple Suite Room</option>
                   <option value="Family Suite Room">Family Suite Room</option>
-                  <option value="Front Sea Facing Deluxe">Front Sea Facing Deluxe</option>
                 </select>
               </div>
             </div>

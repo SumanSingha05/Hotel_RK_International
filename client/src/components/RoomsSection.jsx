@@ -111,7 +111,7 @@ const ParallaxRoomCard = ({ room, onOpenBooking, onOpenRoomDetail, pageLayout = 
             style={{ transform: "translateZ(20px)" }}
           >
             <span className="tariff-note">
-              {room.priceNote || "Including Breakfast + GST"}
+              {room.priceNote || "Including GST"}
             </span>
             <span className="tariff-price">RS.{room.price}/NIGHT</span>
           </div>
@@ -196,7 +196,7 @@ const RoomsSection = ({ rooms, onOpenBooking, onOpenRoomDetail, pageLayout = fal
           </h2>
           <p className="section-desc">
             Choose from our comfortable, well-appointed AC rooms and suites. All
-            tariffs include complimentary breakfast, GST, and 24*7 power backup.
+            tariffs include GST and 24*7 power backup.
           </p>
         </div>
 

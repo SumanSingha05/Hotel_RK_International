@@ -27,17 +27,18 @@ const fallbackRooms = [
     subtitle: "Comfortable & Cozy Stay for Couples & Solo Travelers",
     category: "Deluxe",
     tag: "BESTSELLER",
-    price: 1800,
-    originalPrice: 2200,
-    priceNote: "Including Breakfast + GST",
+    price: 2000,
+    originalPrice: 2500,
+    priceNote: "Including GST",
     capacity: "2 Adults + 1 Child",
     bedType: "1 Queen Size Bed",
     view: "Garden & City View",
     size: "220 sq ft",
     images: [
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+      "/RK International/Deluxe/WhatsApp Image 2026-11-06 at 9.41.30 AM.jpeg",
+      "/RK International/Deluxe/WhatsApp Image 2026-11-06 at 9.41.30 AM (1).jpeg",
+      "/RK International/Deluxe/WhatsApp Image 2026-11-06 at 9.41.30 AM (2).jpeg",
+      "/RK International/Deluxe/WhatsApp Image 2026-11-06 at 9.41.30 AM (3).jpeg"
     ],
     features: [
       "Air Conditioned (Split AC)",
@@ -57,17 +58,19 @@ const fallbackRooms = [
     subtitle: "Upgraded Comfort with Enhanced Space and Premium Amenities",
     category: "Deluxe",
     tag: "POPULAR",
-    price: 2400,
-    originalPrice: 2900,
-    priceNote: "Including Breakfast + GST",
+    price: 2200,
+    originalPrice: 2800,
+    priceNote: "Including GST",
     capacity: "2-3 Adults",
     bedType: "1 King Size Bed + Extra Mattress Option",
     view: "Resort Greenery & Open View",
     size: "280 sq ft",
     images: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80"
+      "/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.38.44 AM.jpeg",
+      "/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.38.55 AM.jpeg",
+      "/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.39.05 AM.jpeg",
+      "/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.39.39 AM.jpeg",
+      "/RK International/Premium Deluxe/WhatsApp Image 2026-11-06 at 9.39.39 AM (1).jpeg"
     ],
     features: [
       "Spacious King Size Bedding",
@@ -87,17 +90,18 @@ const fallbackRooms = [
     subtitle: "Spacious Accommodation for Trios and Small Families",
     category: "Family",
     tag: "FAMILY CHOICE",
-    price: 2800,
-    originalPrice: 3400,
-    priceNote: "Including Breakfast + GST",
+    price: 2500,
+    originalPrice: 3200,
+    priceNote: "Including GST",
     capacity: "3 Adults + 1 Child",
     bedType: "1 Double Bed + 1 Single Bed",
     view: "Open Skyline View",
     size: "320 sq ft",
     images: [
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80"
+      "/RK International/ThreeBedRoom/WhatsApp Image 2026-11-06 at 9.44.37 AM.jpeg",
+      "/RK International/ThreeBedRoom/WhatsApp Image 2026-11-06 at 9.44.37 AM (1).jpeg",
+      "/RK International/ThreeBedRoom/WhatsApp Image 2026-11-06 at 9.44.37 AM (2).jpeg",
+      "/RK International/ThreeBedRoom/WhatsApp Image 2026-11-06 at 9.44.37 AM (3).jpeg"
     ],
     features: [
       "Triple Bed Layout (Double + Single)",
@@ -117,17 +121,22 @@ const fallbackRooms = [
     subtitle: "Romantic Ambiance & Elegant Décor for Honeymooners",
     category: "Suite",
     tag: "ROMANTIC",
-    price: 3200,
-    originalPrice: 3900,
-    priceNote: "Including Breakfast + GST",
+    price: 5000,
+    originalPrice: 6200,
+    priceNote: "Including GST",
     capacity: "2 Adults",
     bedType: "Royal King Bed with Velvet Headboard",
     view: "Panoramic View with Balcony",
     size: "350 sq ft",
     images: [
-      "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80"
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM.jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (1).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (2).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (3).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (4).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (5).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (6).jpeg",
+      "/RK International/CoupleRoom/WhatsApp Image 2026-11-06 at 9.51.48 AM (7).jpeg"
     ],
     features: [
       "Romantic Mood Lighting & Curated Décor",
@@ -148,15 +157,17 @@ const fallbackRooms = [
     tag: "LUXURY SUITE",
     price: 4500,
     originalPrice: 5500,
-    priceNote: "Including Breakfast + GST",
+    priceNote: "Including GST",
     capacity: "4-5 Adults + 2 Children",
     bedType: "2 Queen Beds or Interconnected Rooms",
     view: "Garden & Beachside Vista",
     size: "480 sq ft",
     images: [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
+      "/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM.jpeg",
+      "/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM (1).jpeg",
+      "/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM (2).jpeg",
+      "/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM (3).jpeg",
+      "/RK International/FamilySuiteRoom/WhatsApp Image 2026-11-06 at 9.48.51 AM (4).jpeg"
     ],
     features: [
       "Interconnected Space for Privacy and Togetherness",
@@ -166,35 +177,6 @@ const fallbackRooms = [
       "Two LED Televisions"
     ],
     description: "The premier family accommodation in New Digha with interconnected quarters and multiple washrooms.",
-    isAvailable: true,
-    featured: true
-  },
-  {
-    id: "front-sea-facing-deluxe",
-    title: "Front Sea Facing Deluxe",
-    subtitle: "Spectacular Coastal Breezes & Partial Sea Views",
-    category: "Deluxe",
-    tag: "SEA VIEW",
-    price: 2600,
-    originalPrice: 3200,
-    priceNote: "Including Breakfast + GST",
-    capacity: "2 Adults + 1 Child",
-    bedType: "1 King Size Bed",
-    view: "Sea Breeze & Bay View",
-    size: "260 sq ft",
-    images: [
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
-    ],
-    features: [
-      "Sea Facing Balcony with Morning Sun View",
-      "Whisper-Quiet Inverter AC",
-      "Attached Bathroom with 24/7 Hot Water",
-      "High-Speed Free Wi-Fi",
-      "Tea/Coffee Maker & Fresh Linens"
-    ],
-    description: "Wake up to refreshing coastal breezes in our Front Sea Facing Deluxe Room with a private balcony.",
     isAvailable: true,
     featured: true
   }
@@ -220,7 +202,7 @@ const fallbackReviews = [
     designation: "School Teacher, Burdwan",
     rating: 5,
     roomType: "Deluxe Room",
-    comment: "Best budget luxury hotel in New Digha near the sea beach. Clean sparkling washrooms, prompt room service, and the lawn area was great for my kids to play in the evening."
+    comment: "Best budget luxury hotel in New Digha near the sea beach. Clean sparkling washrooms, prompt room service, and great hospitality made our stay memorable."
   },
   {
     guestName: "Rajesh Banerjee",
@@ -233,7 +215,7 @@ const fallbackReviews = [
     guestName: "Priyanka Chakraborty",
     designation: "Bank Officer, Siliguri",
     rating: 5,
-    roomType: "Front Sea Facing Deluxe",
+    roomType: "Premium Deluxe Room",
     comment: "Morning sea breeze from the balcony was surreal. 24/7 power backup and hot water geyser worked seamlessly. Highly recommended for couples and families visiting New Digha!"
   },
   {
@@ -410,10 +392,10 @@ function App() {
       ) : isGalleryRoute ? (
         <SectionPageShell
           title="Photo Gallery"
-          tagline="Explore our rooms, interiors, dining spaces, lawn, and hotel surroundings."
+          tagline="Explore our rooms, interiors, dining spaces, and hotel surroundings."
           path="/photo-gallery"
           metaTitle="Hotel Photo Gallery | Hotel RK International New Digha"
-          metaDescription="Browse photos of Hotel RK International rooms, interiors, dining, lawn, and facilities in New Digha."
+          metaDescription="Browse photos of Hotel RK International rooms, interiors, dining, and facilities in New Digha."
           onNavigate={navigateTo}
         >
           <GallerySection pageLayout />

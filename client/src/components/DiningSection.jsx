@@ -55,7 +55,7 @@ const DiningSection = ({ onOpenBooking }) => {
               </li>
               <li className="dining-feature-item">
                 <Coffee size={20} />
-                <span><strong>Complimentary Breakfast:</strong> Hot puri-sabzi, bread-butter-eggs, tea/coffee served fresh daily.</span>
+                <span><strong>Morning Breakfast Menu:</strong> Hot puri-sabzi, bread-butter-eggs, tea/coffee served fresh daily.</span>
               </li>
               <li className="dining-feature-item">
                 <Clock size={20} />
@@ -68,7 +68,7 @@ const DiningSection = ({ onOpenBooking }) => {
                 onClick={() => onOpenBooking(null)}
                 className="btn btn-cyan"
               >
-                <span>Book Stay with Breakfast</span>
+                <span>Book Your Stay</span>
               </button>
               <a
                 href="tel:+918910119231"

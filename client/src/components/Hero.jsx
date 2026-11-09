@@ -253,7 +253,7 @@ const Hero = ({ onOpenBooking }) => {
             }}
           >
             Hotel RK International, New Digha &nbsp;•&nbsp; AC Rooms from
-            ₹1800/night &nbsp;•&nbsp; Family &amp; Couple Suites
+            ₹2000/night &nbsp;•&nbsp; Family &amp; Couple Suites
           </p>
 
           <div className="hero-buttons">

@@ -28,7 +28,7 @@ const PolicyModal = ({ policyType, onClose }) => {
           <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>2. Identity Verification</h4>
           <p>As per government guidelines, all Indian adult guests must present a valid government-issued photo ID (Aadhar Card, Driving License, Voter ID, or Passport) upon arrival. PAN cards are not accepted as address proof.</p>
           <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>3. Tariff & Payments</h4>
-          <p>Tariffs are stated in Indian Rupees (INR) including complimentary breakfast and GST. Room charges can be settled via UPI, Cash, or Credit/Debit cards at the reception desk.</p>
+          <p>Tariffs are stated in Indian Rupees (INR) including GST. Room charges can be settled via UPI, Cash, or Credit/Debit cards at the reception desk.</p>
           <h4 style={{ marginTop: '14px', marginBottom: '6px', color: '#002E5B' }}>4. Property Rules</h4>
           <p>We strive to provide a safe, family-friendly atmosphere. Unruly behavior or illegal activities on the hotel premises will result in immediate cancellation of stay without refund.</p>
         </>
